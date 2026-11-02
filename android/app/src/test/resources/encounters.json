@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "wild-dogs",
+      "title": "들개 무리",
+      "story": "기본",
+      "body": "들개 무리를 만났다.",
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-02",
+      "choices": [
+        {
+          "text": "나무 위로 올라간다",
+          "recommend": true,
+          "nextId": null,
+          "effects": [
+            {
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [{ "type": "ability", "name": "날렵함" }],
+              "failure": [{ "type": "resource", "name": "체력", "delta": -1 }]
+            }
+          ]
+        },
+        {
+          "text": "풀숲 속에 숨는다",
+          "recommend": false,
+          "nextId": null,
+          "effects": [
+            {
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [{ "type": "ability", "name": "은신술" }],
+              "failure": [{ "type": "resource", "name": "체력", "delta": -1 }]
+            }
+          ]
+        },
+        {
+          "text": "총으로 쏜다",
+          "recommend": false,
+          "nextId": null,
+          "effects": [
+            { "type": "condition", "name": "권총 보유" },
+            {
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [{ "type": "ability", "name": "사격술" }],
+              "failure": [{ "type": "resource", "name": "체력", "delta": -1 }]
+            }
+          ]
+        },
+        {
+          "text": "지나친다",
+          "recommend": false,
+          "nextId": "wild-dogs-pass",
+          "effects": [{ "type": "text", "name": "지나감" }]
+        }
+      ]
+    },
+    {
+      "id": "wild-dogs-pass",
+      "title": "들개 무리 (지나침)",
+      "story": "기본",
+      "body": "조용히 지나쳤다.",
+      "choices": [],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-02"
+    }
+  ]
+}
