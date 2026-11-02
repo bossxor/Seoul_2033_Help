@@ -3,11 +3,14 @@ package com.bossxor.seoul2033help.ui.settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.bossxor.seoul2033help.data.SettingsRepository
 import com.bossxor.seoul2033help.data.UserSettings
@@ -15,7 +18,12 @@ import com.bossxor.seoul2033help.ui.theme.Seoul2033Colors
 import kotlinx.coroutines.launch
 
 @Composable
-fun SettingsScreen(repo: SettingsRepository, onBack: () -> Unit, onStartOverlay: () -> Unit = {}) {
+fun SettingsScreen(
+    repo: SettingsRepository,
+    onBack: () -> Unit,
+    onStartOverlay: () -> Unit = {},
+    onExportCache: () -> Unit = {}
+) {
     val s by repo.settings.collectAsState(initial = UserSettings())
     val scope = rememberCoroutineScope()
     fun update(t: (UserSettings) -> UserSettings) = scope.launch { repo.update(t) }
@@ -40,6 +48,40 @@ fun SettingsScreen(repo: SettingsRepository, onBack: () -> Unit, onStartOverlay:
             update { it.copy(cropBottomFraction = v) }
         }
         SwitchRow("추천 강조", s.showRecommend) { v -> update { it.copy(showRecommend = v) } }
+
+        Text("AI 해독 (미스 시)", style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 12.dp))
+        OutlinedTextField(
+            value = s.aiApiKey,
+            onValueChange = { v -> update { it.copy(aiApiKey = v.trim()) } },
+            label = { Text("API 키") },
+            singleLine = true,
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = s.aiBaseUrl,
+            onValueChange = { v -> update { it.copy(aiBaseUrl = v.trim()) } },
+            label = { Text("Base URL") },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = s.aiModel,
+            onValueChange = { v -> update { it.copy(aiModel = v.trim()) } },
+            label = { Text("모델") },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            if (s.aiEnabled) "키 있음 · 오버레이 미스 시 AI 해독 가능" else "키 없음 · AI 비활성",
+            color = Seoul2033Colors.TextMuted,
+            style = MaterialTheme.typography.bodySmall
+        )
+        OutlinedButton(
+            onClick = onExportCache,
+            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
+        ) { Text("AI 캐시 export") }
 
         Button(
             onClick = onStartOverlay,

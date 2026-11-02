@@ -69,11 +69,19 @@ adb install -r app\build\outputs\apk\debug\app-debug.apk
 - [ ] Miss → `정보 없음`
 - [ ] 닫기 = 앱 종료
 
+### 런타임 AI 캐시
+
+설정에 OpenAI 호환 **API 키** / Base URL / 모델을 넣으면, 오버레이 매칭 미스 시 **AI 해독**이 켜집니다. 성공 노드는 기기 `filesDir/local_encounters.json`에 쌓이고(시드와 동일 id면 캐시 우선), 검색·재인식에 반영됩니다.
+
+- 설정 → **AI 캐시 export** 로 JSON 공유
+- adb (디버그): `adb shell run-as com.bossxor.seoul2033help cat files/local_encounters.json`
+
+키 없으면 기존처럼 `정보 없음` + 검색만.
+
 ## 나중에
 
-- 런타임 AI 캐시 (미스 시 구조화)
 - Web 검색 UI (동일 seed)
-- Seed 대량 수집
+- Seed 추가 배치 / 검수
 
 ## 출처
 

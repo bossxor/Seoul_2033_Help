@@ -6,7 +6,9 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.bossxor.seoul2033help.ai.AiDecoder
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -15,12 +17,19 @@ data class UserSettings(
     val autoOcr: Boolean = false,
     val autoOcrIntervalSec: Int = 3,
     val cropBottomFraction: Float = 0.45f,
-    val showRecommend: Boolean = true
+    val showRecommend: Boolean = true,
+    val aiApiKey: String = "",
+    val aiBaseUrl: String = AiDecoder.DEFAULT_BASE,
+    val aiModel: String = AiDecoder.DEFAULT_MODEL
 ) {
+    val aiEnabled: Boolean get() = aiApiKey.isNotBlank()
+
     fun clamped() = copy(
         overlayAlpha = overlayAlpha.coerceIn(ALPHA_RANGE),
         cropBottomFraction = cropBottomFraction.coerceIn(CROP_RANGE),
-        autoOcrIntervalSec = autoOcrIntervalSec.coerceIn(INTERVAL_RANGE)
+        autoOcrIntervalSec = autoOcrIntervalSec.coerceIn(INTERVAL_RANGE),
+        aiBaseUrl = aiBaseUrl.ifBlank { AiDecoder.DEFAULT_BASE },
+        aiModel = aiModel.ifBlank { AiDecoder.DEFAULT_MODEL }
     )
 
     companion object {
@@ -39,6 +48,9 @@ class SettingsRepository(private val context: Context) {
         val interval = intPreferencesKey("autoOcrIntervalSec")
         val crop = floatPreferencesKey("cropBottomFraction")
         val recommend = booleanPreferencesKey("showRecommend")
+        val aiKey = stringPreferencesKey("aiApiKey")
+        val aiBase = stringPreferencesKey("aiBaseUrl")
+        val aiModel = stringPreferencesKey("aiModel")
     }
 
     val settings: Flow<UserSettings> = context.dataStore.data.map { it.toSettings() }
@@ -51,6 +63,9 @@ class SettingsRepository(private val context: Context) {
             p[K.interval] = s.autoOcrIntervalSec
             p[K.crop] = s.cropBottomFraction
             p[K.recommend] = s.showRecommend
+            p[K.aiKey] = s.aiApiKey
+            p[K.aiBase] = s.aiBaseUrl
+            p[K.aiModel] = s.aiModel
         }
     }
 
@@ -61,7 +76,10 @@ class SettingsRepository(private val context: Context) {
             this[K.auto] ?: d.autoOcr,
             this[K.interval] ?: d.autoOcrIntervalSec,
             this[K.crop] ?: d.cropBottomFraction,
-            this[K.recommend] ?: d.showRecommend
+            this[K.recommend] ?: d.showRecommend,
+            this[K.aiKey] ?: d.aiApiKey,
+            this[K.aiBase] ?: d.aiBaseUrl,
+            this[K.aiModel] ?: d.aiModel
         ).clamped()
     }
 }

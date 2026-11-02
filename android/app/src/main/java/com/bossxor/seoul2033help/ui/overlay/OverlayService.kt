@@ -25,6 +25,7 @@ import android.os.IBinder
 import android.os.Process
 import android.view.Gravity
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
@@ -38,13 +39,16 @@ import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.bossxor.seoul2033help.MainActivity
+import com.bossxor.seoul2033help.ai.AiDecoder
 import com.bossxor.seoul2033help.data.SettingsRepository
 import com.bossxor.seoul2033help.data.UserSettings
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Theme
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
     private val registry = LifecycleRegistry(this)
@@ -148,13 +152,49 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
                 crop.recycle(); full.recycle()
                 state.value = if (text.isBlank()) {
                     OverlayState.OcrError("인식 실패: 글자를 읽지 못했어요. ‘검색’을 이용해 보세요")
-                } else when (val o = EncounterMatcher((application as Seoul2033HelpApp).repository.all()).match(text)) {
+                } else when (val o = EncounterMatcher((application as Seoul2033HelpApp).store.all()).match(text)) {
                     is MatchOutcome.Clear -> OverlayState.Matched(o.node, o.score)
                     is MatchOutcome.Ambiguous -> OverlayState.Ambiguous(o.candidates)
-                    MatchOutcome.Miss -> OverlayState.Miss
+                    MatchOutcome.Miss -> OverlayState.Miss(text)
                 }
             } finally {
                 view?.visibility = View.VISIBLE
+                busy = false
+            }
+        }
+    }
+
+    private fun aiDecode() {
+        val miss = state.value as? OverlayState.Miss ?: return
+        if (busy) return
+        busy = true
+        state.value = OverlayState.Decoding
+        lifecycleScope.launch {
+            try {
+                val s = settingsRepo.settings.first()
+                if (!s.aiEnabled) {
+                    state.value = miss
+                    Toast.makeText(this@OverlayService, "API 키가 없어요", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+                val result = withContext(Dispatchers.IO) {
+                    AiDecoder(s.aiApiKey, s.aiBaseUrl, s.aiModel).decodeOcr(miss.ocrText)
+                }
+                result.fold(
+                    onSuccess = { node ->
+                        val saved = (application as Seoul2033HelpApp).store.appendCache(node)
+                        state.value = OverlayState.Matched(saved, 1.0)
+                    },
+                    onFailure = { e ->
+                        state.value = miss
+                        Toast.makeText(
+                            this@OverlayService,
+                            "AI 실패: ${e.message?.take(80) ?: "오류"}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                )
+            } finally {
                 busy = false
             }
         }
@@ -169,7 +209,8 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
             onToggleRecommend = { lifecycleScope.launch { settingsRepo.update { it.copy(showRecommend = !it.showRecommend) } } },
             onAlpha = { v -> lifecycleScope.launch { settingsRepo.update { it.copy(overlayAlpha = v) } } },
             onQuit = ::quitApp,
-            onPick = { n -> state.value = OverlayState.Matched(n, 1.0) }
+            onPick = { n -> state.value = OverlayState.Matched(n, 1.0) },
+            onAiDecode = ::aiDecode
         )
         val cv = ComposeView(this).apply {
             setViewTreeLifecycleOwner(this@OverlayService)

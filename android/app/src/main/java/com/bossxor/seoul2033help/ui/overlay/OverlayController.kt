@@ -22,7 +22,8 @@ sealed class OverlayState {
     data object Idle : OverlayState()
     data class Matched(val node: EncounterNode, val score: Double) : OverlayState()
     data class Ambiguous(val candidates: List<ScoredNode>) : OverlayState()
-    data object Miss : OverlayState()
+    data class Miss(val ocrText: String) : OverlayState()
+    data object Decoding : OverlayState()
     data class OcrError(val message: String) : OverlayState()
 }
 
@@ -32,7 +33,8 @@ class OverlayActions(
     val onToggleRecommend: () -> Unit,
     val onAlpha: (Float) -> Unit,
     val onQuit: () -> Unit,
-    val onPick: (EncounterNode) -> Unit
+    val onPick: (EncounterNode) -> Unit,
+    val onAiDecode: () -> Unit = {}
 )
 
 @Composable
@@ -67,7 +69,16 @@ fun OverlayPanel(state: OverlayState, s: UserSettings, a: OverlayActions) {
 private fun Body(state: OverlayState, s: UserSettings, a: OverlayActions) {
     when (state) {
         OverlayState.Idle -> Muted("‘인식’을 눌러 화면을 읽어요")
-        OverlayState.Miss -> Muted("정보 없음 · ‘검색’으로 직접 찾아보세요")
+        is OverlayState.Miss -> {
+            Muted("정보 없음 · ‘검색’으로 직접 찾아보세요")
+            if (s.aiEnabled && state.ocrText.isNotBlank()) {
+                Button(
+                    onClick = a.onAiDecode,
+                    modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
+                ) { Text("AI 해독") }
+            }
+        }
+        OverlayState.Decoding -> Muted("AI 해독 중…")
         is OverlayState.OcrError -> Text(state.message, color = Seoul2033Colors.Danger)
         is OverlayState.Matched -> {
             Text("${state.node.story} · ${state.node.title}", style = MaterialTheme.typography.titleMedium)

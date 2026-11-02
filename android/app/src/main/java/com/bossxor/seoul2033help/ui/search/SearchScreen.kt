@@ -11,13 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.bossxor.seoul2033help.data.EncounterRepository
+import com.bossxor.seoul2033help.data.EncounterStore
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Colors
 
 @Composable
-fun SearchScreen(repo: EncounterRepository, onSettings: () -> Unit = {}, onOpen: (String) -> Unit) {
+fun SearchScreen(store: EncounterStore, onSettings: () -> Unit = {}, onOpen: (String) -> Unit) {
     var query by remember { mutableStateOf("") }
-    val results = remember(query) { repo.search(query) }
+    val results = remember(query) { store.search(query) }
     Column(
         Modifier.fillMaxSize().background(Seoul2033Colors.Bg).statusBarsPadding().padding(horizontal = 16.dp)
     ) {
