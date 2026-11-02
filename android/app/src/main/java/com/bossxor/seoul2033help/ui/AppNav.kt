@@ -1,6 +1,11 @@
 package com.bossxor.seoul2033help.ui
 
+import android.app.Activity
 import android.content.Intent
+import android.media.projection.MediaProjectionManager
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import android.net.Uri
 import android.provider.Settings
 import com.bossxor.seoul2033help.ui.overlay.OverlayService
@@ -40,8 +45,15 @@ fun AppNav(repo: EncounterRepository) {
             val activity = LocalContext.current
             val ctx = activity.applicationContext
             val settingsRepo = remember { SettingsRepository(ctx) }
+            val projLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { r ->
+                val d = r.data
+                if (r.resultCode == Activity.RESULT_OK && d != null) OverlayService.start(ctx, r.resultCode, d)
+                else Toast.makeText(ctx, "권한 필요: 화면 캡처를 허용해 주세요", Toast.LENGTH_SHORT).show()
+            }
             SettingsScreen(settingsRepo, onBack = { nav.popBackStack() }, onStartOverlay = {
-                if (Settings.canDrawOverlays(ctx)) OverlayService.start(ctx)
+                if (Settings.canDrawOverlays(ctx)) projLauncher.launch(
+                    ctx.getSystemService(MediaProjectionManager::class.java).createScreenCaptureIntent()
+                )
                 else activity.startActivity(
                     Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${ctx.packageName}"))
                 )

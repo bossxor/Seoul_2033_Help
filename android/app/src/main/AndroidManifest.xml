@@ -18,14 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- specialUse until Task 8 acquires a MediaProjection token (API 34 requires it for mediaProjection type) -->
         <service
             android:name=".ui.overlay.OverlayService"
             android:exported="false"
-            android:foregroundServiceType="specialUse|mediaProjection">
-            <property
-                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="screen_help_overlay" />
-        </service>
+            android:foregroundServiceType="mediaProjection" />
     </application>
 </manifest>

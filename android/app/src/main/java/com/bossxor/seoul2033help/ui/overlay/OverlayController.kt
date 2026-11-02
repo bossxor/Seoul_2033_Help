@@ -67,7 +67,7 @@ fun OverlayPanel(state: OverlayState, s: UserSettings, a: OverlayActions) {
 private fun Body(state: OverlayState, s: UserSettings, a: OverlayActions) {
     when (state) {
         OverlayState.Idle -> Muted("‘인식’을 눌러 화면을 읽어요")
-        OverlayState.Miss -> Muted("정보 없음")
+        OverlayState.Miss -> Muted("정보 없음 · ‘검색’으로 직접 찾아보세요")
         is OverlayState.OcrError -> Text(state.message, color = Seoul2033Colors.Danger)
         is OverlayState.Matched -> {
             Text("${state.node.story} · ${state.node.title}", style = MaterialTheme.typography.titleMedium)

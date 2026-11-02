@@ -1,6 +1,18 @@
 package com.bossxor.seoul2033help.ui.overlay
 
+import android.app.Activity
 import android.app.Notification
+import android.media.projection.MediaProjectionManager
+import android.view.View
+import androidx.core.content.IntentCompat
+import com.bossxor.seoul2033help.Seoul2033HelpApp
+import com.bossxor.seoul2033help.domain.EncounterMatcher
+import com.bossxor.seoul2033help.domain.MatchOutcome
+import com.bossxor.seoul2033help.ocr.OcrCropper
+import com.bossxor.seoul2033help.ocr.ScreenCapturer
+import com.bossxor.seoul2033help.ocr.ScreenOcrEngine
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
@@ -42,6 +54,9 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
     private var view: ComposeView? = null
     private val state = MutableStateFlow<OverlayState>(OverlayState.Idle)
     private lateinit var settingsRepo: SettingsRepository
+    private var capturer: ScreenCapturer? = null
+    private val ocr = ScreenOcrEngine()
+    private var busy = false
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -51,9 +66,22 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
         registry.currentState = Lifecycle.State.CREATED
         settingsRepo = SettingsRepository(applicationContext)
         wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        startAsForeground()
-        showPanel()
         registry.currentState = Lifecycle.State.RESUMED
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (capturer != null) return START_NOT_STICKY
+        val code = intent?.getIntExtra(EXTRA_CODE, 0) ?: 0
+        val data = intent?.let { IntentCompat.getParcelableExtra(it, EXTRA_DATA, Intent::class.java) }
+        startAsForeground()
+        if (code != Activity.RESULT_OK || data == null) {
+            stopSelf()
+            return START_NOT_STICKY
+        }
+        val mp = getSystemService(MediaProjectionManager::class.java).getMediaProjection(code, data)
+        capturer = ScreenCapturer(applicationContext, mp)
+        showPanel()
+        return START_NOT_STICKY
     }
 
     private fun startAsForeground() {
@@ -62,15 +90,48 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
         val n = Notification.Builder(this, CH)
             .setSmallIcon(android.R.drawable.ic_menu_info_details)
             .setContentTitle("Seoul 2033 Help 실행 중").build()
-        if (Build.VERSION.SDK_INT >= 34) {
-            // Task 8: switch to mediaProjection type once projection token exists.
-            startForeground(1, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+        if (Build.VERSION.SDK_INT >= 29) {
+            startForeground(1, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION)
         } else startForeground(1, n)
+    }
+
+    private fun recognize() {
+        val cap = capturer ?: return
+        if (busy) return
+        busy = true
+        state.value = OverlayState.Idle
+        lifecycleScope.launch {
+            try {
+                // hide panel so it isn't captured
+                view?.visibility = View.INVISIBLE
+                delay(200)
+                val full = cap.grab()
+                view?.visibility = View.VISIBLE
+                if (full == null) {
+                    state.value = OverlayState.OcrError("인식 실패: 화면을 캡처하지 못했어요")
+                    return@launch
+                }
+                val frac = settingsRepo.settings.first().cropBottomFraction
+                val crop = OcrCropper.cropBottom(full, frac)
+                val text = ocr.recognize(crop)
+                crop.recycle(); full.recycle()
+                state.value = if (text.isBlank()) {
+                    OverlayState.OcrError("인식 실패: 글자를 읽지 못했어요. ‘검색’을 이용해 보세요")
+                } else when (val o = EncounterMatcher((application as Seoul2033HelpApp).repository.all()).match(text)) {
+                    is MatchOutcome.Clear -> OverlayState.Matched(o.node, o.score)
+                    is MatchOutcome.Ambiguous -> OverlayState.Ambiguous(o.candidates)
+                    MatchOutcome.Miss -> OverlayState.Miss
+                }
+            } finally {
+                view?.visibility = View.VISIBLE
+                busy = false
+            }
+        }
     }
 
     private fun showPanel() {
         val actions = OverlayActions(
-            onRecognize = { state.value = OverlayState.OcrError("OCR 준비 중 (Task 8)") },
+            onRecognize = ::recognize,
             onSearch = {
                 startActivity(Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             },
@@ -103,7 +164,8 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
 
     fun quitApp() {
         removePanel()
-        // Task 8: stop MediaProjection here first.
+        capturer?.release(); capturer = null
+        ocr.close()
         stopForeground(STOP_FOREGROUND_REMOVE)
         stopSelf()
         Process.killProcess(Process.myPid())
@@ -116,13 +178,19 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
 
     override fun onDestroy() {
         removePanel()
+        capturer?.release(); capturer = null
         registry.currentState = Lifecycle.State.DESTROYED
         super.onDestroy()
     }
 
     companion object {
         private const val CH = "overlay"
-        fun start(ctx: Context) =
-            ctx.startForegroundService(Intent(ctx, OverlayService::class.java))
+        private const val EXTRA_CODE = "code"
+        private const val EXTRA_DATA = "data"
+        /** [data] = result Intent from MediaProjectionManager.createScreenCaptureIntent(). */
+        fun start(ctx: Context, resultCode: Int, data: Intent) =
+            ctx.startForegroundService(
+                Intent(ctx, OverlayService::class.java).putExtra(EXTRA_CODE, resultCode).putExtra(EXTRA_DATA, data)
+            )
     }
 }
