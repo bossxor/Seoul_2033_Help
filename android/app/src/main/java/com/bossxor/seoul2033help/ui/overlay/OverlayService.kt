@@ -41,7 +41,9 @@ import com.bossxor.seoul2033help.MainActivity
 import com.bossxor.seoul2033help.data.SettingsRepository
 import com.bossxor.seoul2033help.data.UserSettings
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Theme
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
@@ -57,6 +59,8 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
     private var capturer: ScreenCapturer? = null
     private val ocr = ScreenOcrEngine()
     private var busy = false
+    private var autoJob: Job? = null
+    private var autoCollectorStarted = false
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -81,7 +85,34 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
         val mp = getSystemService(MediaProjectionManager::class.java).getMediaProjection(code, data)
         capturer = ScreenCapturer(applicationContext, mp)
         showPanel()
+        startAutoCollector()
         return START_NOT_STICKY
+    }
+
+    private fun startAutoCollector() {
+        if (autoCollectorStarted) return
+        autoCollectorStarted = true
+        lifecycleScope.launch {
+            settingsRepo.settings.collect { rescheduleAuto(it) }
+        }
+    }
+
+    private fun rescheduleAuto(s: UserSettings) {
+        autoJob?.cancel()
+        if (!s.autoOcr) return
+        autoJob = lifecycleScope.launch {
+            while (isActive) {
+                delay(s.autoOcrIntervalSec * 1000L)
+                recognize()
+            }
+        }
+    }
+
+    /** Manual 인식: 대기 중인 auto tick 취소 후 즉시 실행, 이후 간격 재시작. */
+    private fun recognizeManual() {
+        autoJob?.cancel()
+        recognize()
+        lifecycleScope.launch { rescheduleAuto(settingsRepo.settings.first()) }
     }
 
     private fun startAsForeground() {
@@ -131,7 +162,7 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
 
     private fun showPanel() {
         val actions = OverlayActions(
-            onRecognize = ::recognize,
+            onRecognize = ::recognizeManual,
             onSearch = {
                 startActivity(Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             },
@@ -163,6 +194,7 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
     }
 
     fun quitApp() {
+        autoJob?.cancel()
         removePanel()
         capturer?.release(); capturer = null
         ocr.close()
@@ -177,6 +209,7 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
     }
 
     override fun onDestroy() {
+        autoJob?.cancel()
         removePanel()
         capturer?.release(); capturer = null
         registry.currentState = Lifecycle.State.DESTROYED
