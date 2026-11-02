@@ -2,6 +2,10 @@ package com.bossxor.seoul2033help.ui
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import com.bossxor.seoul2033help.data.SettingsRepository
+import com.bossxor.seoul2033help.ui.settings.SettingsScreen
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,6 +30,10 @@ fun AppNav(repo: EncounterRepository) {
             if (node != null) NodeDetailScreen(node) { nav.popBackStack() }
             else Text("not found")
         }
-        composable("settings") { Text("설정") }
+        composable("settings") {
+            val ctx = LocalContext.current.applicationContext
+            val settingsRepo = remember { SettingsRepository(ctx) }
+            SettingsScreen(settingsRepo, onBack = { nav.popBackStack() })
+        }
     }
 }
