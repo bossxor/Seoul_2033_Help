@@ -16,9 +16,9 @@ class EncounterRepositoryTest {
     @Test
     fun loadsSampleSeed() {
         val repo = repo()
-        assertEquals(2, repo.all().size)
+        assertTrue(repo.all().size >= 30)
         assertNotNull(repo.get("wild-dogs"))
-        // seed has 2 nodes with "들개" in title (wild-dogs, wild-dogs-pass)
+        // seed has wild-dogs + wild-dogs-pass
         assertEquals(2, repo.search("들개").size)
         assertEquals(1, repo.search("나무 위로").size)
     }

@@ -14,13 +14,28 @@ docs/superpowers/specs/2026-11-02-seoul2033-help-overlay-design.md
 
 ### Seed 동기화
 
-`data/encounters.json` 수정 후:
+`data/encounters.json`이 정본. 수정 후:
 
 ```powershell
 .\scripts\sync-seed.ps1
 ```
 
 assets / 테스트 리소스로 복사합니다.
+
+### Seed 채우기 (기본 인카운터)
+
+1. raw: `data/raw/basic-encounters-readonly.txt` (+ `SOURCE.md`)
+2. 초안 생성:
+
+```powershell
+$py = "$env:LOCALAPPDATA\Python\bin\python.exe"
+& $py scripts/seed-from-wiki.py --merge-curated data/encounters.curated.json --out data/encounters.json --batch1
+.\scripts\sync-seed.ps1
+```
+
+- `encounters.curated.json` = 손수 검수 노드(예: 들개 무리). id 충돌 시 curated 우선.
+- `--batch1` = 단순 인카운터 부분집합. 전체 초안은 `data/encounters.draft.json`.
+- 애매한 결과는 `type: text`로 두고 나중에 고친다.
 
 ### 권한
 
