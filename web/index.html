@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seoul 2033 Help</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="app-bar">
+    <h1>Seoul 2033 Help</h1>
+    <p>PC 검색 답지 · 동일 seed · OCR/AI 없음</p>
+  </header>
+
+  <div id="error" class="error-banner" hidden></div>
+
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="인카운터·선택지 검색" autocomplete="off" />
+    <label class="toggle">
+      <input id="recommend" type="checkbox" checked />
+      추천 강조
+    </label>
+  </div>
+
+  <div class="layout">
+    <nav class="list-pane" aria-label="검색 결과">
+      <ul id="list"></ul>
+    </nav>
+    <main class="detail-pane" id="detail">
+      <p class="empty">왼쪽에서 인카운터를 고르세요</p>
+    </main>
+  </div>
+
+  <footer class="attr">출처: 나무위키 등 · 개인 비상업 용도 · 비공식 팬 도구</footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

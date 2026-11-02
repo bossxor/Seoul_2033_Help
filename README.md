@@ -20,7 +20,7 @@ docs/superpowers/specs/2026-11-02-seoul2033-help-overlay-design.md
 .\scripts\sync-seed.ps1
 ```
 
-assets / 테스트 리소스로 복사합니다.
+Android assets / 테스트 리소스 / `web/encounters.json`으로 복사합니다.
 
 ### Seed 채우기 (기본 인카운터)
 
@@ -78,10 +78,26 @@ adb install -r app\build\outputs\apk\debug\app-debug.apk
 
 키 없으면 기존처럼 `정보 없음` + 검색만.
 
+## Web 검색 답지
+
+PC에서 폰 게임과 병행하는 검색·트리 UI. OCR/오버레이/AI 없음. 시드는 Android와 동일.
+
+```powershell
+.\scripts\sync-seed.ps1
+cd web
+python -m http.server 8080
+```
+
+브라우저에서 http://localhost:8080 열기.
+
+```powershell
+node --test web/test.mjs
+```
+
 ## 나중에
 
-- Web 검색 UI (동일 seed)
 - Seed 추가 배치 / 검수
+- 비주얼 스킨 폴리시
 
 ## 출처
 
