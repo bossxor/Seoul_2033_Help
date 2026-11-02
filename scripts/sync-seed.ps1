@@ -10,4 +10,5 @@ if (-not (Test-Path $webDir)) { New-Item -ItemType Directory -Path $webDir | Out
 Copy-Item -Force $src (Join-Path $root "android\app\src\main\assets\encounters.json")
 Copy-Item -Force $src (Join-Path $root "android\app\src\test\resources\encounters.json")
 Copy-Item -Force $src (Join-Path $webDir "encounters.json")
+& (Join-Path $PSScriptRoot "embed-web-seed.ps1")
 Write-Host "Synced encounters.json -> android assets + test resources + web/"

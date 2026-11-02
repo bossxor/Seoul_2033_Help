@@ -1,112 +1,135 @@
-import { searchNodes } from "./normalize.js";
-import { format, formatAll, isChance } from "./effects.js";
+/* global S2033 */
+(function () {
+  var $ = function (sel) { return document.querySelector(sel); };
 
-const $ = (sel) => document.querySelector(sel);
+  var nodes = [];
+  var byId = {};
+  var showRecommend = true;
+  var selectedId = null;
 
-let nodes = [];
-let byId = new Map();
-let showRecommend = true;
-let selectedId = null;
-
-async function boot() {
-  const err = $("#error");
-  try {
-    const res = await fetch("./encounters.json", { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    nodes = data.nodes || [];
-    if (!nodes.length) throw new Error("시드에 노드가 없습니다");
-    byId = new Map(nodes.map((n) => [n.id, n]));
-    err.hidden = true;
-    $("#search").addEventListener("input", () => renderList());
-    $("#recommend").addEventListener("change", (e) => {
-      showRecommend = e.target.checked;
-      if (selectedId) renderDetail(selectedId);
+  function boot() {
+    var err = $("#error");
+    try {
+      var seed = (window.S2033 && window.S2033.SEED) || null;
+      if (!seed || !seed.nodes || !seed.nodes.length) {
+        throw new Error("임베드 시드 없음 — scripts/sync-seed.ps1 실행");
+      }
+      nodes = seed.nodes;
+      byId = {};
+      for (var i = 0; i < nodes.length; i++) byId[nodes[i].id] = nodes[i];
+      err.hidden = true;
+      $("#search").addEventListener("input", renderList);
+      $("#recommend").addEventListener("change", function (e) {
+        showRecommend = e.target.checked;
+        if (selectedId) renderDetail(selectedId);
+        renderList();
+      });
       renderList();
+    } catch (e) {
+      err.hidden = false;
+      err.textContent = "시드 로드 실패: " + e.message;
+      $("#list").innerHTML = "";
+      $("#detail").innerHTML = "";
+    }
+  }
+
+  function renderList() {
+    var q = $("#search").value;
+    var hits = S2033.searchNodes(nodes, q);
+    var ul = $("#list");
+    ul.innerHTML = "";
+    if (!hits.length) {
+      ul.innerHTML = '<li class="empty">결과 없음</li>';
+      return;
+    }
+    hits.forEach(function (n) {
+      var li = document.createElement("li");
+      if (n.id === selectedId) li.classList.add("active");
+      li.innerHTML =
+        "<strong>" + escapeHtml(n.title) + '</strong><span class="story">' +
+        escapeHtml(n.story || "") + "</span>";
+      li.addEventListener("click", function () {
+        selectedId = n.id;
+        renderList();
+        renderDetail(n.id);
+      });
+      ul.appendChild(li);
     });
-    renderList();
-  } catch (e) {
-    err.hidden = false;
-    err.textContent = `시드 로드 실패: ${e.message}. web/encounters.json 확인 후 sync-seed.ps1 실행, HTTP로 열어 주세요.`;
-    $("#list").innerHTML = "";
-    $("#detail").innerHTML = "";
   }
-}
 
-function renderList() {
-  const q = $("#search").value;
-  const hits = searchNodes(nodes, q);
-  const ul = $("#list");
-  ul.innerHTML = "";
-  if (!hits.length) {
-    ul.innerHTML = `<li class="empty">결과 없음</li>`;
-    return;
-  }
-  for (const n of hits) {
-    const li = document.createElement("li");
-    if (n.id === selectedId) li.classList.add("active");
-    li.innerHTML = `<strong>${escapeHtml(n.title)}</strong><span class="story">${escapeHtml(n.story || "")}</span>`;
-    li.addEventListener("click", () => {
-      selectedId = n.id;
-      renderList();
-      renderDetail(n.id);
+  function renderDetail(id) {
+    var node = byId[id];
+    var pane = $("#detail");
+    if (!node) {
+      pane.innerHTML = '<p class="empty">노드를 찾을 수 없습니다</p>';
+      return;
+    }
+    var choices = (node.choices || [])
+      .map(function (c) {
+        var rec = showRecommend && c.recommend ? " recommend" : "";
+        var effectsHtml = (c.effects || [])
+          .map(function (e) {
+            var cls = S2033.isChance(e) ? "chance" : "";
+            return '<div class="effects ' + cls + '">' + escapeHtml(S2033.format(e)) + "</div>";
+          })
+          .join("");
+        var next = "";
+        if (c.nextId && byId[c.nextId]) {
+          next =
+            '<a class="next" href="#" data-next="' +
+            escapeAttr(c.nextId) +
+            '">다음: ' +
+            escapeHtml(byId[c.nextId].title) +
+            " →</a>";
+        }
+        return (
+          '<div class="choice' +
+          rec +
+          '"><div class="text">' +
+          escapeHtml(c.text) +
+          "</div>" +
+          (effectsHtml || "") +
+          next +
+          "</div>"
+        );
+      })
+      .join("");
+
+    pane.innerHTML =
+      '<p class="muted">' +
+      escapeHtml(node.story || "") +
+      "</p><h2>" +
+      escapeHtml(node.title) +
+      "</h2>" +
+      (node.body ? "<p>" + escapeHtml(node.body) + "</p>" : "") +
+      (choices || '<p class="empty">선택지 없음</p>') +
+      (node.source ? '<p class="muted">출처: ' + escapeHtml(node.source) + "</p>" : "");
+
+    pane.querySelectorAll("a.next").forEach(function (a) {
+      a.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        selectedId = a.getAttribute("data-next");
+        renderList();
+        renderDetail(selectedId);
+      });
     });
-    ul.appendChild(li);
   }
-}
 
-function renderDetail(id) {
-  const node = byId.get(id);
-  const pane = $("#detail");
-  if (!node) {
-    pane.innerHTML = `<p class="empty">노드를 찾을 수 없습니다</p>`;
-    return;
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
   }
-  const choices = (node.choices || [])
-    .map((c) => {
-      const rec = showRecommend && c.recommend ? " recommend" : "";
-      const effectsHtml = (c.effects || [])
-        .map((e) => {
-          const cls = isChance(e) ? "chance" : "";
-          return `<div class="effects ${cls}">${escapeHtml(format(e))}</div>`;
-        })
-        .join("");
-      const next =
-        c.nextId && byId.has(c.nextId)
-          ? `<a class="next" href="#" data-next="${escapeAttr(c.nextId)}">다음: ${escapeHtml(byId.get(c.nextId).title)} →</a>`
-          : "";
-      return `<div class="choice${rec}"><div class="text">${escapeHtml(c.text)}</div>${effectsHtml || `<div class="effects">${escapeHtml(formatAll(c.effects))}</div>`}${next}</div>`;
-    })
-    .join("");
 
-  pane.innerHTML = `
-    <p class="muted">${escapeHtml(node.story || "")}</p>
-    <h2>${escapeHtml(node.title)}</h2>
-    ${node.body ? `<p>${escapeHtml(node.body)}</p>` : ""}
-    ${choices || `<p class="empty">선택지 없음</p>`}
-    ${node.source ? `<p class="muted">출처: ${escapeHtml(node.source)}</p>` : ""}
-  `;
-  pane.querySelectorAll("a.next").forEach((a) => {
-    a.addEventListener("click", (ev) => {
-      ev.preventDefault();
-      const nid = a.getAttribute("data-next");
-      selectedId = nid;
-      renderList();
-      renderDetail(nid);
-    });
-  });
-}
+  function escapeAttr(s) {
+    return escapeHtml(s).replace(/'/g, "&#39;");
+  }
 
-function escapeHtml(s) {
-  return String(s ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function escapeAttr(s) {
-  return escapeHtml(s).replace(/'/g, "&#39;");
-}
-
-boot();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();

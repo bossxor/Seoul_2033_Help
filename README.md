@@ -84,11 +84,17 @@ PC에서 폰 게임과 병행하는 검색·트리 UI. OCR/오버레이/AI 없�
 
 ```powershell
 .\scripts\sync-seed.ps1
-cd web
-python -m http.server 8080
 ```
 
-브라우저에서 http://localhost:8080 열기.
+그다음 **`web/index.html`을 브라우저로 직접 열면** 됩니다 (시드가 `encounters.data.js`에 임베드됨).
+
+선택: 로컬 서버
+
+```powershell
+cd web
+.\serve.ps1
+# http://127.0.0.1:8080
+```
 
 ```powershell
 node --test web/test.mjs

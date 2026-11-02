@@ -1,7 +1,10 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { normalize, searchNodes } from "./normalize.js";
-import { format } from "./effects.js";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+const { normalize, searchNodes } = require("./normalize.js");
+const { format } = require("./effects.js");
 
 describe("normalize", () => {
   it("strips punctuation and lowercases", () => {
