@@ -15,19 +15,22 @@ import com.bossxor.seoul2033help.data.EncounterRepository
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Colors
 
 @Composable
-fun SearchScreen(repo: EncounterRepository, onOpen: (String) -> Unit) {
+fun SearchScreen(repo: EncounterRepository, onSettings: () -> Unit = {}, onOpen: (String) -> Unit) {
     var query by remember { mutableStateOf("") }
     val results = remember(query) { repo.search(query) }
     Column(
         Modifier.fillMaxSize().background(Seoul2033Colors.Bg).statusBarsPadding().padding(horizontal = 16.dp)
     ) {
-        OutlinedTextField(
-            value = query,
-            onValueChange = { query = it },
-            placeholder = { Text("인카운터·선택지 검색") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth().padding(top = 12.dp)
-        )
+        Row(Modifier.fillMaxWidth().padding(top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+            OutlinedTextField(
+                value = query,
+                onValueChange = { query = it },
+                placeholder = { Text("인카운터·선택지 검색") },
+                singleLine = true,
+                modifier = Modifier.weight(1f)
+            )
+            TextButton(onClick = onSettings, modifier = Modifier.heightIn(min = 48.dp)) { Text("설정") }
+        }
         LazyColumn(Modifier.weight(1f)) {
             items(results, key = { it.id }) { node ->
                 Column(

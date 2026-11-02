@@ -1,5 +1,9 @@
 package com.bossxor.seoul2033help.ui
 
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
+import com.bossxor.seoul2033help.ui.overlay.OverlayService
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -20,7 +24,9 @@ fun AppNav(repo: EncounterRepository) {
     val nav = rememberNavController()
     NavHost(nav, startDestination = "search") {
         composable("search") {
-            SearchScreen(repo) { nav.navigate("detail/${android.net.Uri.encode(it)}") }
+            SearchScreen(repo, onSettings = { nav.navigate("settings") }) {
+                nav.navigate("detail/${android.net.Uri.encode(it)}")
+            }
         }
         composable(
             "detail/{id}",
@@ -31,9 +37,15 @@ fun AppNav(repo: EncounterRepository) {
             else Text("not found")
         }
         composable("settings") {
-            val ctx = LocalContext.current.applicationContext
+            val activity = LocalContext.current
+            val ctx = activity.applicationContext
             val settingsRepo = remember { SettingsRepository(ctx) }
-            SettingsScreen(settingsRepo, onBack = { nav.popBackStack() })
+            SettingsScreen(settingsRepo, onBack = { nav.popBackStack() }, onStartOverlay = {
+                if (Settings.canDrawOverlays(ctx)) OverlayService.start(ctx)
+                else activity.startActivity(
+                    Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${ctx.packageName}"))
+                )
+            })
         }
     }
 }
