@@ -28,6 +28,18 @@ class EncounterStoreTest {
     }
 
     @Test
+    fun searchMatchesChoiceTextAndSeesAppendedNodes() {
+        val cache = LocalCacheStore(tmp.newFile("s.json"))
+        val store = EncounterStore(listOf(node("a", "들개 무리"), node("b", "편의점")), cache)
+        assertEquals(listOf("a"), store.search("들개").map { it.id })
+        assertEquals(2, store.search("지나친다").size)
+        // 제목 끝과 분류 앞이 이어 붙어 맞으면 안 된다
+        assertTrue(store.search("무리기본").isEmpty())
+        store.appendCache(node("c", "새 들개"))
+        assertEquals(setOf("a", "c"), store.search("들개").map { it.id }.toSet())
+    }
+
+    @Test
     fun appendUpdatesMerge() {
         val cache = LocalCacheStore(tmp.newFile("c.json"))
         val store = EncounterStore(listOf(node("seed", "시드")), cache)

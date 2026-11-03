@@ -40,6 +40,8 @@ import com.bossxor.seoul2033help.domain.EffectFormatter
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Colors
 import kotlin.math.roundToInt
 
+private val ChipShape = RoundedCornerShape(50)
+
 /** 추천 테두리 회전 각도. 추천이 아닌 행은 애니메이션을 돌리지 않는다. */
 @Composable
 private fun recommendAngle(active: Boolean): Float =
@@ -149,7 +151,7 @@ private fun EffectChip(effect: Effect) {
         style = MaterialTheme.typography.labelLarge,
         color = color,
         modifier = Modifier
-            .clip(RoundedCornerShape(50))
+            .clip(ChipShape)
             .background(color.copy(alpha = 0.16f))
             .padding(horizontal = 11.dp, vertical = 4.dp)
     )

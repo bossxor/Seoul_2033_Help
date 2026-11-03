@@ -13,33 +13,43 @@ class EncounterStore(
     private val cache: LocalCacheStore
 ) {
     private val seed = seedNodes.associateBy { it.id }
-    @Volatile private var merged: Map<String, EncounterNode> = merge(seed, cache.load())
+    @Volatile private var snap = Snapshot(merge(seed, cache.load()))
 
-    fun all(): List<EncounterNode> = merged.values.toList()
+    /** 병합 결과와, 처음 검색할 때 한 번만 만드는 정규화 검색 문자열. */
+    private class Snapshot(val nodes: Map<String, EncounterNode>) {
+        val haystack: List<Pair<EncounterNode, String>> by lazy {
+            nodes.values.map { n ->
+                // 정규화 결과엔 줄바꿈이 없어서, 줄바꿈으로 이어 붙여도 경계를 넘어 맞지 않는다
+                n to buildString {
+                    append(TextNormalizer.normalize(n.title)).append('\n')
+                    append(TextNormalizer.normalize(n.story))
+                    n.choices.forEach { append('\n').append(TextNormalizer.normalize(it.text)) }
+                }
+            }
+        }
+    }
 
-    fun get(id: String): EncounterNode? = merged[id]
+    fun all(): List<EncounterNode> = snap.nodes.values.toList()
+
+    fun get(id: String): EncounterNode? = snap.nodes[id]
 
     fun search(query: String): List<EncounterNode> {
         val q = TextNormalizer.normalize(query)
-        val nodes = all()
-        if (q.isEmpty()) return nodes
-        return nodes.filter { node ->
-            TextNormalizer.normalize(node.title).contains(q) ||
-                TextNormalizer.normalize(node.story).contains(q) ||
-                node.choices.any { TextNormalizer.normalize(it.text).contains(q) }
-        }
+        val s = snap
+        if (q.isEmpty()) return s.nodes.values.toList()
+        return s.haystack.mapNotNull { (n, h) -> n.takeIf { h.contains(q) } }
     }
 
     fun appendCache(node: EncounterNode): EncounterNode {
         cache.append(node)
-        merged = merge(seed, cache.load())
+        snap = Snapshot(merge(seed, cache.load()))
         return node
     }
 
     fun exportCacheJson(): String = cache.exportJson()
 
     fun reloadCache() {
-        merged = merge(seed, cache.load())
+        snap = Snapshot(merge(seed, cache.load()))
     }
 
     companion object {

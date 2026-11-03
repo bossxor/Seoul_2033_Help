@@ -21,6 +21,11 @@ import androidx.compose.ui.unit.dp
 import com.bossxor.seoul2033help.data.EncounterStore
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Colors
 
+// 목록 항목마다 새로 만들지 않도록 한 번만 만든다
+private val CardShape = RoundedCornerShape(16.dp)
+private val PillShape = RoundedCornerShape(50)
+private val CardBorder = BorderStroke(1.dp, Seoul2033Colors.BorderNormal)
+
 @Composable
 fun SearchScreen(store: EncounterStore, onSettings: () -> Unit = {}, onOpen: (String) -> Unit) {
     var query by remember { mutableStateOf("") }
@@ -86,9 +91,9 @@ fun SearchScreen(store: EncounterStore, onSettings: () -> Unit = {}, onOpen: (St
                 val accent = Seoul2033Colors.storyColor(node.story)
                 Surface(
                     onClick = { onOpen(node.id) },
-                    shape = RoundedCornerShape(16.dp),
+                    shape = CardShape,
                     color = Seoul2033Colors.Surface,
-                    border = BorderStroke(1.dp, Seoul2033Colors.BorderNormal),
+                    border = CardBorder,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Row(Modifier.height(IntrinsicSize.Min).heightIn(min = 64.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -101,7 +106,7 @@ fun SearchScreen(store: EncounterStore, onSettings: () -> Unit = {}, onOpen: (St
                                 Text(
                                     node.story, style = MaterialTheme.typography.labelLarge, color = accent,
                                     maxLines = 1, overflow = TextOverflow.Ellipsis,
-                                    modifier = Modifier.clip(RoundedCornerShape(50))
+                                    modifier = Modifier.clip(PillShape)
                                         .background(accent.copy(alpha = 0.16f))
                                         .padding(horizontal = 10.dp, vertical = 2.dp)
                                 )

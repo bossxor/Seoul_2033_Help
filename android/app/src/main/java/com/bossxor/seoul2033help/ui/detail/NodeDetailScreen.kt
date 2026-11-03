@@ -40,7 +40,7 @@ fun NodeDetailScreen(node: EncounterNode, onOpen: (String) -> Unit = {}, onBack:
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            item(key = "story") {
+            item(key = "story", contentType = "story") {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
                         node.story, style = MaterialTheme.typography.labelLarge, color = accent,
@@ -57,7 +57,7 @@ fun NodeDetailScreen(node: EncounterNode, onOpen: (String) -> Unit = {}, onBack:
                     }
                 }
             }
-            itemsIndexed(node.choices, key = { i, c -> "$i:${c.text}" }) { _, c ->
+            itemsIndexed(node.choices, key = { i, c -> "$i:${c.text}" }, contentType = { _, _ -> "choice" }) { _, c ->
                 ChoiceRow(c, recommend, onNext = c.nextId?.let { id -> { onOpen(id) } })
             }
         }
