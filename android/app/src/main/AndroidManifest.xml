@@ -9,6 +9,8 @@
 
     <application
         android:name=".Seoul2033HelpApp"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="Seoul 2033 Help"
         android:theme="@android:style/Theme.Material.NoActionBar">
         <activity
