@@ -11,8 +11,11 @@ object Seoul2033Colors {
     val Text = Color(0xFFE8E4DC)
     val TextMuted = Color(0xFF9A958C)
     val Recommend = Color(0xFFE6A817)
+    val RecommendSoft = Color(0x66E6A817)
+    val RecommendBright = Color(0xFFFFF0C0)
     val BorderNormal = Color(0xFF3F3C38)
     val Chance = Color(0xFFD4A574)
+    val Condition = Color(0xFF6BA3C7)
     val Danger = Color(0xFFC45C4A)
     val Ok = Color(0xFF7A9E7E)
 }

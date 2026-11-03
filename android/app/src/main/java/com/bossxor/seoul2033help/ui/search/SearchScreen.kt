@@ -47,14 +47,5 @@ fun SearchScreen(store: EncounterStore, onSettings: () -> Unit = {}, onOpen: (St
                 HorizontalDivider(color = Seoul2033Colors.BorderNormal)
             }
         }
-        Footer()
     }
 }
-
-@Composable
-fun Footer() = Text(
-    "출처: 나무위키 등 · 개인 비상업 용도",
-    style = MaterialTheme.typography.labelSmall,
-    color = Seoul2033Colors.TextMuted,
-    modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(vertical = 8.dp)
-)

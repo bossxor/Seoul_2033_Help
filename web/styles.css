@@ -7,6 +7,7 @@
   --border: #3f3c38;
   --recommend: #e6a817;
   --chance: #d4a574;
+  --condition: #6ba3c7;
   --danger: #c45c4a;
   --ok: #7a9e7e;
   --focus: #e6a817;
@@ -139,9 +140,21 @@ header.app-bar p {
 }
 
 .choice.recommend {
-  border-width: 2px;
-  border-color: var(--recommend);
-  box-shadow: inset 3px 0 0 var(--recommend);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    conic-gradient(from var(--rec-angle, 0deg), #e6a817, #e6a81766, #fff0c0, #e6a81766, #e6a817) border-box;
+  animation: rec-spin 2.2s linear infinite;
+}
+
+@keyframes rec-spin {
+  to { --rec-angle: 360deg; }
+}
+
+@property --rec-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
 .choice .text {
@@ -151,13 +164,17 @@ header.app-bar p {
 
 .choice .effects {
   font-size: 0.85rem;
-  color: var(--text-muted);
+  margin-top: 2px;
 }
 
-.choice .effects .chance {
+.choice .effects.tone-condition { color: var(--condition); }
+.choice .effects.tone-good { color: var(--ok); }
+.choice .effects.tone-bad { color: var(--danger); }
+.choice .effects.tone-chance {
   color: var(--chance);
   font-family: ui-monospace, Consolas, monospace;
 }
+.choice .effects.tone-neutral { color: var(--text-muted); }
 
 .choice a.next {
   display: inline-block;
@@ -173,13 +190,6 @@ header.app-bar p {
   border: 1px solid var(--danger);
   color: var(--danger);
   background: var(--surface);
-}
-
-footer.attr {
-  padding: 12px 20px 24px;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  border-top: 1px solid var(--border);
 }
 
 .empty {

@@ -44,5 +44,31 @@
     return !!(effect && effect.type === "chance");
   }
 
-  return { format: format, formatAll: formatAll, isChance: isChance };
+  /** condition | good | bad | chance | neutral */
+  function tone(effect) {
+    if (!effect || !effect.type) return "neutral";
+    switch (effect.type) {
+      case "condition":
+        return "condition";
+      case "item":
+      case "ability":
+        return "good";
+      case "status":
+        return "bad";
+      case "resource":
+        return (effect.delta | 0) >= 0 ? "good" : "bad";
+      case "chance":
+        return "chance";
+      case "text": {
+        var n = effect.name || "";
+        if (/회복|획득|얻/.test(n)) return "good";
+        if (/깎|잃|소모|실패|즉사|부상/.test(n)) return "bad";
+        return "neutral";
+      }
+      default:
+        return "neutral";
+    }
+  }
+
+  return { format: format, formatAll: formatAll, isChance: isChance, tone: tone };
 });

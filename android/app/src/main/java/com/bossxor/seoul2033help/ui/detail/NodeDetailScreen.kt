@@ -9,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.bossxor.seoul2033help.data.model.EncounterNode
-import com.bossxor.seoul2033help.ui.search.Footer
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Colors
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,7 +47,6 @@ fun NodeDetailScreen(node: EncounterNode, onBack: () -> Unit) {
                     ChoiceRow(c, recommend)
                 }
             }
-            Footer()
         }
     }
 }

@@ -69,8 +69,8 @@
         var rec = showRecommend && c.recommend ? " recommend" : "";
         var effectsHtml = (c.effects || [])
           .map(function (e) {
-            var cls = S2033.isChance(e) ? "chance" : "";
-            return '<div class="effects ' + cls + '">' + escapeHtml(S2033.format(e)) + "</div>";
+            var tone = S2033.tone(e);
+            return '<div class="effects tone-' + tone + '">' + escapeHtml(S2033.format(e)) + "</div>";
           })
           .join("");
         var next = "";
@@ -102,8 +102,7 @@
       escapeHtml(node.title) +
       "</h2>" +
       (node.body ? "<p>" + escapeHtml(node.body) + "</p>" : "") +
-      (choices || '<p class="empty">선택지 없음</p>') +
-      (node.source ? '<p class="muted">출처: ' + escapeHtml(node.source) + "</p>" : "");
+      (choices || '<p class="empty">선택지 없음</p>');
 
     pane.querySelectorAll("a.next").forEach(function (a) {
       a.addEventListener("click", function (ev) {
