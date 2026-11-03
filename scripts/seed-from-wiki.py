@@ -275,10 +275,12 @@ def strip_meta(nodes: list[dict]) -> list[dict]:
 
 
 def merge_by_id(primary: list[dict], secondary: list[dict]) -> list[dict]:
-    """primary wins on id collision."""
+    """primary wins on id collision; drop secondary titles that match primary titles."""
+    primary_titles = {n["title"] for n in primary}
+    filtered_secondary = [n for n in secondary if n["title"] not in primary_titles]
     by_id = {}
     order = []
-    for n in secondary + primary:
+    for n in filtered_secondary + primary:
         i = n["id"]
         if i not in by_id:
             order.append(i)
