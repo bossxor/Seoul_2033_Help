@@ -21,6 +21,23 @@ class EffectFormatterTest {
 
     @Test
     fun formatsItem() {
-        assertEquals("아이템: 상비약", EffectFormatter.format(Effect.Item("상비약")))
+        assertEquals("+ 상비약", EffectFormatter.format(Effect.Item("상비약")))
+    }
+
+    @Test
+    fun formatsResourceSigned() {
+        assertEquals("멘탈 -1", EffectFormatter.format(Effect.Resource("멘탈", -1)))
+        assertEquals("체력 +1", EffectFormatter.format(Effect.Resource("체력", 1)))
+    }
+
+    @Test
+    fun formatsStatusRemove() {
+        assertEquals("- 수배 중", EffectFormatter.format(Effect.Status("수배 중", -1)))
+    }
+
+    @Test
+    fun itemLossAndCount() {
+        assertEquals("- 음료", EffectFormatter.format(Effect.Item("음료", -1)))
+        assertEquals("+ 소시지 ×2", EffectFormatter.format(Effect.Item("소시지", 2)))
     }
 }

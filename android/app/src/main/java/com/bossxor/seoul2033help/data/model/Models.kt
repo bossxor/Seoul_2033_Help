@@ -40,7 +40,7 @@ sealed class Effect {
 
     @Serializable
     @SerialName("status")
-    data class Status(val name: String) : Effect()
+    data class Status(val name: String, val delta: Int = 1) : Effect()
 
     @Serializable
     @SerialName("resource")

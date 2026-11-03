@@ -16,11 +16,12 @@ class EncounterRepositoryTest {
     @Test
     fun loadsSampleSeed() {
         val repo = repo()
-        assertTrue(repo.all().size >= 30)
+        assertTrue(repo.all().size >= 1000)
         assertNotNull(repo.get("wild-dogs"))
         // seed has wild-dogs + wild-dogs-pass
-        assertEquals(2, repo.search("들개").size)
-        assertEquals(1, repo.search("나무 위로").size)
+        val dogs = repo.search("들개").map { it.id }
+        assertTrue(dogs.containsAll(listOf("wild-dogs", "wild-dogs-pass")))
+        assertTrue(repo.search("나무 위로").any { it.id == "wild-dogs" })
     }
 
     @Test

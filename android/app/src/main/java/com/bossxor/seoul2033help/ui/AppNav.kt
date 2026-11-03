@@ -39,7 +39,10 @@ fun AppNav(store: EncounterStore) {
             arguments = listOf(navArgument("id") { type = NavType.StringType })
         ) { entry ->
             val node = entry.arguments?.getString("id")?.let(store::get)
-            if (node != null) NodeDetailScreen(node) { nav.popBackStack() }
+            if (node != null) NodeDetailScreen(
+                node,
+                onOpen = { nav.navigate("detail/${Uri.encode(it)}") }
+            ) { nav.popBackStack() }
             else Text("not found")
         }
         composable("settings") {

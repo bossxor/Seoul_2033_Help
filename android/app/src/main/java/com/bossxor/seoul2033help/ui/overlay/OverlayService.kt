@@ -7,6 +7,7 @@ import android.view.View
 import androidx.core.content.IntentCompat
 import com.bossxor.seoul2033help.Seoul2033HelpApp
 import com.bossxor.seoul2033help.domain.EncounterMatcher
+import com.bossxor.seoul2033help.domain.Footer
 import com.bossxor.seoul2033help.domain.MatchOutcome
 import com.bossxor.seoul2033help.ocr.OcrCropper
 import com.bossxor.seoul2033help.ocr.ScreenCapturer
@@ -147,12 +148,18 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
                     return@launch
                 }
                 val frac = settingsRepo.settings.first().cropBottomFraction
-                val crop = OcrCropper.cropBottom(full, frac)
-                val text = ocr.recognize(crop)
+                val crop = OcrCropper.cropChoices(full, frac)
+                val top = OcrCropper.choiceBand(full.height, frac).first
+                val fullH = full.height.toFloat()
+                val lines = ocr.recognizeLines(crop)
                 crop.recycle(); full.recycle()
-                state.value = if (text.isBlank()) {
+                val (footerLines, choiceLines) = lines.partition { (top + it.centerY) / fullH >= OcrCropper.FOOTER_START }
+                val footer = Footer.parse(footerLines.joinToString(" ") { it.text })
+                val text = choiceLines.joinToString("\n") { it.text }
+                state.value = if (text.isBlank() && footer == null) {
                     OverlayState.OcrError("인식 실패: 글자를 읽지 못했어요. ‘검색’을 이용해 보세요")
-                } else when (val o = EncounterMatcher((application as Seoul2033HelpApp).store.all()).match(text)) {
+                } else when (val o = EncounterMatcher((application as Seoul2033HelpApp).store.all())
+                    .match(choiceLines.map { it.text }, footer)) {
                     is MatchOutcome.Clear -> OverlayState.Matched(o.node, o.score)
                     is MatchOutcome.Ambiguous -> OverlayState.Ambiguous(o.candidates)
                     MatchOutcome.Miss -> OverlayState.Miss(text)
@@ -210,7 +217,12 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
             onAlpha = { v -> lifecycleScope.launch { settingsRepo.update { it.copy(overlayAlpha = v) } } },
             onQuit = ::quitApp,
             onPick = { n -> state.value = OverlayState.Matched(n, 1.0) },
-            onAiDecode = ::aiDecode
+            onAiDecode = ::aiDecode,
+            onDrag = ::dragPanel,
+            onExpand = ::resizePanel,
+            onOpenId = { id ->
+                (application as Seoul2033HelpApp).store.get(id)?.let { state.value = OverlayState.Matched(it, 1.0) }
+            }
         )
         val cv = ComposeView(this).apply {
             setViewTreeLifecycleOwner(this@OverlayService)
@@ -223,15 +235,36 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
                 }
             }
         }
-        val w = (resources.displayMetrics.density * 340).toInt()
+        val w = (resources.displayMetrics.density * COMPACT_DP).toInt()
         val lp = WindowManager.LayoutParams(
             w, WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT
         ).apply { gravity = Gravity.TOP or Gravity.END; y = 80 }
+        panelParams = lp
         wm.addView(cv, lp)
         view = cv
+    }
+
+    private var panelParams: WindowManager.LayoutParams? = null
+
+    /** 접힘: 한 줄 막대(좁게), 펼침: 선택지 목록(조금 넓게) */
+    private fun resizePanel(expanded: Boolean) {
+        val lp = panelParams ?: return
+        val v = view ?: return
+        lp.width = (resources.displayMetrics.density * (if (expanded) EXPANDED_DP else COMPACT_DP)).toInt()
+        runCatching { wm.updateViewLayout(v, lp) }
+    }
+
+    /** 끌어서 패널 이동. gravity 가 TOP|END 라 x 는 오른쪽 가장자리 기준 오프셋. */
+    private fun dragPanel(dx: Float, dy: Float) {
+        val lp = panelParams ?: return
+        val v = view ?: return
+        val dm = resources.displayMetrics
+        lp.x = (lp.x - dx.toInt()).coerceIn(0, (dm.widthPixels - v.width).coerceAtLeast(0))
+        lp.y = (lp.y + dy.toInt()).coerceIn(0, (dm.heightPixels - v.height).coerceAtLeast(0))
+        runCatching { wm.updateViewLayout(v, lp) }
     }
 
     fun quitApp() {
@@ -259,6 +292,8 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
 
     companion object {
         private const val CH = "overlay"
+        private const val COMPACT_DP = 300
+        private const val EXPANDED_DP = 340
         private const val EXTRA_CODE = "code"
         private const val EXTRA_DATA = "data"
         /** [data] = result Intent from MediaProjectionManager.createScreenCaptureIntent(). */

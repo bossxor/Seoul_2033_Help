@@ -16,7 +16,7 @@ data class UserSettings(
     val overlayAlpha: Float = 0.85f,
     val autoOcr: Boolean = false,
     val autoOcrIntervalSec: Int = 3,
-    val cropBottomFraction: Float = 0.45f,
+    val cropBottomFraction: Float = 0.5f,
     val showRecommend: Boolean = true,
     val aiApiKey: String = "",
     val aiBaseUrl: String = AiDecoder.DEFAULT_BASE,

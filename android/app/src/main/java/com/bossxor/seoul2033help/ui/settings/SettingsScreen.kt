@@ -44,7 +44,7 @@ fun SettingsScreen(
             "자동 간격(초)", "${s.autoOcrIntervalSec}초", s.autoOcrIntervalSec.toFloat(),
             1f..10f, 8
         ) { v -> update { it.copy(autoOcrIntervalSec = v.toInt()) } }
-        SliderRow("OCR 하단 비율", "${(s.cropBottomFraction * 100).toInt()}%", s.cropBottomFraction, UserSettings.CROP_RANGE, null) { v ->
+        SliderRow("OCR 선택지 구역 높이", "${(s.cropBottomFraction * 100).toInt()}%", s.cropBottomFraction, UserSettings.CROP_RANGE, null) { v ->
             update { it.copy(cropBottomFraction = v) }
         }
         SwitchRow("추천 강조", s.showRecommend) { v -> update { it.copy(showRecommend = v) } }

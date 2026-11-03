@@ -8,10 +8,20 @@ object EffectFormatter {
         effects.joinToString(" · ") { format(it) }
 
     fun format(effect: Effect): String = when (effect) {
-        is Effect.Item -> "아이템: ${effect.name}" + (effect.delta?.let { " ($it)" } ?: "")
-        is Effect.Ability -> "능력: ${effect.name}"
-        is Effect.Status -> "상태: ${effect.name}"
-        is Effect.Resource -> "${effect.name}: ${effect.delta}"
+        is Effect.Item -> {
+            val d = effect.delta ?: 1
+            val count = if (kotlin.math.abs(d) > 1) " ×${kotlin.math.abs(d)}" else ""
+            (if (d < 0) "- " else "+ ") + effect.name + count
+        }
+        is Effect.Ability -> "+ ${effect.name}"
+        is Effect.Status -> {
+            val sign = if (effect.delta >= 0) "+" else "-"
+            "$sign ${effect.name}"
+        }
+        is Effect.Resource -> {
+            val sign = if (effect.delta > 0) "+" else ""
+            "${effect.name} $sign${effect.delta}"
+        }
         is Effect.Text -> effect.name
         is Effect.Condition -> "조건: ${effect.name}"
         is Effect.Chance -> {
