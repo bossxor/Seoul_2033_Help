@@ -292,7 +292,7 @@ class OverlayService : Service(), LifecycleOwner, SavedStateRegistryOwner {
 
     companion object {
         private const val CH = "overlay"
-        private const val COMPACT_DP = 300
+        private const val COMPACT_DP = 330
         private const val EXPANDED_DP = 340
         private const val EXTRA_CODE = "code"
         private const val EXTRA_DATA = "data"

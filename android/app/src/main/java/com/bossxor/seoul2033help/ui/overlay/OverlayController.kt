@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -85,7 +87,7 @@ fun OverlayPanel(state: OverlayState, s: UserSettings, a: OverlayActions) {
     }
 }
 
-/** 접힌 상태의 한 줄: [손잡이] 제목 [인식] [펼침/접기] */
+/** 접힌 상태의 한 줄: [손잡이] 제목 [인식] [펼침/접기] [✕] */
 @Composable
 private fun CompactBar(state: OverlayState, expanded: Boolean, a: OverlayActions, onToggle: () -> Unit) {
     Row(Modifier.fillMaxWidth().heightIn(min = 48.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -108,6 +110,10 @@ private fun CompactBar(state: OverlayState, expanded: Boolean, a: OverlayActions
         Btn("인식", Modifier.width(56.dp), onClick = a.onRecognize)
         Spacer(Modifier.width(4.dp))
         Btn(if (expanded) "접기" else "펼침", Modifier.width(56.dp), onClick = onToggle)
+        // 접힌 채로도 끌 수 있게 항상 둔다
+        IconButton(onClick = a.onQuit, modifier = Modifier.size(48.dp)) {
+            Icon(Icons.Default.Close, contentDescription = "종료", tint = Seoul2033Colors.Danger)
+        }
     }
 }
 
