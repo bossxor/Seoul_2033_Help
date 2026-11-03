@@ -69,6 +69,19 @@
         var rec = showRecommend && c.recommend ? " recommend" : "";
         var effectsHtml = (c.effects || [])
           .map(function (e) {
+            if (e && e.type === "chance") {
+              var pct = Math.round((e.successRate || 0) * 100);
+              var ok = S2033.formatAll(e.success) || "-";
+              var bad = S2033.formatAll(e.failure) || "-";
+              return (
+                '<div class="effects">' +
+                '<span class="tone-chance">' + pct + "%</span> " +
+                '<span class="tone-good">성공: ' + escapeHtml(ok) + "</span>" +
+                " / " +
+                '<span class="tone-bad">실패: ' + escapeHtml(bad) + "</span>" +
+                "</div>"
+              );
+            }
             var tone = S2033.tone(e);
             return '<div class="effects tone-' + tone + '">' + escapeHtml(S2033.format(e)) + "</div>";
           })

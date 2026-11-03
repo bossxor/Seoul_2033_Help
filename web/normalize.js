@@ -2,11 +2,10 @@
   var api = factory();
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
-  } else {
-    root.S2033 = root.S2033 || {};
-    root.S2033.normalize = api.normalize;
-    root.S2033.searchNodes = api.searchNodes;
   }
+  root.S2033 = root.S2033 || {};
+  root.S2033.normalize = api.normalize;
+  root.S2033.searchNodes = api.searchNodes;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   function normalize(s) {
     if (!s) return "";

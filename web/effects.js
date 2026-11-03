@@ -2,12 +2,13 @@
   var api = factory();
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
-  } else {
-    root.S2033 = root.S2033 || {};
-    root.S2033.format = api.format;
-    root.S2033.formatAll = api.formatAll;
-    root.S2033.isChance = api.isChance;
   }
+  // Always expose on window for browser (some envs define `module`)
+  root.S2033 = root.S2033 || {};
+  root.S2033.format = api.format;
+  root.S2033.formatAll = api.formatAll;
+  root.S2033.isChance = api.isChance;
+  root.S2033.tone = api.tone;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   function formatAll(effects) {
     if (!effects || !effects.length) return "";

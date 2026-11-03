@@ -24,11 +24,14 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import com.bossxor.seoul2033help.data.model.Choice
 import com.bossxor.seoul2033help.data.model.Effect
 import com.bossxor.seoul2033help.domain.EffectFormatter
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Colors
+import kotlin.math.roundToInt
 
 @Composable
 fun ChoiceRow(choice: Choice, recommendHighlight: Boolean) {
@@ -93,6 +96,28 @@ fun ChoiceRow(choice: Choice, recommendHighlight: Boolean) {
 
 @Composable
 private fun EffectLine(effect: Effect) {
+    if (effect is Effect.Chance) {
+        val pct = (effect.successRate * 100).roundToInt()
+        val ok = EffectFormatter.formatAll(effect.success).ifEmpty { "-" }
+        val bad = EffectFormatter.formatAll(effect.failure).ifEmpty { "-" }
+        Text(
+            text = buildAnnotatedString {
+                pushStyle(SpanStyle(color = Seoul2033Colors.Chance))
+                append("${pct}% ")
+                pop()
+                pushStyle(SpanStyle(color = Seoul2033Colors.Ok))
+                append("성공: $ok")
+                pop()
+                append(" / ")
+                pushStyle(SpanStyle(color = Seoul2033Colors.Danger))
+                append("실패: $bad")
+                pop()
+            },
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(top = 2.dp)
+        )
+        return
+    }
     Text(
         text = EffectFormatter.format(effect),
         style = MaterialTheme.typography.bodyMedium,
