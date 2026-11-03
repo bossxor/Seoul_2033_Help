@@ -19,13 +19,18 @@
     if (!effect || !effect.type) return "";
     switch (effect.type) {
       case "item":
-        return "아이템: " + effect.name + (effect.delta != null ? " (" + effect.delta + ")" : "");
+        var d = effect.delta == null ? 1 : effect.delta | 0;
+        return (d < 0 ? "- " : "+ ") + effect.name + (Math.abs(d) > 1 ? " ×" + Math.abs(d) : "");
       case "ability":
-        return "능력: " + effect.name;
-      case "status":
-        return "상태: " + effect.name;
-      case "resource":
-        return effect.name + ": " + effect.delta;
+        return "+ " + effect.name;
+      case "status": {
+        var sd = effect.delta == null ? 1 : (effect.delta | 0);
+        return (sd >= 0 ? "+ " : "- ") + effect.name;
+      }
+      case "resource": {
+        var d = effect.delta | 0;
+        return effect.name + " " + (d > 0 ? "+" + d : String(d));
+      }
       case "text":
         return effect.name;
       case "condition":
@@ -52,10 +57,16 @@
       case "condition":
         return "condition";
       case "item":
+        return (effect.delta == null ? 1 : effect.delta | 0) < 0 ? "bad" : "good";
       case "ability":
         return "good";
-      case "status":
+      case "status": {
+        var sn = effect.name || "";
+        var sd = effect.delta == null ? 1 : (effect.delta | 0);
+        if (sd < 0) return "bad";
+        if (/우호|좋은\s*평판/.test(sn)) return "good";
         return "bad";
+      }
       case "resource":
         return (effect.delta | 0) >= 0 ? "good" : "bad";
       case "chance":

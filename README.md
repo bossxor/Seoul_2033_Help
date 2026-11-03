@@ -2,6 +2,9 @@
 
 보드게임 **서울 2033** 조우 선택지 도우미. 나무위키 기반 seed를 검색·오버레이로 보여 줍니다. 읽기 전용.
 
+- 저장소: [bossxor/Seoul_2033_Help](https://github.com/bossxor/Seoul_2033_Help)
+- 프로젝트 대시보드: [Works Dashboard](https://bossxor.github.io/works-dashboard/)
+
 ## Android MVP
 
 프로젝트 루트에서 Android Studio로 `android/` 폴더를 엽니다.

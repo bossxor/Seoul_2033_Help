@@ -83,7 +83,12 @@
               );
             }
             var tone = S2033.tone(e);
-            return '<div class="effects tone-' + tone + '">' + escapeHtml(S2033.format(e)) + "</div>";
+            return (
+              '<div class="effects">' +
+              '<span class="effect-pill tone-' + tone + '">' +
+              escapeHtml(S2033.format(e)) +
+              "</span></div>"
+            );
           })
           .join("");
         var next = "";
@@ -114,7 +119,7 @@
       "</p><h2>" +
       escapeHtml(node.title) +
       "</h2>" +
-      (node.body ? "<p>" + escapeHtml(node.body) + "</p>" : "") +
+      (node.body ? renderBody(node.body) : "") +
       (choices || '<p class="empty">선택지 없음</p>');
 
     pane.querySelectorAll("a.next").forEach(function (a) {
@@ -123,8 +128,14 @@
         selectedId = a.getAttribute("data-next");
         renderList();
         renderDetail(selectedId);
+        pane.scrollTop = 0;
       });
     });
+  }
+
+  function renderBody(text) {
+    var p = "<p>" + escapeHtml(text) + "</p>";
+    return text.length > 120 ? '<details class="body"><summary>장면 설명</summary>' + p + "</details>" : p;
   }
 
   function escapeHtml(s) {
