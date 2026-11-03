@@ -20,12 +20,17 @@ TODAY = "2026-11-03"
 SOURCE = "namu:기본 인카운터"
 STORY = "기본"
 
-SECTION_RE = re.compile(r"^###\s+(\d+(?:\.\d+)*)\.\s+(.+?)\s*$")
+# ### and #### (nested 2.19.1 …) both start a new encounter section
+SECTION_RE = re.compile(r"^#{2,6}\s+(\d+(?:\.\d+)*)\.\s+(.+?)\s*$")
 BULLET_RE = re.compile(r"^-\s+(.+)$")
 # choice - outcome  (first " - " that looks like separator after choice)
 SPLIT_CHOICE = re.compile(r"^(.+?)\s+-\s+(.+)$")
 
 RESOURCE_NAMES = ("체력", "멘탈", "돈", "식량")
+ABILITY_HINTS = (
+    "술", "힘", "지식", "재능", "기술", "얼굴", "투지", "직감", "은신",
+    "실력", "영어", "철학", "유머", "거짓말", "교섭", "웅변", "유도", "소매치기", "사격", "관찰력", "날렵함",
+)
 # Batch-1: simpler / short encounters by section number prefix
 BATCH1_PREFIXES = {
     "2.1", "2.8", "2.9", "2.12", "2.13", "2.14", "2.15", "2.16", "2.17",
@@ -46,58 +51,194 @@ def slugify(title: str) -> str:
     return t[:64]
 
 
+def split_sentences(text: str) -> list[str]:
+    parts = re.split(r"(?<=[.!?])\s+|\s+/\s+", text.strip())
+    return [p.strip(" ./-") for p in parts if p.strip(" ./-")]
+
+
+def make_chance(rate: float, success: str, failure: str) -> dict:
+    ok = parse_effects(success) if success else []
+    bad = parse_effects(failure) if failure else []
+    return {
+        "type": "chance",
+        "successRate": rate,
+        "success": ok or [{"type": "text", "name": "성공 (위키 서술 참고)"}],
+        "failure": bad or [{"type": "text", "name": "실패 (위키 서술 참고)"}],
+    }
+
+
+def split_chance(o: str) -> tuple[str, dict] | None:
+    """'N% 확률로 A. 아니면 B' -> (앞 문장, chance). 첫 확률 문장 = 성공, 이후 = 실패."""
+    sents = split_sentences(o)
+    for i, s in enumerate(sents):
+        m = re.search(r"(\d+)%\s*확률(?:로|이다|로는)?", s)
+        if not m:
+            continue
+        head = s[: m.start()].strip(" ,")
+        succ = (head + " " + s[m.end():]).strip(" ,")
+        succ = re.sub(r"^(?:잘\s*)?(?:구울|만들|성공할)\s*경우\s*", "", succ)
+        pre = " ".join(sents[:i])
+        return pre, make_chance(int(m.group(1)) / 100.0, succ, " ".join(sents[i + 1:]))
+    return None
+
+
 def parse_effects(outcome: str) -> list[dict]:
     if not outcome or not outcome.strip():
-        return [{"type": "text", "name": "결과 미상"}]
-    o = outcome.strip()
+        return []
+    # drop namu footnote markers "[1]" only (keep the surrounding sentence)
+    o = re.sub(r"\s*\[\d+\]", "", outcome.strip()).strip(" -")
+    chance = split_chance(o)
+    if chance:
+        pre, effect = chance
+        return (parse_effects(pre) if pre else []) + [effect]
     effects: list[dict] = []
 
-    # conditions in parentheses on choice side are handled elsewhere; here outcomes
-    for m in re.finditer(r"(체력|멘탈|돈|식량)\s*(\d+)\s*칸", o):
+    # 퀘스트/인카운터 진입 → 중립 텍스트 (이득 아님)
+    if re.search(r"(퀘스트|인카운터).{0,8}진입|진입$", o) and not re.search(
+        r"(획득|습득|소모|깎|회복)", o
+    ):
+        return [{"type": "text", "name": o[:80]}]
+
+    # [관찰력]이 있으면 … / [수배중] 가젯
+    for m in re.finditer(r"\[([^\]]+)\](?:이|가)?\s*있으면", o):
+        effects.append({"type": "condition", "name": m.group(1).strip()})
+    for m in re.finditer(r"\[([^\]]+)\]\s*가젯", o):
+        name = m.group(1).strip().replace("수배중", "수배 중")
+        effects.append({"type": "condition", "name": name})
+
+    # (+ 돈 1, 영어) / (- 체력 1) compact wiki form
+    for m in re.finditer(r"\(\s*([+\-＋－])\s*([^)]+)\)", o):
+        sign = 1 if m.group(1) in "+＋" else -1
+        for piece in re.split(r"\s*,\s*", m.group(2)):
+            piece = piece.strip()
+            if not piece:
+                continue
+            rm = re.match(r"(체력|멘탈|돈|식량)\s*(\d+)$", piece)
+            if rm:
+                effects.append(
+                    {
+                        "type": "resource",
+                        "name": rm.group(1),
+                        "delta": sign * int(rm.group(2)),
+                    }
+                )
+                continue
+            name = re.sub(r"\s+", " ", piece)
+            name = name.replace("수배중", "수배 중")
+            if "수배" in name or name in ("출혈", "감염", "골절") or "적대" in name or "우호" in name:
+                effects.append({"type": "status", "name": name, "delta": sign})
+            elif sign > 0 and (
+                any(k in name for k in ABILITY_HINTS)
+                or name.endswith(("술", "재주", "기술", "영어"))
+                or len(name) <= 8
+            ):
+                if name.endswith(("술", "재주", "기술", "영어")) or any(
+                    k in name for k in ABILITY_HINTS
+                ):
+                    effects.append({"type": "ability", "name": name})
+                else:
+                    effects.append({"type": "item", "name": name})
+            elif sign < 0:
+                effects.append({"type": "status", "name": name, "delta": -1})
+            else:
+                effects.append({"type": "item", "name": name})
+
+    # 멘탈을 1칸 소모 / 체력 2칸 회복
+    for m in re.finditer(
+        r"(체력|멘탈|돈|식량)(?:을|를|이|가)?\s*(\d+)\s*칸", o
+    ):
         name, n = m.group(1), int(m.group(2))
-        delta = n if re.search(rf"{name}.*(?:회복|얻|채)", o) or "회복" in o else -n
-        if re.search(r"(깎|소모|잃|감소)", o):
+        window = o[max(0, m.start() - 2) : m.end() + 12]
+        if re.search(r"(깎|소모|잃|감소|까인|까이|까임)", window) or re.search(
+            r"(깎|소모|잃|감소|까인|까이|까임)", o[m.end() : m.end() + 8]
+        ):
             delta = -abs(n)
-        if re.search(r"(회복|채우|얻)", o) and not re.search(r"(깎|소모|잃)", o):
+        elif re.search(r"(회복|채우)", window) or re.search(
+            r"(회복|채우)", o[m.end() : m.end() + 8]
+        ):
             delta = abs(n)
+        else:
+            # default: "소모하며" later in sentence → lose; "획득" alone → keep heuristic
+            delta = -abs(n) if re.search(r"(깎|소모|잃|감소|까인|까이|까임)", o) else abs(n)
+            if re.search(r"(회복|채우)", o) and not re.search(r"(깎|소모|잃)", o):
+                delta = abs(n)
         effects.append({"type": "resource", "name": name, "delta": delta})
 
-    # "체력 1칸이 깎" patterns without "칸" duplication already caught; also "체력이 1칸"
-    for m in re.finditer(r"(체력|멘탈|돈)\s*(?:이\s*)?(\d+)\s*칸\s*(?:이\s*)?(깎|소모|잃)", o):
-        effects.append({"type": "resource", "name": m.group(1), "delta": -int(m.group(2))})
-
     for m in re.finditer(r"(\d+)%\s*확률", o):
-        rate = int(m.group(1)) / 100.0
-        effects.append({
-            "type": "chance",
-            "successRate": rate,
-            "success": [{"type": "text", "name": "성공 (위키 서술 참고)"}],
-            "failure": [{"type": "text", "name": "실패 (위키 서술 참고)"}],
-        })
+        effects.append(make_chance(int(m.group(1)) / 100.0, "", ""))
 
     for m in re.finditer(r"([가-힣A-Za-z0-9]+)\s*상태이상", o):
-        effects.append({"type": "status", "name": m.group(1)})
+        if m.group(1) in ("똑같이", "모든", "모두", "어떤", "각종"):
+            continue
+        effects.append({"type": "status", "name": m.group(1), "delta": 1})
 
-    # X 획득
-    for m in re.finditer(r"([가-힣A-Za-z0-9 ·<>]+?)\s*획득", o):
-        name = m.group(1).strip(" ·")
-        name = re.sub(r"^.*?(?:경우|때|시)\s*", "", name)
-        name = re.sub(r"^.*깎이고\s*", "", name)
-        if not name or name in RESOURCE_NAMES or len(name) > 40:
+    # 수배 중 삭제 / X 소멸 → status delta -1
+    for m in re.finditer(
+        r"([가-힣A-Za-z0-9 ·]+?)\s*(?:삭제|소멸)(?!\s*하며)", o
+    ):
+        name = m.group(1).strip(" ·'")
+        name = re.sub(r"^(?:및|그리고|또는)\s*", "", name)
+        if not name or name in RESOURCE_NAMES or len(name) > 24:
             continue
-        if name in ("체력", "멘탈", "돈") or "상태이상" in name:
+        if name in ("근력", "체력"):
             continue
-        # ability-ish short names vs items
-        if any(k in name for k in ("술", "힘", "지식", "재능", "기술", "얼굴", "투지", "직감")) or len(name) <= 6:
+        effects.append({"type": "status", "name": name, "delta": -1})
+
+    def strip_josa(name: str) -> str:
+        name = name.strip(" ·'")
+        name = re.sub(r"[을를이가은는]$", "", name)
+        return name.strip()
+
+    def append_gain(name: str) -> None:
+        name = strip_josa(name)
+        name = re.sub(r"\s+", " ", name)
+        if not name or name in RESOURCE_NAMES or len(name) > 24:
+            return
+        if re.search(r"(소모|칸|확률|종료|통과|진입|퀘스트)", name):
+            return
+        if any(e.get("name") == name for e in effects):
+            return
+        if "수배" in name or "평판" in name or name == "악명":
+            effects.append({"type": "status", "name": name, "delta": 1})
+        elif (
+            any(k in name for k in ABILITY_HINTS)
+            or name.endswith("술")
+            or name.endswith("재주")
+        ):
             effects.append({"type": "ability", "name": name})
         else:
             effects.append({"type": "item", "name": name})
 
+    def append_gains(blob: str) -> None:
+        blob = re.sub(r"^.*?(?:하며|면서)\s*", "", blob.strip())
+        for part in re.split(r"\s*(?:와|과|및|/)\s*", blob):
+            append_gain(part)
+
+    # X(을) 획득/습득/얻는다 — 조사 분리, 와/과 복수
+    for m in re.finditer(
+        r"([가-힣A-Za-z0-9 ·]{2,40}?)\s*(?:을|를)?\s*(?:획득|습득|얻는다|얻음)", o
+    ):
+        blob = m.group(1).strip()
+        # "멘탈 … 소모하면서 의약품" → 의약품만
+        blob = re.sub(r"^.*?(?:하며|면서)\s*", "", blob)
+        if re.search(r"(체력|멘탈|돈|식량).{0,6}\d|칸\s*(?:을\s*)?(?:소모|깎)", blob):
+            continue
+        append_gains(blob)
+
     if re.search(r"인카운터 종료|지나|무시|통과", o) and not effects:
-        effects.append({"type": "text", "name": o[:80]})
+        effects.append({"type": "text", "name": "인카운터 종료" if "종료" in o else o[:80]})
+
+    # bare loot noun: "군복" / "살충제, …대체" / "손재주"
+    if not effects and re.fullmatch(r"[가-힣A-Za-z0-9 ·,/]{1,80}", o):
+        if not re.search(r"(종료|통과|무시|확률|소모|깎|실패|죽|요구|강요)", o):
+            head, _, tail = o.partition(",")
+            append_gain(head.strip())
+            if tail.strip() and effects:
+                effects.append({"type": "text", "name": tail.strip()[:100]})
 
     if not effects:
-        effects.append({"type": "text", "name": o[:120]})
+        for s in split_sentences(o)[:4]:
+            effects.append({"type": "text", "name": s[:100]})
 
     # de-dupe identical dicts
     seen = set()
@@ -111,16 +252,55 @@ def parse_effects(outcome: str) -> list[dict]:
 
 
 def extract_condition(choice_text: str) -> tuple[str, list[dict]]:
-    """Pull trailing (조건) into condition effects."""
+    """Pull (조건) and [조건] into condition effects; strip footnote [N]."""
     effects: list[dict] = []
-    text = choice_text.strip()
+    text = choice_text.strip().replace("'''", "")
+    text = re.sub(r"\[\d+\]", "", text)
+
+    for m in re.finditer(r"\[([^\]]+)\]", text):
+        inner = m.group(1).strip()
+        if not inner or re.fullmatch(r"\d+", inner):
+            continue
+        for piece in re.split(r"\s*,\s*", inner):
+            piece = piece.strip()
+            if piece and piece not in ("일반판", "후원자"):
+                effects.append({"type": "condition", "name": piece})
+    text = re.sub(r"\s*\[[^\]]+\]", "", text)
+
     m = re.search(r"^(.*?)\(([^)]+)\)\s*$", text)
     if m:
         text = m.group(1).strip()
         cond = m.group(2).strip()
         if cond and cond not in ("일반판", "후원자"):
             effects.append({"type": "condition", "name": cond})
+
+    text = re.sub(r"\s+", " ", text).strip(" .")
     return text, effects
+
+
+def parse_circle_choices(blob: str) -> tuple[str | None, list[tuple[str, str]]]:
+    """Split wiki ○/● inline choice lists. Return (intro, choices)."""
+    if "○" not in blob and "●" not in blob:
+        return None, []
+    m = re.search(r"[○●]", blob)
+    intro = blob[: m.start()].strip() or None
+    rest = blob[m.start() :]
+    choices: list[tuple[str, str]] = []
+    for part in re.split(r"[○●]\s*", rest):
+        part = part.strip().replace("'''", "")
+        if not part:
+            continue
+        sm = SPLIT_CHOICE.match(part)
+        if sm:
+            ct, oc = sm.group(1).strip(), sm.group(2).strip()
+        else:
+            ct, oc = part, ""
+        # footnotes only on outcome tail (do not eat [역사학] on choice)
+        oc = re.sub(r"\s*\[\d+\]", "", oc).strip()
+        ct = re.sub(r"\s+", " ", ct).strip(" .")
+        if ct and len(ct) <= 80:
+            choices.append((ct, oc))
+    return intro, choices
 
 
 def parse_sections(text: str) -> list[dict]:
@@ -149,18 +329,22 @@ def parse_sections(text: str) -> list[dict]:
 
     nodes = []
     for num, title, body_lines in sections:
-        # skip deep nested like 2.19.1 unless we want them — keep only depth <= 2 for batch (2.x)
-        parts = num.split(".")
-        if len(parts) > 2:
-            continue
         if not num.startswith("2."):
             continue
 
         body_paras = []
         choices_raw: list[tuple[str, str]] = []
+        group_start = 0  # first bullet of the current contiguous bullet group
+        after_bullet = False
         for line in body_lines:
+            # nested heading leaked as body (belt-and-suspenders; SECTION_RE should catch)
+            if re.match(r"^#{2,6}\s+\d+", line.strip()):
+                continue
             bm = BULLET_RE.match(line.strip())
+            if bm and not after_bullet:
+                group_start = len(choices_raw)
             if bm:
+                after_bullet = True
                 content = bm.group(1).strip()
                 # skip pure category headers / empty
                 if content.startswith("<") and " - " not in content and "획득" in content:
@@ -178,19 +362,49 @@ def parse_sections(text: str) -> list[dict]:
                     choices_raw.append((content, ""))
             else:
                 s = line.strip()
+                if (
+                    s
+                    and after_bullet
+                    and len(choices_raw) - group_start == 1
+                    and not choices_raw[-1][1]
+                    and not s.startswith("'''")
+                ):
+                    # "- 스테이크를 굽는다(생고기)" + 다음 문단 = 그 선택지의 결과
+                    choices_raw[-1] = (choices_raw[-1][0], s.replace("'''", ""))
+                    after_bullet = False
+                    continue
+                if s:
+                    after_bullet = False
                 if s and not s.startswith("|") and not s.startswith("'''"):
                     # strip light wiki bold
                     s = s.replace("'''", "")
+                    if re.match(r"^#{2,6}\s+\d+", s):
+                        continue
                     body_paras.append(s)
 
-        body = " ".join(body_paras[:3])[:400] if body_paras else title
+        joined_body = " ".join(body_paras)
+        intro_circle, circle_choices = parse_circle_choices(joined_body)
+        if circle_choices and not choices_raw:
+            choices_raw = circle_choices
+            body = (intro_circle or "")[:400] or None
+        else:
+            body = joined_body[:400] if body_paras else None
+            # strip circle markers from body preview if bullets already present
+            if body and ("○" in body or "●" in body) and intro_circle:
+                body = intro_circle[:400]
 
         # Fold orphan outcome-bullets into previous choice when wiki nests poorly
         folded: list[tuple[str, str]] = []
         outcomeish = re.compile(
             r"(깎|소모|잃|회복|획득|확률|통과|종료|멘탈|체력|돈\s*\d|즉사|사라)"
         )
+        branch = re.compile(r"(?:경우|판)\s*$")
         for ct, outcome in choices_raw:
+            if folded and branch.search(ct.replace("'''", "")):
+                prev_t, prev_o = folded[-1]
+                label = ct.replace("'''", "").strip()
+                folded[-1] = (prev_t, (prev_o + " / " + label + ": " + outcome).strip(" /"))
+                continue
             if (
                 folded
                 and not outcome
@@ -208,9 +422,6 @@ def parse_sections(text: str) -> list[dict]:
             text, cond_fx = extract_condition(ct)
             if not text or len(text) > 80:
                 continue
-            # skip nested narrative fragments that aren't real choices
-            if text.startswith("지뢰밭일 경우") or text.startswith("구호 물품일 경우"):
-                continue
             fx = cond_fx + parse_effects(outcome)
             choices.append({
                 "text": text,
@@ -219,12 +430,27 @@ def parse_sections(text: str) -> list[dict]:
                 "recommend": False,
             })
 
+        # circle fallback if bullets produced nothing useful
+        if (not choices) and circle_choices:
+            for ct, outcome in circle_choices:
+                text, cond_fx = extract_condition(ct)
+                if not text or len(text) > 80:
+                    continue
+                choices.append({
+                    "text": text,
+                    "effects": cond_fx + parse_effects(outcome),
+                    "nextId": None,
+                    "recommend": False,
+                })
+            if intro_circle:
+                body = intro_circle[:400]
+
         # pickup with no bullets: synthesize
         if not choices:
             choices = [
                 {
                     "text": "살펴본다",
-                    "effects": [{"type": "text", "name": body[:100] or "위키 서술 참고"}],
+                    "effects": [{"type": "text", "name": (body or title)[:100] or "위키 서술 참고"}],
                     "nextId": None,
                     "recommend": True,
                 },

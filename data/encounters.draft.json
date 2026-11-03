@@ -48,7 +48,15 @@
             },
             {
               "type": "text",
-              "name": "표지판을 읽는다."
+              "name": "표지판을 읽는다"
+            },
+            {
+              "type": "text",
+              "name": "지뢰밭일 경우: \"전방 50미터에 아직 제거되지 않은 대인지뢰 다수...\" 지뢰밭을 회피한다"
+            },
+            {
+              "type": "text",
+              "name": "구호 물품일 경우: \"표지판 뒤 박스에 긴급 구호물품 있음\" 의약품을 얻거나, 방독면을 얻을 수 있다"
             }
           ],
           "nextId": null,
@@ -58,8 +66,9 @@
           "text": "무시한다",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "resource",
+              "name": "체력",
+              "delta": -1
             }
           ],
           "nextId": null,
@@ -77,45 +86,25 @@
       "choices": [
         {
           "text": "롱패딩 , 군복",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "초콜릿",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "각설탕",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "맥주",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -125,10 +114,6 @@
             {
               "type": "condition",
               "name": "술 셈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -140,10 +125,6 @@
             {
               "type": "condition",
               "name": "의약품"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -151,12 +132,7 @@
         },
         {
           "text": "방독면",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -166,10 +142,6 @@
             {
               "type": "condition",
               "name": "유머"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -181,10 +153,6 @@
             {
               "type": "condition",
               "name": "역사학"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -196,10 +164,6 @@
             {
               "type": "condition",
               "name": "철학"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -207,23 +171,13 @@
         },
         {
           "text": "삽",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "산소통",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -306,7 +260,7 @@
               "delta": 1
             },
             {
-              "type": "item",
+              "type": "ability",
               "name": "능숙한 거짓말"
             }
           ],
@@ -463,16 +417,11 @@
       "id": "가락시장-식품-잡화-트레일러",
       "title": "가락시장 식품·잡화 트레일러",
       "story": "기본",
-      "body": "가락시장 식품·잡화 트레일러",
+      "body": null,
       "choices": [
         {
-          "text": "거래한다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "거래한다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -484,7 +433,7 @@
               "name": "돈"
             },
             {
-              "type": "ability",
+              "type": "item",
               "name": "생고기"
             }
           ],
@@ -499,7 +448,7 @@
               "name": "돈"
             },
             {
-              "type": "ability",
+              "type": "item",
               "name": "풀떼기"
             }
           ],
@@ -519,7 +468,7 @@
               "delta": -1
             },
             {
-              "type": "ability",
+              "type": "item",
               "name": "풀떼기"
             }
           ],
@@ -534,7 +483,7 @@
               "name": "돈"
             },
             {
-              "type": "ability",
+              "type": "item",
               "name": "붕대"
             }
           ],
@@ -546,7 +495,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -557,7 +506,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -576,8 +525,9 @@
               "delta": -1
             },
             {
-              "type": "ability",
-              "name": "수배 중"
+              "type": "status",
+              "name": "수배 중",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -587,7 +537,7 @@
           "text": "식재료를 가져간다",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "풀떼기"
             }
           ],
@@ -598,7 +548,7 @@
           "text": "롱패딩을 가져간다",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "롱패딩"
             }
           ],
@@ -609,7 +559,7 @@
           "text": "군복을 가져간다",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "군복"
             }
           ],
@@ -624,7 +574,7 @@
       "id": "야영-장소-요리",
       "title": "야영 장소 요리",
       "story": "기본",
-      "body": "야영 장소에서 여유가 생겨 요리를 하는 인카운터. 요리 실력을 갖고있다면 확정으로 성공한다. 50% 확률로 잘 구울 경우 요리 실력을 획득하면서 체력 2칸과 멘탈 1칸이 회복된다. 텁텁하게 구울 경우 체력만 1칸 회복된다. 50% 확률로 잘 만들 경우 요리 실력을 획득하면서 체력 1칸과 멘탈 2칸을 회복한다. 잘못 만들 경우 멘탈만 1칸 회복된다.",
+      "body": "야영 장소에서 여유가 생겨 요리를 하는 인카운터. 요리 실력을 갖고있다면 확정으로 성공한다. 이모의 친구 루트 진행 후 마님에서 요리 실력을 보유한 채 이모들의 주방 일을 도우면 얻을 수 있는 오목이 요리법을 소지하고 있을 시 스테이크 대신 선택할 수 있는 루트. 체력과 멘탈을 모두 회복시켜주며 감염과 감기도 치료해준다고 한다. 또한 일정 확률로 지나가던 남자가 오목이 요리법을 전수해달라고 애걸하는 이벤트가 발생한다. 거절할 수도 있지만, 요리법을 가르쳐주면 돈을 모두 채워준다.",
       "choices": [
         {
           "text": "스테이크를 굽는다",
@@ -634,8 +584,30 @@
               "name": "생고기"
             },
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [
+                {
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": 2
+                },
+                {
+                  "type": "resource",
+                  "name": "멘탈",
+                  "delta": 1
+                },
+                {
+                  "type": "ability",
+                  "name": "요리 실력"
+                }
+              ],
+              "failure": [
+                {
+                  "type": "text",
+                  "name": "텁텁하게 구울 경우 체력만 1칸 회복된다"
+                }
+              ]
             }
           ],
           "nextId": null,
@@ -649,8 +621,30 @@
               "name": "풀떼기"
             },
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [
+                {
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": 1
+                },
+                {
+                  "type": "resource",
+                  "name": "멘탈",
+                  "delta": 2
+                },
+                {
+                  "type": "ability",
+                  "name": "요리 실력"
+                }
+              ],
+              "failure": [
+                {
+                  "type": "text",
+                  "name": "잘못 만들 경우 멘탈만 1칸 회복된다"
+                }
+              ]
             }
           ],
           "nextId": null,
@@ -661,7 +655,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -673,10 +667,6 @@
             {
               "type": "condition",
               "name": "오목이 요리법"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -691,7 +681,11 @@
             },
             {
               "type": "text",
-              "name": "결과 미상"
+              "name": "학교에 보물을 전해주거나 여자가 기르는 동물들을 사냥하려는 사냥꾼들과 거래를 하면 얻을 수 있는 비건요리법을 보유한 채로 풀떼기가 있다면 샐러드를 대신할 비건치즈피자를 만든다"
+            },
+            {
+              "type": "text",
+              "name": "오목이와 똑같이 상태이상을 모두 치료해주며, 체력과 멘탈도 풀로 회복시켜준다"
             }
           ],
           "nextId": null,
@@ -716,7 +710,11 @@
             },
             {
               "type": "text",
-              "name": "광고를 보고 체력과 멘탈이 각각 1칸씩 회복된다. 두번째 설교 때에는 의료용 나노머신을 받는다."
+              "name": "광고를 보고 체력과 멘탈이 각각 1칸씩 회복된다"
+            },
+            {
+              "type": "text",
+              "name": "두번째 설교 때에는 의료용 나노머신을 받는다"
             }
           ],
           "nextId": null,
@@ -727,7 +725,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "아줌마의 쌍욕을 듣는다. 다음 선택지로 이동."
+              "name": "아줌마의 쌍욕을 듣는다"
+            },
+            {
+              "type": "text",
+              "name": "다음 선택지로 이동"
             }
           ],
           "nextId": null,
@@ -754,7 +756,7 @@
             },
             {
               "type": "text",
-              "name": "패널티를 받지 않고 넘어갈 수 있다."
+              "name": "패널티를 받지 않고 넘어갈 수 있다"
             }
           ],
           "nextId": null,
@@ -769,7 +771,7 @@
             },
             {
               "type": "text",
-              "name": "패널티를 받지 않고 넘어갈 수 있다."
+              "name": "패널티를 받지 않고 넘어갈 수 있다"
             }
           ],
           "nextId": null,
@@ -777,12 +779,7 @@
         },
         {
           "text": "그렇다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -792,10 +789,6 @@
             {
               "type": "condition",
               "name": "능숙한 거짓말"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -803,12 +796,7 @@
         },
         {
           "text": "그러시군요",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -860,40 +848,40 @@
           "effects": [
             {
               "type": "text",
-              "name": "후원자님을 몰라뵈었다면서 넙죽 엎드리고는 모바일 광고 없이 체력과 멘탈을 각 한 칸씩 채워준다."
+              "name": "후원자님을 몰라뵈었다면서 넙죽 엎드리고는 모바일 광고 없이 체력과 멘탈을 각 한 칸씩 채워준다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "나쁘지 않구나. 이만 가 보마.",
+          "text": "나쁘지 않구나. 이만 가 보마",
           "effects": [
             {
               "type": "item",
-              "name": "의료용 나노머신을"
+              "name": "의료용 나노머신"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "창조주 좀 불러와 보거라.",
+          "text": "창조주 좀 불러와 보거라",
           "effects": [
             {
               "type": "text",
-              "name": "개발자 [1]가 나와서 굽신댄다."
+              "name": "개발자가 나와서 굽신댄다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "의료용 나노머신을 내놓아라.",
+          "text": "의료용 나노머신을 내놓아라",
           "effects": [
             {
               "type": "item",
-              "name": "의료용 나노머신을"
+              "name": "의료용 나노머신"
             }
           ],
           "nextId": null,
@@ -908,7 +896,15 @@
             },
             {
               "type": "text",
-              "name": "개발자가 쓰러진다. - 아무것도 얻지 못하지만 그동안 랜덤 인카운터로 받은 고통에서 약간의 통쾌함을 느낄 수 있다. '개발자를 쓰러트린 자' 업적은 덤."
+              "name": "개발자가 쓰러진다"
+            },
+            {
+              "type": "text",
+              "name": "아무것도 얻지 못하지만 그동안 랜덤 인카운터로 받은 고통에서 약간의 통쾌함을 느낄 수 있다"
+            },
+            {
+              "type": "text",
+              "name": "'개발자를 쓰러트린 자' 업적은 덤"
             }
           ],
           "nextId": null,
@@ -930,10 +926,6 @@
             {
               "type": "condition",
               "name": "자물쇠 따기"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -945,10 +937,6 @@
             {
               "type": "condition",
               "name": "권총/조립식 저격소총"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -960,10 +948,6 @@
             {
               "type": "condition",
               "name": "근력Lv.3"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -975,10 +959,6 @@
             {
               "type": "condition",
               "name": "찍찍이"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -986,12 +966,7 @@
         },
         {
           "text": "포기한다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -1011,10 +986,6 @@
             {
               "type": "condition",
               "name": "삽 / 리트리버"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -1022,12 +993,7 @@
         },
         {
           "text": "지나간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -1067,8 +1033,9 @@
           "text": "떼어버린다",
           "effects": [
             {
-              "type": "text",
-              "name": "수배 중 삭제"
+              "type": "status",
+              "name": "수배 중",
+              "delta": -1
             }
           ],
           "nextId": null,
@@ -1118,7 +1085,7 @@
           "recommend": false
         },
         {
-          "text": "야, 이건 좀...",
+          "text": "야, 이건 좀",
           "effects": [
             {
               "type": "text",
@@ -1136,7 +1103,7 @@
       "id": "부서진-오락실",
       "title": "부서진 오락실",
       "story": "기본",
-      "body": "부서진 오락실",
+      "body": null,
       "choices": [
         {
           "text": "돈을 넣는다",
@@ -1147,7 +1114,15 @@
             },
             {
               "type": "text",
-              "name": "게임기가 켜지며 세 개의 게임 중 하나를 골라서 할 수 있다 [3]. 다만 운이 없으면 돈을 넣어도 게임기가 켜지지 않는다. 즉, 돈만 낭비."
+              "name": "게임기가 켜지며 세 개의 게임 중 하나를 골라서 할 수 있다"
+            },
+            {
+              "type": "text",
+              "name": "다만 운이 없으면 돈을 넣어도 게임기가 켜지지 않는다"
+            },
+            {
+              "type": "text",
+              "name": "즉, 돈만 낭비"
             }
           ],
           "nextId": null,
@@ -1157,7 +1132,7 @@
           "text": "허언증 소개팅!",
           "effects": [
             {
-              "type": "item",
+              "type": "ability",
               "name": "능숙한 거짓말"
             }
           ],
@@ -1205,7 +1180,7 @@
       "id": "특이한-버섯",
       "title": "특이한 버섯",
       "story": "기본",
-      "body": "특이한 버섯",
+      "body": null,
       "choices": [
         {
           "text": "다 먹는다",
@@ -1217,7 +1192,8 @@
             },
             {
               "type": "status",
-              "name": "두통"
+              "name": "두통",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -1262,7 +1238,7 @@
       "body": "추운 밤에 노출되는 인카운터.",
       "choices": [
         {
-          "text": "보금자리를 찾아본다.",
+          "text": "보금자리를 찾아본다",
           "effects": [
             {
               "type": "condition",
@@ -1277,7 +1253,7 @@
           "recommend": false
         },
         {
-          "text": "옷을 껴입는다.",
+          "text": "옷을 껴입는다",
           "effects": [
             {
               "type": "condition",
@@ -1292,7 +1268,7 @@
           "recommend": false
         },
         {
-          "text": "이를 악물고 버틴다.",
+          "text": "이를 악물고 버틴다",
           "effects": [
             {
               "type": "resource",
@@ -1322,7 +1298,7 @@
             },
             {
               "type": "text",
-              "name": "통과, 초극악의 확률로 비를 맞으면서 정처없이 떠돌아다니는 아이 인카운터가 나온다. 그 아이한테 우산을 주면 그 아이는 주인공에게 철학적인 질문"
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -1344,21 +1320,33 @@
           "recommend": false
         },
         {
-          "text": "맞으면서 간다.",
+          "text": "맞으면서 간다",
           "effects": [
             {
               "type": "chance",
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "chance",
+                  "successRate": 0.5,
+                  "success": [
+                    {
+                      "type": "text",
+                      "name": "무사 통과하고  감기에 걸리게 된다"
+                    }
+                  ],
+                  "failure": [
+                    {
+                      "type": "text",
+                      "name": "실패 (위키 서술 참고)"
+                    }
+                  ]
                 }
               ],
               "failure": [
                 {
                   "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "name": "따로 멘탈 소모는 없다"
                 }
               ]
             }
@@ -1407,7 +1395,7 @@
           "recommend": false
         },
         {
-          "text": "맞으면서 간다.",
+          "text": "맞으면서 간다",
           "effects": [
             {
               "type": "resource",
@@ -1416,7 +1404,8 @@
             },
             {
               "type": "status",
-              "name": "탈모"
+              "name": "탈모",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -1430,14 +1419,31 @@
       "id": "우울한-밤",
       "title": "우울한 밤",
       "story": "기본",
-      "body": "밤에 갑작스러운 우울함을 느끼는 인카운터. 멘탈 한칸 소모. 10% 확률로 철학을 획득 가능하다. 이미 철학이 있다고 멘탈이 보존되지는 않는다. 패치로 애완동물 중 하나라도 있다면 동물을 쓰다듬으며 피할 수 있다. 또는 MP3를 들으며 잘 수 있다.또한 우울함 상태이상도 사라진다. 음악적 재능을 획득하고 멘탈을 1칸 회복한다.",
+      "body": "밤에 갑작스러운 우울함을 느끼는 인카운터.",
       "choices": [
         {
           "text": "자기 삶을 비관하며 억지로 잠에 든다",
           "effects": [
             {
               "type": "text",
-              "name": "결과 미상"
+              "name": "멘탈 한칸 소모"
+            },
+            {
+              "type": "chance",
+              "successRate": 0.1,
+              "success": [
+                {
+                  "type": "ability",
+                  "name": "철학"
+                }
+              ],
+              "failure": [
+                {
+                  "type": "status",
+                  "name": "우울함",
+                  "delta": 1
+                }
+              ]
             }
           ],
           "nextId": null,
@@ -1451,19 +1457,34 @@
               "name": "통기타"
             },
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 1
+            },
+            {
+              "type": "ability",
+              "name": "음악적 재능"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "맛있는 걸 좀 먹는다.{{{#00c911 (초콜릿 / 맥주}}} or 요리 실력 + 생고기 / 풀떼기)'''",
+          "text": "맛있는 걸 좀 먹는다.{{{#00c911",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "condition",
+              "name": "초콜릿 / 맥주}}} or 요리 실력 + 생고기 / 풀떼기"
+            },
+            {
+              "type": "resource",
+              "name": "멘탈",
+              "delta": -1
+            },
+            {
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 2
             }
           ],
           "nextId": null,
@@ -1477,7 +1498,7 @@
       "id": "리어카가-고장난-이모",
       "title": "리어카가 고장난 이모",
       "story": "기본",
-      "body": "아스팔트 오르막길을 오르는 중 마님의 이모가 짐을 옮기는 도중에 리어카가 고장나고, 경호원 둘은 강도에게 화살을 맞아 죽어버려서 곤란해하고 있는 걸 발견한다. 이 두 선택지를 선택하면 이모의 친구를 획득하며 인카운터 종료. #### 2.19.1. 길리슈트",
+      "body": "아스팔트 오르막길을 오르는 중 마님의 이모가 짐을 옮기는 도중에 리어카가 고장나고, 경호원 둘은 강도에게 화살을 맞아 죽어버려서 곤란해하고 있는 걸 발견한다. 이 두 선택지를 선택하면 이모의 친구를 획득하며 인카운터 종료.",
       "choices": [
         {
           "text": "리어카를 고친다",
@@ -1485,10 +1506,6 @@
             {
               "type": "condition",
               "name": "손재주"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -1500,17 +1517,13 @@
             {
               "type": "condition",
               "name": "근력"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "아.. 그렇군요..",
+          "text": "아.. 그렇군요",
           "effects": [
             {
               "type": "text",
@@ -1519,13 +1532,28 @@
           ],
           "nextId": null,
           "recommend": false
-        },
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "길리슈트",
+      "title": "길리슈트",
+      "story": "기본",
+      "body": null,
+      "choices": [
         {
           "text": "복장을 벗긴다",
           "effects": [
             {
-              "type": "text",
-              "name": "멘탈을 1칸 소모하며 은신술 습득."
+              "type": "resource",
+              "name": "멘탈",
+              "delta": -1
+            },
+            {
+              "type": "ability",
+              "name": "은신술"
             }
           ],
           "nextId": null,
@@ -1536,18 +1564,33 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
           "recommend": false
-        },
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "군복",
+      "title": "군복",
+      "story": "기본",
+      "body": null,
+      "choices": [
         {
           "text": "복장을 벗긴다",
           "effects": [
+            {
+              "type": "resource",
+              "name": "멘탈",
+              "delta": -1
+            },
             {
               "type": "item",
-              "name": "멘탈을 1칸 소모하며 군복"
+              "name": "군복"
             }
           ],
           "nextId": null,
@@ -1558,7 +1601,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -1572,14 +1615,31 @@
       "id": "어리숙한-청년",
       "title": "어리숙한 청년",
       "story": "기본",
-      "body": "50% 확률로 능숙한 거짓말을 획득하면서 돈 1칸, 또는 체력 한칸 획득, 실패 시 얻는 것 없이 통과. 이미 능숙한 거짓말이 있다면 100% 성공. 50% 확률로 소매치기를 획득하면서 돈 3칸 획득. 실패 시 총에 맞아 체력 1칸 소모 및 근력 소멸. 소매치기 / 날렵함이 있다면 100% 성공한다. 단 성공 시 '수배 중'을 얻고 좋은 평판을 잃는다. 역사학이 있을 경우만 선택 가능. 돈, 또는 체력 1칸 획득.",
+      "body": null,
       "choices": [
         {
           "text": "아무렇게나 알려준다",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [
+                {
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 1
+                },
+                {
+                  "type": "ability",
+                  "name": "능숙한 거짓말"
+                }
+              ],
+              "failure": [
+                {
+                  "type": "text",
+                  "name": "이미 능숙한 거짓말이 있다면 100% 성공"
+                }
+              ]
             }
           ],
           "nextId": null,
@@ -1589,8 +1649,31 @@
           "text": "가방을 훔쳐 달아난다",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [
+                {
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 3
+                },
+                {
+                  "type": "ability",
+                  "name": "소매치기"
+                }
+              ],
+              "failure": [
+                {
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": -1
+                },
+                {
+                  "type": "status",
+                  "name": "실패 시 총에 맞아 체력 1칸 소모 및 근력",
+                  "delta": -1
+                }
+              ]
             }
           ],
           "nextId": null,
@@ -1604,8 +1687,9 @@
               "name": "역사학"
             },
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "resource",
+              "name": "체력",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -1616,7 +1700,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "결과 미상"
+              "name": "장미의 이름으로 확장팩으로 DDP를 가본 경우에 가능"
+            },
+            {
+              "type": "text",
+              "name": "보상은 역사학 선택지와 똑같다"
             }
           ],
           "nextId": null,
@@ -1636,29 +1724,21 @@
           "text": "찾는 걸 도와준다",
           "effects": [
             {
-              "type": "resource",
-              "name": "돈",
-              "delta": -1
-            },
-            {
               "type": "chance",
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 1
                 }
               ],
               "failure": [
                 {
                   "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "name": "관찰력이 있다면 100% 성공"
                 }
               ]
-            },
-            {
-              "type": "item",
-              "name": "돈 1칸과 관찰력"
             }
           ],
           "nextId": null,
@@ -1670,11 +1750,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "ability",
-              "name": "돈 1칸"
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -1686,11 +1762,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "ability",
-              "name": "돈 1칸"
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -1715,33 +1787,30 @@
           "text": "가방을 훔쳐 달아난다",
           "effects": [
             {
-              "type": "resource",
-              "name": "체력",
-              "delta": -1
-            },
-            {
               "type": "chance",
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "ability",
+                  "name": "소매치기"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": -1
+                },
+                {
+                  "type": "item",
+                  "name": "추가로 롱패딩"
+                },
+                {
+                  "type": "status",
+                  "name": "한다 성공시 수배 중 가젯",
+                  "delta": 1
                 }
               ]
-            },
-            {
-              "type": "item",
-              "name": "확률로 돈 한 칸 및 소매치기를"
-            },
-            {
-              "type": "item",
-              "name": "성공하며 추가로 롱패딩을"
             }
           ],
           "nextId": null,
@@ -1769,14 +1838,15 @@
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 3
                 }
               ],
               "failure": [
                 {
                   "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "name": "사업 실패 시 그냥 종료 이후 이 여자는 하와이로 떠난다"
                 }
               ]
             }
@@ -1792,8 +1862,9 @@
               "name": "능숙한 거짓말"
             },
             {
-              "type": "text",
-              "name": "반지하코인이라는 거짓말로 잡동사니를 팔아 돈을 1칸 채운다."
+              "type": "resource",
+              "name": "돈",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -1818,69 +1889,48 @@
       "id": "맨홀에-빠진-아이",
       "title": "맨홀에 빠진 아이",
       "story": "기본",
-      "body": "맨홀에 빠진 아이",
+      "body": null,
       "choices": [
         {
           "text": "꺼내준다",
           "effects": [
             {
-              "type": "resource",
-              "name": "멘탈",
-              "delta": -1
-            },
-            {
-              "type": "resource",
-              "name": "체력",
-              "delta": -1
-            },
-            {
               "type": "chance",
               "successRate": 0.1,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "멘탈",
+                  "delta": 1
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "chance",
+                  "successRate": 0.9,
+                  "success": [
+                    {
+                      "type": "resource",
+                      "name": "체력",
+                      "delta": -1
+                    }
+                  ],
+                  "failure": [
+                    {
+                      "type": "text",
+                      "name": "실패 (위키 서술 참고)"
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "type": "chance",
-              "successRate": 0.9,
-              "success": [
-                {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
-                }
-              ],
-              "failure": [
-                {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
-                }
-              ]
-            },
-            {
-              "type": "item",
-              "name": "확률로 멘탈 1칸 회복 및 개박하"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "칠러김을 처치한 상태라면 100% 구출 성공한다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "칠러김을 처치한 상태라면 100% 구출 성공한다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -1889,7 +1939,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료. [4]"
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -1903,14 +1953,19 @@
       "id": "악취나는-약국",
       "title": "악취나는 약국",
       "story": "기본",
-      "body": "악취나는 약국",
+      "body": null,
       "choices": [
         {
           "text": "참고 들어간다",
           "effects": [
             {
+              "type": "resource",
+              "name": "멘탈",
+              "delta": -1
+            },
+            {
               "type": "item",
-              "name": "멘탈을 1칸 소모하면서 의약품을"
+              "name": "의약품"
             }
           ],
           "nextId": null,
@@ -1931,8 +1986,17 @@
           "text": "악취의 근원을 조사한다",
           "effects": [
             {
+              "type": "resource",
+              "name": "멘탈",
+              "delta": -1
+            },
+            {
               "type": "item",
-              "name": "멘탈을 1칸 추가로 소모하면서 로망과 지도 조각을"
+              "name": "로망"
+            },
+            {
+              "type": "item",
+              "name": "지도 조각"
             }
           ],
           "nextId": null,
@@ -1957,14 +2021,27 @@
       "id": "들개-무리",
       "title": "들개 무리",
       "story": "기본",
-      "body": "들개 무리를 만나 대처하는 과정에서 날렵함, 은신술, 사격술 중 하나를 랜덤으로 획득하거나, 체력을 소모하는 이벤트. 이미 있는 기술을 이용할 경우 체력 소모 없이 지나갈 수 있다. 길고양이가 있는 채로 풀숲 속에 숨을 경우 들개 무리가 길고양이를 보고 도망친다. [5] 50% 확률로 날렵함 획득. 실패 시 체력 1칸 소모. 이미 날렵함 보유 시 100% 성공. 낮은 확률로 나무 열매 이벤트가 나온다. 나무열매가 무슨 열매인지 판별할 수 있다. 근육이 탱글탱글해지는 과일일 경우 근력과 날렵함 획득, 구두약 맛 과일일 경우 인카운터 종료.",
+      "body": "들개 무리를 만나 대처하는 과정에서 날렵함, 은신술, 사격술 중 하나를 랜덤으로 획득하거나, 체력을 소모하는 이벤트. 이미 있는 기술을 이용할 경우 체력 소모 없이 지나갈 수 있다. 길고양이가 있는 채로 풀숲 속에 숨을 경우 들개 무리가 길고양이를 보고 도망친다. [5] 50% 확률로 은신술 획득. 실패 시 체력 1칸 소모 및 순수한 얼굴 소멸, 이후 순수한 얼굴을 잃지 않게 패치되었다. 이미 은신술 보유 시 100% 성공.",
       "choices": [
         {
           "text": "나무 위로 올라간다",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [
+                {
+                  "type": "ability",
+                  "name": "날렵함"
+                }
+              ],
+              "failure": [
+                {
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": -1
+                }
+              ]
             }
           ],
           "nextId": null,
@@ -1974,8 +2051,16 @@
           "text": "서울생태지식 lv2",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "item",
+              "name": "근육이 탱글탱글해지"
+            },
+            {
+              "type": "item",
+              "name": "일일 경우 근력"
+            },
+            {
+              "type": "ability",
+              "name": "날렵함"
             }
           ],
           "nextId": null,
@@ -1986,7 +2071,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "결과 미상"
+              "name": "근력과 날렵함을 얻거나, 멘탈이 하나 깎인다"
             }
           ],
           "nextId": null,
@@ -1994,23 +2079,13 @@
         },
         {
           "text": "지나친다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "풀숲 속에 숨는다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -2022,8 +2097,29 @@
               "name": "권총"
             },
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "item",
+              "name": "권총이 있을 때만 선택 가능"
+            },
+            {
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [
+                {
+                  "type": "ability",
+                  "name": "사격술"
+                }
+              ],
+              "failure": [
+                {
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": -1
+                },
+                {
+                  "type": "item",
+                  "name": "생고기"
+                }
+              ]
             }
           ],
           "nextId": null,
@@ -2112,13 +2208,13 @@
               "success": [
                 {
                   "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "name": "잡는다.날렵함"
                 }
               ],
               "failure": [
                 {
                   "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "name": "손재주가 있다면 확정 통과 그렇지 않으면 일정 확률로 감염된다"
                 }
               ]
             }
@@ -2176,7 +2272,7 @@
             },
             {
               "type": "text",
-              "name": "미끼를 사용하여 주의를 돌릴 수 있다."
+              "name": "미끼를 사용하여 주의를 돌릴 수 있다"
             }
           ],
           "nextId": null,
@@ -2200,8 +2296,8 @@
               "name": "개박하"
             },
             {
-              "type": "ability",
-              "name": "길고양이"
+              "type": "item",
+              "name": "길고양"
             }
           ],
           "nextId": null,
@@ -2215,8 +2311,8 @@
               "name": "야생의 친구"
             },
             {
-              "type": "ability",
-              "name": "길고양이"
+              "type": "item",
+              "name": "길고양"
             }
           ],
           "nextId": null,
@@ -2227,7 +2323,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -2244,7 +2340,7 @@
       "body": "로망을 판다고 사기를 치는 남자와 마주치는 인카운터. 역으로 사기를 쳐서 업적 달성 가능.",
       "choices": [
         {
-          "text": "그렇다.",
+          "text": "그렇다",
           "effects": [
             {
               "type": "condition",
@@ -2264,14 +2360,14 @@
           "effects": [
             {
               "type": "text",
-              "name": "로망에 대한 설명을 듣고 아래의 선택지로 이어진다."
+              "name": "로망에 대한 설명을 듣고 아래의 선택지로 이어진다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "좋아.",
+          "text": "좋아",
           "effects": [
             {
               "type": "condition",
@@ -2279,7 +2375,7 @@
             },
             {
               "type": "text",
-              "name": "각설탕을 받는다."
+              "name": "각설탕을 받는다"
             }
           ],
           "nextId": null,
@@ -2299,7 +2395,7 @@
             },
             {
               "type": "item",
-              "name": "로망을 소모하고 돈 3칸"
+              "name": "각설탕도"
             }
           ],
           "nextId": null,
@@ -2319,33 +2415,29 @@
             },
             {
               "type": "item",
-              "name": "각설탕을 소모하고 돈 3칸을"
-            },
-            {
-              "type": "item",
-              "name": "에 업적 사기꾼을"
+              "name": "하는 동시에 업적 사기꾼"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "관심 없어.",
+          "text": "관심 없어",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "관심 없어.",
+          "text": "관심 없어",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -2365,8 +2457,9 @@
           "text": "가까이 앉는다",
           "effects": [
             {
-              "type": "text",
-              "name": "멘탈이 1칸 회복된다."
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -2380,8 +2473,9 @@
               "name": "돈"
             },
             {
-              "type": "text",
-              "name": "멘탈이 1칸 추가로 회복된다. (현재 버그로 인해 채워지지 않는다.)"
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -2396,7 +2490,7 @@
             },
             {
               "type": "ability",
-              "name": "음악적 재능을"
+              "name": "음악적 재능"
             }
           ],
           "nextId": null,
@@ -2420,34 +2514,19 @@
         },
         {
           "text": "성공적인 공연 이후 술집으로 초대 공연을 받아들인다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "떠난다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "지나친다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -2459,16 +2538,11 @@
       "id": "사자머리-여자",
       "title": "사자머리 여자",
       "story": "기본",
-      "body": "이 인카운터가 먼저 나와야 사자머리 여자와 면식이 생겨 화경루 이벤트를 체력 소모 없이 마칠 수 있다. 반대로 화경루 이벤트에서 먼저 체력이 소모될 경우 이 이벤트에서 사자머리 여자를 죽이고 죽은 사자 업적을 완료할 수 있다. 돈 1칸 [8]과 자물쇠 따기 획득, 사자머리와 구면이 된다. 관찰력이나 은신술이 있을 시 적을 제압하고 돈 1칸과 자물쇠 따기를 획득하며 사자머리와 구면이 된다. 둘 다 없다면 체력 1칸을 잃고 실패한다.",
+      "body": "이 인카운터가 먼저 나와야 사자머리 여자와 면식이 생겨 화경루 이벤트를 체력 소모 없이 마칠 수 있다. 반대로 화경루 이벤트에서 먼저 체력이 소모될 경우 이 이벤트에서 사자머리 여자를 죽이고 죽은 사자 업적을 완료할 수 있다. 돈 1칸 [8]과 자물쇠 따기 획득, 사자머리와 구면이 된다.",
       "choices": [
         {
           "text": "도와준다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -2478,10 +2552,6 @@
             {
               "type": "condition",
               "name": "통솔력"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -2491,8 +2561,14 @@
           "text": "내가 직접 들어가지!",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "resource",
+              "name": "돈",
+              "delta": -1
+            },
+            {
+              "type": "resource",
+              "name": "체력",
+              "delta": -1
             }
           ],
           "nextId": null,
@@ -2505,6 +2581,38 @@
               "type": "resource",
               "name": "멘탈",
               "delta": 1
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "낯이-익은-골목길",
+      "title": "낯이 익은 골목길",
+      "story": "기본",
+      "body": "사자머리를 죽이고 나면 등장. 버려진 집들을 조사하다가 시체 두 구 [9]를 발견하고, 시체를 뒤져 의약품을 얻는다.",
+      "choices": [
+        {
+          "text": "살펴본다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "사자머리를 죽이고 나면 등장. 버려진 집들을 조사하다가 시체 두 구 [9]를 발견하고, 시체를 뒤져 의약품을 얻는다."
+            }
+          ],
+          "nextId": null,
+          "recommend": true
+        },
+        {
+          "text": "지나친다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "지나감"
             }
           ],
           "nextId": null,
@@ -2541,7 +2649,7 @@
             },
             {
               "type": "text",
-              "name": "응사하여 죽인다."
+              "name": "응사하여 죽인다"
             }
           ],
           "nextId": null,
@@ -2564,13 +2672,8 @@
           "recommend": false
         },
         {
-          "text": "신동진 대위를 도운 적이 있다면 대신 엽우회 여자들을 상대해주면서 무사히 지나간다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "신동진 대위를 도운 적이 있다면 대신 엽우회 여자들을 상대해주면서 무사히 지나간다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -2582,14 +2685,18 @@
       "id": "약탈중인-엽우회-여자들",
       "title": "약탈중인 엽우회 여자들",
       "story": "기본",
-      "body": "한 남자를 협박하는 세 명의 엽우회 여자들과 마주치는 인카운터. 발생 전 엽우회의 영웅 획득 시 발생하지 않는다. 남자를 대신해서 돈을 지불할 것을 강요받는다. 남자의 몸값과, 플레이어의 몸값, 총 두 번에 걸쳐 두 칸의 돈을 요구하는데, 아래 선택지가 나온다. 남자의 몸값만이라도 지불했다면 한참 뒤에 남자가 은혜를 갚겠다며 찾아와 아래 세 가지 중 하나를 준다.",
+      "body": "한 남자를 협박하는 세 명의 엽우회 여자들과 마주치는 인카운터. 발생 전 엽우회의 영웅 획득 시 발생하지 않는다. 남자의 몸값만이라도 지불했다면 한참 뒤에 남자가 은혜를 갚겠다며 찾아와 아래 세 가지 중 하나를 준다.",
       "choices": [
         {
           "text": "말린다",
           "effects": [
             {
               "type": "text",
-              "name": "결과 미상"
+              "name": "남자를 대신해서 돈을 지불할 것을 강요받는다"
+            },
+            {
+              "type": "text",
+              "name": "남자의 몸값과, 플레이어의 몸값, 총 두 번에 걸쳐 두 칸의 돈을 요구하는데, 아래 선택지가 나온다"
             }
           ],
           "nextId": null,
@@ -2604,7 +2711,7 @@
             },
             {
               "type": "ability",
-              "name": "또한 불굴의 투지 가젯을"
+              "name": "또한 불굴의 투지 가젯"
             }
           ],
           "nextId": null,
@@ -2670,7 +2777,7 @@
           "text": "낡아빠진 군복",
           "effects": [
             {
-              "type": "text",
+              "type": "item",
               "name": "군복"
             }
           ],
@@ -2681,8 +2788,12 @@
           "text": "농업용 강력 살충제",
           "effects": [
             {
+              "type": "item",
+              "name": "살충제"
+            },
+            {
               "type": "text",
-              "name": "살충제, 살충제가 이미 있다면 지도 조각으로 대체"
+              "name": "살충제가 이미 있다면 지도 조각으로 대체"
             }
           ],
           "nextId": null,
@@ -2692,7 +2803,7 @@
           "text": "만능 공구 세트",
           "effects": [
             {
-              "type": "text",
+              "type": "ability",
               "name": "손재주"
             }
           ],
@@ -2704,7 +2815,15 @@
           "effects": [
             {
               "type": "text",
-              "name": "엽우회 여자들이 남자를 쏘아 죽인다. 플레이어에게는 아무런 불이익도 없다. 이후 패치로 사는 것으로 바뀌었다."
+              "name": "엽우회 여자들이 남자를 쏘아 죽인다"
+            },
+            {
+              "type": "text",
+              "name": "플레이어에게는 아무런 불이익도 없다"
+            },
+            {
+              "type": "text",
+              "name": "이후 패치로 사는 것으로 바뀌었다"
             }
           ],
           "nextId": null,
@@ -2715,7 +2834,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "남자가 죽는 건 같으나 처형장면(?)을 보냐 안 보냐의 차이.."
+              "name": "남자가 죽는 건 같으나 처형장면(?)을 보냐 안 보냐의 차이"
             }
           ],
           "nextId": null,
@@ -2770,7 +2889,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "가진 돈을 전부 잃는다. 돈이 없어서 아무것도 안 줘도 켈켈거리면서 간다(...)"
+              "name": "가진 돈을 전부 잃는다"
+            },
+            {
+              "type": "text",
+              "name": "돈이 없어서 아무것도 안 줘도 켈켈거리면서 간다(...)"
             }
           ],
           "nextId": null,
@@ -2778,12 +2901,7 @@
         },
         {
           "text": "대화를 시도한다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -2792,7 +2910,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "가진 돈을 전부 잃는다."
+              "name": "가진 돈을 전부 잃는다"
             }
           ],
           "nextId": null,
@@ -2815,10 +2933,6 @@
             {
               "type": "condition",
               "name": "권총"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -2832,18 +2946,19 @@
       "id": "침대가-있는-버려진-집",
       "title": "침대가 있는 버려진 집",
       "story": "기본",
-      "body": "침대가 있는 버려진 집",
+      "body": null,
       "choices": [
         {
-          "text": "푹 자서 체력과 멘탈을 1칸 회복한다.",
+          "text": "푹 자서 체력과 멘탈을 1칸 회복한다",
           "effects": [
             {
               "type": "condition",
               "name": "50%"
             },
             {
-              "type": "text",
-              "name": "돈을 모두 잃고 체력이 1칸 회복된다. (50%)"
+              "type": "resource",
+              "name": "체력",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -2864,7 +2979,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "가진 돈을 모두 잃는다. 여기서 돈을 가져가며 자기는 착해서 아이템은 안 건드린다는 메타발언을 하지만, 사실 아이템 뺏어가는 NPC 자체가 없다(...) [사실.]"
+              "name": "가진 돈을 모두 잃는다"
+            },
+            {
+              "type": "text",
+              "name": "여기서 돈을 가져가며 자기는 착해서 아이템은 안 건드린다는 메타발언을 하지만, 사실 아이템 뺏어가는 NPC 자체가 없다(...) [사실.]"
             }
           ],
           "nextId": null,
@@ -2962,17 +3081,13 @@
               "name": "돈"
             },
             {
-              "type": "resource",
-              "name": "멘탈",
-              "delta": 1
-            },
-            {
               "type": "chance",
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "멘탈",
+                  "delta": 1
                 }
               ],
               "failure": [
@@ -2981,10 +3096,6 @@
                   "name": "실패 (위키 서술 참고)"
                 }
               ]
-            },
-            {
-              "type": "item",
-              "name": "의 확률로 철학"
             }
           ],
           "nextId": null,
@@ -2995,7 +3106,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "(능숙한 거짓말) 획득."
+              "name": "(능숙한 거짓말) 획득"
             }
           ],
           "nextId": null,
@@ -3011,11 +3122,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "돈 1칸과 역사학"
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -3026,7 +3133,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -3051,12 +3158,17 @@
             },
             {
               "type": "resource",
-              "name": "멘탈",
+              "name": "돈",
               "delta": -1
             },
             {
-              "type": "item",
-              "name": "돈을 1칸 소모하여 관찰력을"
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 1
+            },
+            {
+              "type": "ability",
+              "name": "이미 관찰력이 있다면 대신 지도 조각"
             }
           ],
           "nextId": null,
@@ -3067,7 +3179,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -3081,7 +3193,7 @@
       "id": "카드놀이-하는-노인",
       "title": "카드놀이 하는 노인",
       "story": "기본",
-      "body": "카드놀이를 하는 노인들과 만나서 도박을 할 수 있는 인카운터. 돈을 1칸 소모하여 도박을 할 수 있다. #### 2.43.1. 수상한 남자 카드놀이하는 노인들과의 게임에서 승리할 시 확률적으로 나오는 인카운터. 더 큰 게임장으로 데려가려는 남자가 다가온다. 교섭이 있을 경우 돈 배분 비율을 더 키울 수 있다. [11] 곤이라는 이름을 보면 타짜를 패러디한 듯. 벙커 입구로 가기 전 무기를 압수하는 선택지가 나온다. 이때 무기를 주지않으면 50% 확률로 한번 더 추궁당하는데 [넘어가는방법] , 뇌물로 넘어가려 든다면 50% 확률로 교섭을 얻고 통과, 실패하면 쫓겨난다. 교섭이 있으면 그냥 통과. 하지만 교섭이 있더라도 무기를 순순히 주는 쪽이 좋은데, 돌려받을때 무기를 얼마나 줬느냐에 관계없이 권총과 저격소총",
+      "body": "카드놀이를 하는 노인들과 만나서 도박을 할 수 있는 인카운터. 돈을 1칸 소모하여 도박을 할 수 있다.",
       "choices": [
         {
           "text": "한번 붙어봅시다",
@@ -3089,10 +3201,6 @@
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -3106,24 +3214,22 @@
               "successRate": 0.1,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 1
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": -1
+                },
+                {
+                  "type": "ability",
+                  "name": "게임 실력"
                 }
               ]
-            },
-            {
-              "type": "item",
-              "name": "게임 실력과 돈을 1칸"
-            },
-            {
-              "type": "item",
-              "name": "돈을 1칸 소모하며 게임 실력"
             }
           ],
           "nextId": null,
@@ -3137,28 +3243,26 @@
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 1
+                },
+                {
+                  "type": "ability",
+                  "name": "승리시 순수한 얼굴이나 능숙한 거짓말"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": -1
+                },
+                {
+                  "type": "item",
+                  "name": "둘 중 하나만 있을 시 없는쪽 가젯"
                 }
               ]
-            },
-            {
-              "type": "ability",
-              "name": "순수한 얼굴이나 능숙한 거짓말을"
-            },
-            {
-              "type": "item",
-              "name": "하면서 돈을 1칸"
-            },
-            {
-              "type": "ability",
-              "name": "없는쪽 가젯"
             }
           ],
           "nextId": null,
@@ -3172,28 +3276,26 @@
               "successRate": 0.1,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 1
+                },
+                {
+                  "type": "ability",
+                  "name": "승리시 손재주"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": -1
+                },
+                {
+                  "type": "ability",
+                  "name": "하나만 있었을 때에는 마술"
                 }
               ]
-            },
-            {
-              "type": "ability",
-              "name": "손재주를"
-            },
-            {
-              "type": "item",
-              "name": "하면서 돈을 1칸"
-            },
-            {
-              "type": "ability",
-              "name": "에는 마술"
             }
           ],
           "nextId": null,
@@ -3205,6 +3307,38 @@
             {
               "type": "text",
               "name": "인카운터 종료"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "수상한-남자",
+      "title": "수상한 남자",
+      "story": "기본",
+      "body": "카드놀이하는 노인들과의 게임에서 승리할 시 확률적으로 나오는 인카운터. 더 큰 게임장으로 데려가려는 남자가 다가온다. 교섭이 있을 경우 돈 배분 비율을 더 키울 수 있다. [11] 곤이라는 이름을 보면 타짜를 패러디한 듯. 벙커 입구로 가기 전 무기를 압수하는 선택지가 나온다. 이때 무기를 주지않으면 50% 확률로 한번 더 추궁당하는데 [넘어가는방법] , 뇌물로 넘어가려 든다면 50% 확률로 교섭을 얻고 통과, 실패하면 쫓겨난다. 교섭이 있으면 그냥 통과. 하지만 교섭이 있더라도 무기를 순순히 주는 쪽이 좋은데, 돌려받을때 무기를 얼마나 줬느냐에 관계없이 권총과 저격소총을 모두 돌려주기 때문. 들어가면 주사위를 바꿔치기하는 선택지가 나오는데, 50% 확률로 주사위를 바꾸려다가 걸려서 체력 1칸이 깎이고 그대",
+      "choices": [
+        {
+          "text": "살펴본다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "카드놀이하는 노인들과의 게임에서 승리할 시 확률적으로 나오는 인카운터. 더 큰 게임장으로 데려가려는 남자가 다가온다. 교섭이 있을 경우 돈 배분 비율을 더 키울 수 있다. [11]"
+            }
+          ],
+          "nextId": null,
+          "recommend": true
+        },
+        {
+          "text": "지나친다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "지나감"
             }
           ],
           "nextId": null,
@@ -3237,15 +3371,11 @@
           "recommend": false
         },
         {
-          "text": "저도 데려가 주십시오.",
+          "text": "저도 데려가 주십시오",
           "effects": [
             {
               "type": "condition",
               "name": "교황군"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -3275,7 +3405,7 @@
             },
             {
               "type": "text",
-              "name": "무사히 인카운터 종료"
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -3283,12 +3413,7 @@
         },
         {
           "text": "내지 않는다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -3345,10 +3470,6 @@
               "type": "resource",
               "name": "체력",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "권총이 있다면 일정확률로 교황군의 표적"
             }
           ],
           "nextId": null,
@@ -3372,107 +3493,91 @@
               "name": "근력"
             },
             {
-              "type": "ability",
-              "name": "우산을"
-            }
-          ],
-          "nextId": null,
-          "recommend": false
-        },
-        {
-          "text": "외적을 막는 것을 도와준다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
-          "nextId": null,
-          "recommend": false
-        },
-        {
-          "text": "방어 계획을 짠다.",
-          "effects": [
-            {
-              "type": "resource",
-              "name": "체력",
-              "delta": -1
-            },
-            {
-              "type": "chance",
-              "successRate": 0.5,
-              "success": [
-                {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
-                }
-              ],
-              "failure": [
-                {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
-                }
-              ]
-            },
-            {
               "type": "item",
-              "name": "확률로 성공하여 통솔력을"
+              "name": "우산"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "적들을 현혹시킨다.",
+          "text": "외적을 막는 것을 도와준다",
+          "effects": [],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "방어 계획을 짠다",
           "effects": [
-            {
-              "type": "resource",
-              "name": "체력",
-              "delta": -1
-            },
             {
               "type": "chance",
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "멘탈",
+                  "delta": 1
+                },
+                {
+                  "type": "item",
+                  "name": "성공하여 통솔력"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": -1
                 }
               ]
-            },
-            {
-              "type": "ability",
-              "name": "확률로 성공하여 마술을"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시하고 지나간다.",
+          "text": "적들을 현혹시킨다",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [
+                {
+                  "type": "resource",
+                  "name": "멘탈",
+                  "delta": 1
+                },
+                {
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 1
+                },
+                {
+                  "type": "ability",
+                  "name": "성공하여 마술"
+                }
+              ],
+              "failure": [
+                {
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": -1
+                }
+              ]
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시하고 지나간다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "무시하고 지나간다",
+          "effects": [],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "무시하고 지나간다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -3537,8 +3642,14 @@
               "name": "돈"
             },
             {
-              "type": "text",
-              "name": "돈을 1칸 소모해 체력이 1칸 회복된다. 감기나 감염 상태라면 이 역시 회복된다. [13]"
+              "type": "resource",
+              "name": "돈",
+              "delta": -1
+            },
+            {
+              "type": "resource",
+              "name": "체력",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -3552,7 +3663,7 @@
               "name": "교섭"
             },
             {
-              "type": "item",
+              "type": "ability",
               "name": "교섭이 있다면 응급처치"
             }
           ],
@@ -3567,8 +3678,9 @@
               "name": "돈"
             },
             {
-              "type": "text",
-              "name": "돈을 1칸 소모해 의약품을 산다."
+              "type": "resource",
+              "name": "돈",
+              "delta": -1
             }
           ],
           "nextId": null,
@@ -3579,7 +3691,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -3587,12 +3699,7 @@
         },
         {
           "text": "맞서 싸운다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -3602,10 +3709,6 @@
             {
               "type": "condition",
               "name": "불굴의 투지"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -3617,10 +3720,6 @@
             {
               "type": "condition",
               "name": "권총"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -3632,10 +3731,6 @@
             {
               "type": "condition",
               "name": "유도"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -3645,8 +3740,22 @@
           "text": "전 아무 관련이 없어요!",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "resource",
+              "name": "멘탈",
+              "delta": -1
+            },
+            {
+              "type": "resource",
+              "name": "체력",
+              "delta": -1
+            },
+            {
+              "type": "item",
+              "name": "그냥 간다면 의약품"
+            },
+            {
+              "type": "item",
+              "name": "이겼다면 의약품"
             }
           ],
           "nextId": null,
@@ -3685,8 +3794,12 @@
               "name": "생고기"
             },
             {
-              "type": "item",
-              "name": "생고기를 소모하여 리트리버를 길들여"
+              "type": "text",
+              "name": "생고기가 있어야만 보이는 선택지"
+            },
+            {
+              "type": "text",
+              "name": "생고기를 소모하여 리트리버를 길들여 획득한다"
             }
           ],
           "nextId": null,
@@ -3716,13 +3829,25 @@
               "success": [
                 {
                   "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "name": "인카운터 종료"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "chance",
+                  "successRate": 0.5,
+                  "success": [
+                    {
+                      "type": "item",
+                      "name": "아래 선택지가 추가로 열린다"
+                    }
+                  ],
+                  "failure": [
+                    {
+                      "type": "text",
+                      "name": "실패 (위키 서술 참고)"
+                    }
+                  ]
                 }
               ]
             }
@@ -3735,7 +3860,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -3749,36 +3874,28 @@
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "item",
+                  "name": "리트리버를 얻거나 감염"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "chance",
+                  "successRate": 1.0,
+                  "success": [
+                    {
+                      "type": "ability",
+                      "name": "험악한 얼굴이 있을 경우 성공 의약품"
+                    }
+                  ],
+                  "failure": [
+                    {
+                      "type": "text",
+                      "name": "실패 (위키 서술 참고)"
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "type": "chance",
-              "successRate": 1.0,
-              "success": [
-                {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
-                }
-              ],
-              "failure": [
-                {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
-                }
-              ]
-            },
-            {
-              "type": "ability",
-              "name": "의약품은"
             }
           ],
           "nextId": null,
@@ -3813,12 +3930,8 @@
               "name": "서울 생태 지식"
             },
             {
-              "type": "ability",
-              "name": "체력 한칸"
-            },
-            {
-              "type": "ability",
-              "name": "개박하"
+              "type": "item",
+              "name": "감염 치료하거나 챙길시 개박하"
             }
           ],
           "nextId": null,
@@ -3832,7 +3945,7 @@
       "id": "희귀해-보이는-식물",
       "title": "희귀해 보이는 식물",
       "story": "기본",
-      "body": "희귀해 보이는 식물",
+      "body": null,
       "choices": [
         {
           "text": "한번 먹어본다",
@@ -3842,24 +3955,16 @@
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "item",
+                  "name": "풀떼기"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "item",
+                  "name": "로 풀떼기"
                 }
               ]
-            },
-            {
-              "type": "item",
-              "name": "확률로 풀떼기"
-            },
-            {
-              "type": "ability",
-              "name": "로 풀떼기"
             }
           ],
           "nextId": null,
@@ -3881,13 +3986,8 @@
           "recommend": false
         },
         {
-          "text": "지나간다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "지나간다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -3931,14 +4031,59 @@
       "id": "부상당한-미군",
       "title": "부상당한 미군",
       "story": "기본",
-      "body": "철골 바닥에서 솟아나온 날카로운 쇠막대에 배를 찔려 부상당한 미군을 조우하는 인카운터이다. 향후 적지 않은 도움이 되는 '미군과 우호적'을 얻을 수 있는 인카운터. 미군과 적대적을 쿠키로 이미 보유한 경우 나타나지 않는 인카운터이다. 50% 확률로 성공 시 권총을 획득, 실패 시 미군과 적대적을 획득 소매치기 보유시 100%확률로 권총과 돈1칸 획득 미군과 적대적을 획득해도 권총을 동시에 획득하는 경우가 생겼다. 50% 확률로 성공하여 치료하고 응급처치와 초콜릿을 획득. 실패 시 제일 나쁜 사마리아인 업적 달성과 함께 멘탈 1칸 소모. 단, 응급처치가 있다면 100% 성공하고 초콜릿 획득. 영어가 있다면 치료 성공 후 추가로 말을 걸어서 미군과 우호적 획득도 가능하다.",
+      "body": "철골 바닥에서 솟아나온 날카로운 쇠막대에 배를 찔려 부상당한 미군을 조우하는 인카운터이다. 향후 적지 않은 도움이 되는 '미군과 우호적'을 얻을 수 있는 인카운터. 미군과 적대적을 쿠키로 이미 보유한 경우 나타나지 않는 인카운터이다. 50% 확률로 성공하여 치료하고 응급처치와 초콜릿을 획득. 실패 시 제일 나쁜 사마리아인 업적 달성과 함께 멘탈 1칸 소모. 단, 응급처치가 있다면 100% 성공하고 초콜릿 획득. 영어가 있다면 치료 성공 후 추가로 말을 걸어서 미군과 우호적 획득도 가능하다.",
       "choices": [
         {
-          "text": "가진 것을 빼앗는다.",
+          "text": "가진 것을 빼앗는다",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "chance",
+              "successRate": 0.5,
+              "success": [
+                {
+                  "type": "chance",
+                  "successRate": 1.0,
+                  "success": [
+                    {
+                      "type": "resource",
+                      "name": "돈",
+                      "delta": 1
+                    },
+                    {
+                      "type": "item",
+                      "name": "성공 시 권총"
+                    },
+                    {
+                      "type": "item",
+                      "name": "실패 시 미군"
+                    },
+                    {
+                      "type": "item",
+                      "name": "적대적"
+                    },
+                    {
+                      "type": "item",
+                      "name": "미군"
+                    },
+                    {
+                      "type": "item",
+                      "name": "해도 권총을 동시에"
+                    }
+                  ],
+                  "failure": [
+                    {
+                      "type": "text",
+                      "name": "실패 (위키 서술 참고)"
+                    }
+                  ]
+                }
+              ],
+              "failure": [
+                {
+                  "type": "text",
+                  "name": "실패 (위키 서술 참고)"
+                }
+              ]
             }
           ],
           "nextId": null,
@@ -3946,23 +4091,13 @@
         },
         {
           "text": "도움을 준다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "직접 치료해준다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "직접 치료해준다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -3974,8 +4109,12 @@
               "name": "영어"
             },
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "item",
+              "name": "미군"
+            },
+            {
+              "type": "item",
+              "name": "우호적"
             }
           ],
           "nextId": null,
@@ -4011,7 +4150,7 @@
             },
             {
               "type": "text",
-              "name": "미군과 우호적이 없으면 아무 일도 일어나지 않는다. [15]미군과 우호적 보유 시 아래 선택지로 넘어간다."
+              "name": "미군과 우호적이 없으면 아무 일도 일어나지 않는다.미군과 우호적 보유 시 아래 선택지로 넘어간다"
             }
           ],
           "nextId": null,
@@ -4025,7 +4164,7 @@
               "name": "기계공학"
             },
             {
-              "type": "ability",
+              "type": "item",
               "name": "군복"
             }
           ],
@@ -4040,7 +4179,7 @@
               "name": "MP3"
             },
             {
-              "type": "ability",
+              "type": "item",
               "name": "군복"
             }
           ],
@@ -4051,7 +4190,7 @@
           "text": "잡담이나 나눈다",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "지도 조각"
             }
           ],
@@ -4060,12 +4199,7 @@
         },
         {
           "text": "지나간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -4109,38 +4243,23 @@
       "id": "허름한-약방",
       "title": "허름한 약방",
       "story": "기본",
-      "body": "누런 가운을 입고 연구를 하는 정신 나간 남자와 조우하는 인카운터이다. 보수로 살충제를 얻는다. 날렵함이 없을 시 50% 확률로 청계천에서 거대 모기에 물려 감염된다. #### 2.55.1. 청계천 마을",
+      "body": "누런 가운을 입고 연구를 하는 정신 나간 남자와 조우하는 인카운터이다. 보수로 살충제를 얻는다. 날렵함이 없을 시 50% 확률로 청계천에서 거대 모기에 물려 감염된다.",
       "choices": [
         {
           "text": "들어간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "데리고 나간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "청계천으로 간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -4161,10 +4280,6 @@
             {
               "type": "condition",
               "name": "방독면"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -4175,7 +4290,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "살충제를 받고 방독면을 잃는다."
+              "name": "살충제를 받고 방독면을 잃는다"
             }
           ],
           "nextId": null,
@@ -4201,54 +4316,44 @@
           "text": "돌려받고 떠난다",
           "effects": [
             {
-              "type": "text",
+              "type": "item",
               "name": "방독면을 돌려받는다"
             }
           ],
           "nextId": null,
           "recommend": false
-        },
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "청계천-마을",
+      "title": "청계천 마을",
+      "story": "기본",
+      "body": "청계천으로 갔을 때 모기를 잡고 있는 아이와 조우하는 경우가 있다. 도와주면 모기에게 고통받는 마을로 안내받는다. 날렵함이 없을 경우 감염을 얻고 [16] 마을에서 여러 가젯들을 얻거나 다시 약방으로 돌아와 살충제를 받고 마을을 구원해 주는 해피엔딩을 볼 수 있다.",
+      "choices": [
         {
-          "text": "보초들이 무기 만드는 것을 돕는다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "보초들이 무기 만드는 것을 돕는다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "아이들을 도와 아픈 사람들을 간호한다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "아이들을 도와 아픈 사람들을 간호한다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "할아버지를 도와 농작물을 보살핀다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "할아버지를 도와 농작물을 보살핀다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "이나에게 약방의 남자에 대해 말해준다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "이나에게 약방의 남자에 대해 말해준다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -4267,7 +4372,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "까마귀 군주에 대한 설명을 들은 뒤 다시 바로 아래의 두 선택지만 남는다."
+              "name": "까마귀 군주에 대한 설명을 들은 뒤 다시 바로 아래의 두 선택지만 남는다"
             }
           ],
           "nextId": null,
@@ -4302,14 +4407,14 @@
               "successRate": 0.1,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "item",
+                  "name": "감염된다"
                 }
               ],
               "failure": [
                 {
                   "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "name": "롱패딩 보유시 롱패딩을 소모하여 회피 가능"
                 }
               ]
             }
@@ -4351,7 +4456,11 @@
             },
             {
               "type": "text",
-              "name": "돈을 주고 목각상을 구매할 수 있다. 이후에 다시 선택지가 갈린다."
+              "name": "돈을 주고 목각상을 구매할 수 있다"
+            },
+            {
+              "type": "text",
+              "name": "이후에 다시 선택지가 갈린다"
             }
           ],
           "nextId": null,
@@ -4367,7 +4476,7 @@
             },
             {
               "type": "ability",
-              "name": "손재주를"
+              "name": "손재주"
             }
           ],
           "nextId": null,
@@ -4383,15 +4492,11 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
+              "delta": 1
             },
             {
               "type": "ability",
               "name": "유머"
-            },
-            {
-              "type": "ability",
-              "name": "돈 1칸"
             }
           ],
           "nextId": null,
@@ -4402,7 +4507,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -4419,7 +4524,7 @@
       "body": "음향기기를 판매하는 상가에서 한 아저씨에게 어떤 곡의 이름을 알려달라고 요청받는 인카운터이다. 어느 쪽이든 곡명을 알아내면 사례의 의미로 돈 1칸과 MP3를 받는다. 여담으로 아저씨가 궁금해하던 곡은 방탄소년단의 피 땀 눈물. 추가로 '그 노래를 언제쯤 들으셨죠?'를 선택하면 핵폭발 직전이라고 하는데 핵폭발은 2015년에 일어난 설정이고 피 땀 눈물 발매일은 2016년으로 설정오류이다.",
       "choices": [
         {
-          "text": "글쎄요 음악이나 추천해주세요.",
+          "text": "글쎄요 음악이나 추천해주세요",
           "effects": [
             {
               "type": "resource",
@@ -4431,11 +4536,11 @@
           "recommend": false
         },
         {
-          "text": "계속 불러보세요, 들어볼게요.",
+          "text": "계속 불러보세요, 들어볼게요",
           "effects": [
             {
               "type": "text",
-              "name": "음악적 재능이 있으면 곡명을 알 수 있다."
+              "name": "음악적 재능이 있으면 곡명을 알 수 있다"
             }
           ],
           "nextId": null,
@@ -4446,7 +4551,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "역사학이 있으면 곡명을 알 수 있다."
+              "name": "역사학이 있으면 곡명을 알 수 있다"
             }
           ],
           "nextId": null,
@@ -4467,7 +4572,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -4482,26 +4587,26 @@
               "success": [
                 {
                   "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "name": "관찰력이 없을 시  체력을 소모하고 통기타 획득, 관찰력이 있을 경우 통기타, 우산, 의약품 중 선택"
                 }
               ],
               "failure": [
                 {
+                  "type": "item",
+                  "name": "우산이 이미 있다면 통기타"
+                },
+                {
                   "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "name": "지도 조각, 의약품 중 선택"
                 }
               ]
-            },
-            {
-              "type": "item",
-              "name": "확률로 체력을 소모하고 통기타"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "안 타는 쓰레기를 살펴본다.",
+          "text": "안 타는 쓰레기를 살펴본다",
           "effects": [
             {
               "type": "chance",
@@ -4509,7 +4614,7 @@
               "success": [
                 {
                   "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "name": "관찰력이 없을 시  체력을 소모하고 방독면 획득, 관찰력이 있을 경우 방독면, 패치 후, 쓰레기더미에 이상한 주사기 대신 삽이 자리잡게 되었다.살충제 중 선택"
                 }
               ],
               "failure": [
@@ -4518,10 +4623,6 @@
                   "name": "실패 (위키 서술 참고)"
                 }
               ]
-            },
-            {
-              "type": "item",
-              "name": "확률로 체력을 소모하고 방독면"
             }
           ],
           "nextId": null,
@@ -4542,7 +4643,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -4552,23 +4653,20 @@
           "text": "헌옷·이불 더미를 살펴본다",
           "effects": [
             {
-              "type": "item",
-              "name": "체력을 1칸 소모하고 롱패딩"
-            },
-            {
-              "type": "item",
-              "name": "체력 소모 없이 롱패딩"
+              "type": "resource",
+              "name": "체력",
+              "delta": -1
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "종이류 더미를 살펴본다.",
+          "text": "종이류 더미를 살펴본다",
           "effects": [
             {
-              "type": "item",
-              "name": "체력을 소모하고 유머"
+              "type": "text",
+              "name": "관찰력이 없을 시 체력을 소모하고 유머 획득, 관찰력이 있을 경우 랜덤으로 보물지도 2개나 책 2권을 얻거나 아래 3개 중 하나 선택할 수있다"
             }
           ],
           "nextId": null,
@@ -4651,25 +4749,24 @@
           "recommend": false
         },
         {
-          "text": "클로버 3 카드를 뽑으면 일정 페이지 후 길가에 떨어진 총을 줍는다.",
+          "text": "클로버 3 카드를 뽑으면 일정 페이지 후 길가에 떨어진 총을 줍는다",
           "effects": [
             {
               "type": "resource",
               "name": "체력",
               "delta": -1
+            },
+            {
+              "type": "item",
+              "name": "방탄조끼 보유시 방탄조끼로 방어하고 권총"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "다이아몬드 에이스 카드를 뽑으면 이후 길가에서 돈을 줍는 이벤트가 나온다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "다이아몬드 에이스 카드를 뽑으면 이후 길가에서 돈을 줍는 이벤트가 나온다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -4687,7 +4784,7 @@
           "text": "근력 운동",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "근력"
             }
           ],
@@ -4745,7 +4842,7 @@
       "id": "차가운-밤-2",
       "title": "차가운 밤 2",
       "story": "기본",
-      "body": "차가운 밤 1과 다른점은 낡은 난로를 발견한다는 것이다. 2019.02.02 업데이트로 일러스트가 추가되었다. #### 2.64.1. 은행나무",
+      "body": "차가운 밤 1과 다른점은 낡은 난로를 발견한다는 것이다. 2019.02.02 업데이트로 일러스트가 추가되었다.",
       "choices": [
         {
           "text": "전기를 공급한다",
@@ -4767,23 +4864,19 @@
           "text": "불을 피운다",
           "effects": [
             {
-              "type": "resource",
-              "name": "체력",
-              "delta": -1
-            },
-            {
               "type": "chance",
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "item",
+                  "name": "불이 번지면서 자다가 깬다"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": -1
                 }
               ]
             }
@@ -4795,8 +4888,40 @@
           "text": "그냥 잔다",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "감기"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "은행나무",
+      "title": "은행나무",
+      "story": "기본",
+      "body": "차가운 밤 2에서 난로에 불을 피우거나 그냥 자면 초극악의 확률로 꿈에 은행나무가 나온다. 이후 몇 턴 뒤에 근력/날렵함이 있다면 돈 3칸을 얻는다.",
+      "choices": [
+        {
+          "text": "살펴본다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "차가운 밤 2에서 난로에 불을 피우거나 그냥 자면 초극악의 확률로 꿈에 은행나무가 나온다. 이후 몇 턴 뒤에 근력/날렵함이 있다면 돈 3칸을 얻는다."
+            }
+          ],
+          "nextId": null,
+          "recommend": true
+        },
+        {
+          "text": "지나친다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "지나감"
             }
           ],
           "nextId": null,
@@ -4848,7 +4973,7 @@
             },
             {
               "type": "item",
-              "name": "저주받음 상태를"
+              "name": "저주받음 상태"
             }
           ],
           "nextId": null,
@@ -4863,7 +4988,11 @@
             },
             {
               "type": "text",
-              "name": "예삐를 만난다. 예삐는 사냥을 계획하고 있지만 아직은 아니라고 말하고 종료된다."
+              "name": "예삐를 만난다"
+            },
+            {
+              "type": "text",
+              "name": "예삐는 사냥을 계획하고 있지만 아직은 아니라고 말하고 종료된다"
             }
           ],
           "nextId": null,
@@ -4887,8 +5016,8 @@
               "name": "풀떼기"
             },
             {
-              "type": "item",
-              "name": "풀떼기를 소모하여 의약품"
+              "type": "text",
+              "name": "풀떼기를 소모하여 의약품 획득"
             }
           ],
           "nextId": null,
@@ -4902,8 +5031,8 @@
               "name": "돈"
             },
             {
-              "type": "item",
-              "name": "돈을 소모하여 의약품"
+              "type": "text",
+              "name": "돈을 소모하여 의약품 획득"
             }
           ],
           "nextId": null,
@@ -4961,7 +5090,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "하늘에서 떨어진 돈을 이야기꾼이 주워 간다."
+              "name": "하늘에서 떨어진 돈을 이야기꾼이 주워 간다"
             }
           ],
           "nextId": null,
@@ -4972,7 +5101,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "하늘에서 떨어진 돈을 주인공이 주워 간다."
+              "name": "하늘에서 떨어진 돈을 주인공이 주워 간다"
             }
           ],
           "nextId": null,
@@ -4993,7 +5122,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "아래 선택지로 연결."
+              "name": "아래 선택지로 연결"
             }
           ],
           "nextId": null,
@@ -5004,7 +5133,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5019,7 +5148,11 @@
             },
             {
               "type": "text",
-              "name": "댓글을 작성할 수 있다. 글자수는 20자 제한."
+              "name": "댓글을 작성할 수 있다"
+            },
+            {
+              "type": "text",
+              "name": "글자수는 20자 제한"
             }
           ],
           "nextId": null,
@@ -5030,7 +5163,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5044,14 +5177,14 @@
       "id": "거대-고양이",
       "title": "거대 고양이",
       "story": "기본",
-      "body": "불쌍한 길고양이를 살려달라고 훌쩍이는 아주머니의 도움 요청 인카운터. 자정까지 기다렸다가, 이전에 폐지 줍는 노인을 도와주었다면 동네 사람들보다 먼저 노인이 나타나 그 고양이는 위험하다고 알린다. 이후 동네 사람과 마주치는데 동네 사람이 고양이 욕을 한다. 노인을 만났었더라면 아래 대화문이 조금 바뀐다",
+      "body": "불쌍한 길고양이를 살려달라고 훌쩍이는 아주머니의 도움 요청 인카운터. 자정까지 기다렸다가, 이전에 폐지 줍는 노인을 도와주었다면 동네 사람들보다 먼저 노인이 나타나 그 고양이는 위험하다고 알린다. 이후 동네 사람과 마주치는데 동네 사람이 고양이 욕을 한다. 노인을 만났었더라면 아래 대화문이 조금 바뀐다 두 가지 선택지 모두 무사 통과하는 선택지이다. 이후 거대한 고양이가 나타난다. 실패 시 골절 획득 및 인카운터 종료. 웅변이 있으면 진정하세요 선택지 반드시 성공, 없을 시 일정 확률로 성공. 이후 선택지는 아이템 및 기술 없이 성공한다. 이 선택지를 고르면 아줌마와 거대 고양이를 지키고 방탄조끼와 돈 1칸을 획득. 참고로 고양이를 살려야만 방탄조끼를 획득하면서 업적 고양이 수호자를 달성할 수 있다. 만약 ",
       "choices": [
         {
           "text": "무시하고 떠난다",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5063,10 +5196,6 @@
             {
               "type": "condition",
               "name": "이어짐"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -5081,7 +5210,11 @@
             },
             {
               "type": "text",
-              "name": "돈 한 칸을 얻을 수 있다. 유일하게 패널티 없는 약탈."
+              "name": "돈 한 칸을 얻을 수 있다"
+            },
+            {
+              "type": "text",
+              "name": "유일하게 패널티 없는 약탈"
             }
           ],
           "nextId": null,
@@ -5093,17 +5226,13 @@
             {
               "type": "condition",
               "name": "이어짐"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "알았어요, 얼른 나갑시다.",
+          "text": "알았어요, 얼른 나갑시다",
           "effects": [
             {
               "type": "item",
@@ -5114,28 +5243,19 @@
           "recommend": false
         },
         {
-          "text": "동물도 살아갈 권리가 있습니다.",
+          "text": "동물도 살아갈 권리가 있습니다",
           "effects": [
             {
               "type": "condition",
               "name": "철학"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "그렇게는 안 될 겁니다. [23]",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "그렇게는 안 될 겁니다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -5153,12 +5273,7 @@
         },
         {
           "text": "진정하세요! 이런다고 달라지는 상황은 없어요! → 제가 아주머니와 둘이 가보겠습니다!",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -5166,30 +5281,27 @@
           "text": "아줌마는 무시하고 괴물을 처리하러 갑시다! / 진정하세요! 이런다고 달라지는 상황은 없어요! → 모두 무장하십시오, 녀석을 잡으러 갑시다",
           "effects": [
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "resource",
+              "name": "돈",
+              "delta": 1
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "총을 꺼내든다.",
+          "text": "총을 꺼내든다",
           "effects": [
             {
               "type": "condition",
               "name": "권총"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "허공에 위협사격을 가한다.",
+          "text": "허공에 위협사격을 가한다",
           "effects": [
             {
               "type": "resource",
@@ -5201,7 +5313,7 @@
           "recommend": false
         },
         {
-          "text": "급소를 겨누어 쏜다.",
+          "text": "급소를 겨누어 쏜다",
           "effects": [
             {
               "type": "resource",
@@ -5212,10 +5324,6 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "ability",
-              "name": "돈 1칸을"
             }
           ],
           "nextId": null,
@@ -5233,17 +5341,13 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "방탄조끼 및 돈 1칸"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "머리를 쏜다.",
+          "text": "머리를 쏜다",
           "effects": [
             {
               "type": "condition",
@@ -5252,27 +5356,19 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "ability",
-              "name": "돈 1칸"
+              "delta": 1
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "거대고양이 위로 올라탄다.",
+          "text": "거대고양이 위로 올라탄다",
           "effects": [
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "방탄조끼와 돈 1칸"
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -5299,10 +5395,6 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "돈 1칸 소모 후 의료용 나노머신"
             }
           ],
           "nextId": null,
@@ -5319,10 +5411,6 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "돈 1칸 소모 후 MP3"
             }
           ],
           "nextId": null,
@@ -5339,10 +5427,6 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "돈 1칸 소모 후 권총"
             }
           ],
           "nextId": null,
@@ -5359,10 +5443,6 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "돈 1칸 소모 후 통기타"
             }
           ],
           "nextId": null,
@@ -5373,7 +5453,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5420,11 +5500,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "강도들을 멀리서 모두 쏴 죽이고 강도를 털어서 돈 1칸"
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -5438,14 +5514,19 @@
               "successRate": 0.5,
               "success": [
                 {
+                  "type": "item",
+                  "name": "노예들이 물을 줘서 체력을 회복하거나"
+                },
+                {
                   "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "name": "노예들이 주인공을 나쁜 사람으로 오인하고 깨물고 달아난다"
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "status",
+                  "name": "패치로 좋은 평판과 철학도 얻을 수 있다",
+                  "delta": 1
                 }
               ]
             }
@@ -5458,7 +5539,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5474,11 +5555,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "확정적으로 돈 1칸"
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -5489,11 +5566,6 @@
           "effects": [
             {
               "type": "resource",
-              "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "resource",
               "name": "체력",
               "delta": -1
             },
@@ -5502,20 +5574,35 @@
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "돈",
+                  "delta": 1
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "chance",
+                  "successRate": 0.5,
+                  "success": [
+                    {
+                      "type": "resource",
+                      "name": "돈",
+                      "delta": -1
+                    },
+                    {
+                      "type": "resource",
+                      "name": "체력",
+                      "delta": -1
+                    }
+                  ],
+                  "failure": [
+                    {
+                      "type": "text",
+                      "name": "실패 (위키 서술 참고)"
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "type": "item",
-              "name": "확률로 돈 1칸"
             }
           ],
           "nextId": null,
@@ -5547,7 +5634,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "아래 선택지로 진입."
+              "name": "아래 선택지로 진입"
             }
           ],
           "nextId": null,
@@ -5565,10 +5652,6 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "피를 너무 많이 뽑아서 체력 1칸 소모후 돈 1칸"
             }
           ],
           "nextId": null,
@@ -5579,7 +5662,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "헌혈한다 / 떠난다 2개의 선택지만 남는다."
+              "name": "헌혈한다"
+            },
+            {
+              "type": "text",
+              "name": "떠난다 2개의 선택지만 남는다"
             }
           ],
           "nextId": null,
@@ -5590,7 +5677,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5601,7 +5688,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5622,7 +5709,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "피골이 상접한 여인이 힘없이 매달린다."
+              "name": "피골이 상접한 여인이 힘없이 매달린다"
             }
           ],
           "nextId": null,
@@ -5637,7 +5724,12 @@
             },
             {
               "type": "item",
-              "name": "식량 구하는 법을 알려준 후 풀떼기와 좋은 평판"
+              "name": "식량 구하는 법을 알려준 후 풀떼기"
+            },
+            {
+              "type": "status",
+              "name": "좋은 평판",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -5652,7 +5744,12 @@
             },
             {
               "type": "item",
-              "name": "요리 방법을 알려준 후 풀떼기와 좋은 평판"
+              "name": "요리 방법을 알려준 후 풀떼기"
+            },
+            {
+              "type": "status",
+              "name": "좋은 평판",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -5663,7 +5760,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5673,7 +5770,7 @@
           "text": "위협한다",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "풀떼기"
             }
           ],
@@ -5685,7 +5782,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5699,7 +5796,7 @@
       "id": "더러운-물웅덩이",
       "title": "더러운 물웅덩이",
       "story": "기본",
-      "body": "물이 다 떨어졌지만 마침 길가에 깨끗해 보이지 않는 물웅덩이가 하나 보인다. #### 2.74.1. 정수기 판매 손재주로 정수기를 만들었을 때 낮은 확률로 정수기를 판매하는 인카운터가 나온다. 이때 교섭이 있다면 정수기를 판매할 수 있다.",
+      "body": "물이 다 떨어졌지만 마침 길가에 깨끗해 보이지 않는 물웅덩이가 하나 보인다.",
       "choices": [
         {
           "text": "정수기를 만든다",
@@ -5710,7 +5807,7 @@
             },
             {
               "type": "text",
-              "name": "주변에서 구한 폐품과 자갈 따위로 정수기를 만들어 물을 정화하여 마신다. 인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5721,7 +5818,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "물을 찾기 위해 마을에 내려가 상인을 찾자, 그녀는 터무니없이 높은 가격을 제시한다."
+              "name": "물을 찾기 위해 마을에 내려가 상인을 찾자, 그녀는 터무니없이 높은 가격을 제시한다"
             }
           ],
           "nextId": null,
@@ -5736,7 +5833,11 @@
             },
             {
               "type": "text",
-              "name": "가진 돈을 전부 소모한다. 교섭이 있으면 한칸만 소모한다."
+              "name": "가진 돈을 전부 소모한다"
+            },
+            {
+              "type": "text",
+              "name": "교섭이 있으면 한칸만 소모한다"
             }
           ],
           "nextId": null,
@@ -5750,8 +5851,8 @@
               "name": "순수한 얼굴"
             },
             {
-              "type": "text",
-              "name": "공짜로 물을 얻는다."
+              "type": "item",
+              "name": "공짜로 물"
             }
           ],
           "nextId": null,
@@ -5773,23 +5874,20 @@
           "text": "그냥 마신다",
           "effects": [
             {
-              "type": "resource",
-              "name": "체력",
-              "delta": -1
-            },
-            {
               "type": "chance",
               "successRate": 0.5,
               "success": [
                 {
-                  "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": -1
                 }
               ],
               "failure": [
                 {
-                  "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "type": "resource",
+                  "name": "체력",
+                  "delta": 1
                 }
               ]
             }
@@ -5798,12 +5896,44 @@
           "recommend": false
         },
         {
-          "text": "참는다.",
+          "text": "참는다",
           "effects": [
             {
               "type": "resource",
               "name": "멘탈",
               "delta": -1
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "정수기-판매",
+      "title": "정수기 판매",
+      "story": "기본",
+      "body": "손재주로 정수기를 만들었을 때 낮은 확률로 정수기를 판매하는 인카운터가 나온다. 이때 교섭이 있다면 정수기를 판매할 수 있다.",
+      "choices": [
+        {
+          "text": "살펴본다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "손재주로 정수기를 만들었을 때 낮은 확률로 정수기를 판매하는 인카운터가 나온다. 이때 교섭이 있다면 정수기를 판매할 수 있다."
+            }
+          ],
+          "nextId": null,
+          "recommend": true
+        },
+        {
+          "text": "지나친다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "지나감"
             }
           ],
           "nextId": null,
@@ -5824,18 +5954,22 @@
           "effects": [
             {
               "type": "text",
-              "name": "대화 후 아래의 선택지에 진입."
+              "name": "대화 후 아래의 선택지에 진입"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "이 세상에 저주 같은 건 없어요.",
+          "text": "이 세상에 저주 같은 건 없어요",
           "effects": [
             {
               "type": "text",
-              "name": "앞서 '저주요?' 선택 시에만 나타난다. 아래의 두 선택지만 남는다."
+              "name": "앞서 '저주요?' 선택 시에만 나타난다"
+            },
+            {
+              "type": "text",
+              "name": "아래의 두 선택지만 남는다"
             }
           ],
           "nextId": null,
@@ -5852,10 +5986,6 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "진통제 소모 후 돈 1칸과 성경"
             }
           ],
           "nextId": null,
@@ -5869,8 +5999,8 @@
               "name": "관찰력"
             },
             {
-              "type": "ability",
-              "name": "와 생고기"
+              "type": "item",
+              "name": "생고기"
             },
             {
               "type": "ability",
@@ -5884,8 +6014,8 @@
           "text": "로망을 준다",
           "effects": [
             {
-              "type": "ability",
-              "name": "성경과 돈"
+              "type": "item",
+              "name": "성경"
             }
           ],
           "nextId": null,
@@ -5896,7 +6026,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5907,7 +6037,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5924,10 +6054,10 @@
       "body": "요즘 야영을 할 때마다 어둠 속에서 무언가가 주인공을 지켜보고 있다는 느낌을 받는다고 한다. [25] 별 일 아니라고 하면 며칠 후 주인공이 풀숲에서 자던 어느날 밤에 너구리들이 습격해 온다.(이전에 덫에 걸린 황소너구리 이벤트에서 황소너구리를 구해줬다면 권총, 운동화, 돈 등을 주고 간다.) [26]이때 강력한 직감 / 리트리버가 있다면 피해 없이 끝나지만 없었다면 체력 피해를 입고 근력, 날렵함과 전재산을 모두 잃는다. 위험하기 짝이 없는 이벤트라 직감이나 리트리버가 없다면 돈 1칸 정도는 항상 들고 다니게 만드는 이벤트.",
       "choices": [
         {
-          "text": "별 일 없겠지.",
+          "text": "별 일 없겠지",
           "effects": [
             {
-              "type": "text",
+              "type": "ability",
               "name": "후술할 이벤트로 진행"
             }
           ],
@@ -5935,7 +6065,7 @@
           "recommend": false
         },
         {
-          "text": "당분간 안전한 곳에서 자자.",
+          "text": "당분간 안전한 곳에서 자자",
           "effects": [
             {
               "type": "condition",
@@ -5959,7 +6089,19 @@
             },
             {
               "type": "text",
-              "name": "예삐를 찾아가 상담한다. 그건 너구리들일 거라며 너구리들을 쫓아내는 무언가를 주며 이걸 걸어놓고 자라고 한다. 무엇인지는 묻지 말라고. 이 선택지 역시 이벤트를 방지해 준다."
+              "name": "예삐를 찾아가 상담한다"
+            },
+            {
+              "type": "text",
+              "name": "그건 너구리들일 거라며 너구리들을 쫓아내는 무언가를 주며 이걸 걸어놓고 자라고 한다"
+            },
+            {
+              "type": "text",
+              "name": "무엇인지는 묻지 말라고"
+            },
+            {
+              "type": "text",
+              "name": "이 선택지 역시 이벤트를 방지해 준다"
             }
           ],
           "nextId": null,
@@ -5984,7 +6126,7 @@
             },
             {
               "type": "text",
-              "name": "나무판자를 찾아서 안전하게 지나간다. 인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -5995,14 +6137,14 @@
           "effects": [
             {
               "type": "text",
-              "name": "중간에 돈주머니를 떨어뜨린다."
+              "name": "중간에 돈주머니를 떨어뜨린다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "돈주머니를 포기한다.",
+          "text": "돈주머니를 포기한다",
           "effects": [
             {
               "type": "resource",
@@ -6014,7 +6156,7 @@
           "recommend": false
         },
         {
-          "text": "멘탈 데미지를 받고 돈주머니를 줍는다.",
+          "text": "멘탈 데미지를 받고 돈주머니를 줍는다",
           "effects": [
             {
               "type": "resource",
@@ -6037,23 +6179,13 @@
       "choices": [
         {
           "text": "도서관을 향해 간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "몇 턴 후 도서관 도착시 랜덤으로 3종의 책이 제시되며, 그 중 하나의 책을 골라 읽을 수 있다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "몇 턴 후 도서관 도착시 랜덤으로 3종의 책이 제시되며, 그 중 하나의 책을 골라 읽을 수 있다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -6061,8 +6193,13 @@
           "text": "경찰서를 향해 간다",
           "effects": [
             {
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 1
+            },
+            {
               "type": "item",
-              "name": "깡패들을 다 쓸어버리고 방탄조끼와 조립식 저격소총"
+              "name": "조립식 저격소총"
             }
           ],
           "nextId": null,
@@ -6070,45 +6207,25 @@
         },
         {
           "text": "철물점을 향해 간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "손재주가 있으면 여러 물품을 만들 수 있다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "손재주가 있으면 여러 물품을 만들 수 있다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "헬스장을 향해 간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "위의 항목 참조.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "위의 항목 참조",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -6160,10 +6277,6 @@
             {
               "type": "condition",
               "name": "손재주"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -6174,7 +6287,7 @@
           "effects": [
             {
               "type": "item",
-              "name": "자물쇠 따기를"
+              "name": "자물쇠 따기"
             }
           ],
           "nextId": null,
@@ -6188,8 +6301,8 @@
               "name": "기계공학"
             },
             {
-              "type": "text",
-              "name": "권총을 얻는다."
+              "type": "item",
+              "name": "권총"
             }
           ],
           "nextId": null,
@@ -6204,7 +6317,7 @@
             },
             {
               "type": "text",
-              "name": "권총을 소모하고 조립식 저격소총을 얻는다."
+              "name": "권총을 소모하고 조립식 저격소총을 얻는다"
             }
           ],
           "nextId": null,
@@ -6219,7 +6332,7 @@
             },
             {
               "type": "text",
-              "name": "살충제를 소모하고 화염 방사기를 얻는다."
+              "name": "살충제를 소모하고 화염 방사기를 얻는다"
             }
           ],
           "nextId": null,
@@ -6233,8 +6346,8 @@
               "name": "전기 기술"
             },
             {
-              "type": "text",
-              "name": "휴대용 발전기를 얻는다."
+              "type": "item",
+              "name": "휴대용 발전기"
             }
           ],
           "nextId": null,
@@ -6248,21 +6361,16 @@
               "name": "기계공학 LV.2"
             },
             {
-              "type": "text",
-              "name": "전자기 펄스 수류탄을 얻는다. [전기기술은]"
+              "type": "item",
+              "name": "전자기 펄스 수류탄"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "지나친다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "지나친다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -6278,12 +6386,7 @@
       "choices": [
         {
           "text": "돈을 다 놓고 간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -6296,7 +6399,11 @@
             },
             {
               "type": "text",
-              "name": "일정 확률로 실패 시 날렵함을 잃는다. 날렵함이 Lv.2 이상이면 무조건 성공한다."
+              "name": "일정 확률로 실패 시 날렵함을 잃는다"
+            },
+            {
+              "type": "text",
+              "name": "날렵함이 Lv.2 이상이면 무조건 성공한다"
             }
           ],
           "nextId": null,
@@ -6310,8 +6417,12 @@
               "name": "날렵함"
             },
             {
-              "type": "text",
-              "name": "불굴의 투지 보유 시 등장한다. 방탄조끼와 화염방사기 또는 조립식 저격소총을 얻는다."
+              "type": "item",
+              "name": "방탄조끼"
+            },
+            {
+              "type": "item",
+              "name": "화염방사기 또는 조립식 저격소총"
             }
           ],
           "nextId": null,
@@ -6326,7 +6437,7 @@
             },
             {
               "type": "text",
-              "name": "오토바이로 도망친다."
+              "name": "오토바이로 도망친다"
             }
           ],
           "nextId": null,
@@ -6334,23 +6445,13 @@
         },
         {
           "text": "안녕!",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "경례 안 하냐?",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -6358,8 +6459,50 @@
           "text": "물자를 가져간다",
           "effects": [
             {
-              "type": "ability",
-              "name": "돈과 의약품"
+              "type": "item",
+              "name": "의약품"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "치료해준다",
+          "effects": [
+            {
+              "type": "condition",
+              "name": "응급처치"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "그냥 간다",
+          "effects": [],
+          "nextId": null,
+          "recommend": false
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "재방문",
+      "title": "재방문",
+      "story": "기본",
+      "body": "첫 방문에서 처치하지 못했다면 1회째와 동일, 불굴의 투지를 활용해 쓸어버렸다면 주민들에게 감사를 받고 좋은 평판을 획득. 엽우회의 영웅 보유시에도 이쪽이 우선시된다. 엽우회의 영웅 상태로 2회차 방문할 경우, 초회 선택지에 따라 달라진다.",
+      "choices": [
+        {
+          "text": "물자를 가져간다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "경찰서가 최 엽사의 잔당들에게 점령당하고 다리에 총을 맞아 날렵함을 잃는다"
+            },
+            {
+              "type": "text",
+              "name": "(체력소모 없음)"
             }
           ],
           "nextId": null,
@@ -6373,8 +6516,9 @@
               "name": "응급처치"
             },
             {
-              "type": "text",
-              "name": "결과 미상"
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -6385,51 +6529,14 @@
           "effects": [
             {
               "type": "text",
-              "name": "결과 미상"
+              "name": "최엽사 잔당들이 근처 깡패들과 합세하여 공격한다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "물자를 가져간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "경찰서가 최 엽사의 잔당들에게 점령당하고 다리에 총을 맞아 날렵함을 잃는다. (체력소모 없음)"
-            }
-          ],
-          "nextId": null,
-          "recommend": false
-        },
-        {
-          "text": "치료해준다",
-          "effects": [
-            {
-              "type": "condition",
-              "name": "응급처치"
-            },
-            {
-              "type": "text",
-              "name": "고 엽사가 주인공의 도움에 감사를 표하며 체력, 멘탈을 1칸씩 회복시켜준다."
-            }
-          ],
-          "nextId": null,
-          "recommend": false
-        },
-        {
-          "text": "그냥 간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "최엽사 잔당들이 근처 깡패들과 합세하여 공격한다."
-            }
-          ],
-          "nextId": null,
-          "recommend": false
-        },
-        {
-          "text": "내가 같이 싸우겠어.",
+          "text": "내가 같이 싸우겠어",
           "effects": [
             {
               "type": "resource",
@@ -6441,11 +6548,11 @@
           "recommend": false
         },
         {
-          "text": "떠난다.",
+          "text": "떠난다",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -6462,13 +6569,8 @@
       "body": "최근 산길로 여행을 하던 중 유난히 꿩이 많이 보여서 잡으려고 한다.",
       "choices": [
         {
-          "text": "덫을 놓는다(손재주): 철사로 올무를 만들어 꿩을 잡는다. 생고기를 얻는다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "덫을 놓는다(손재주): 철사로 올무를 만들어 꿩을 잡는다. 생고기를 얻는다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -6480,21 +6582,16 @@
               "name": "조립식 저격소총"
             },
             {
-              "type": "text",
-              "name": "멀리서 꿩을 저격하여 죽인다. 생고기를 얻고, 사격술도 얻는다, 그러나 사격술이 없으면 가끔씩 손이 떨려 잘못 쏴서 꿩을 놓칠때도 있다."
+              "type": "ability",
+              "name": "사격술도"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "그냥 간다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "그냥 간다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -6506,7 +6603,7 @@
       "id": "컨테이너",
       "title": "컨테이너",
       "story": "기본",
-      "body": "길을 가다가 이상한 소리가 나는 컨테이너를 발견한다. 확률적으로 다음 3개 중 하나이다. 방탄조끼를 얻는 루트는 피해를 입거나 운빨 또는 희귀 아이템이 필요한 경우가 많아서 이걸로 방탄조끼 수급이 훨씬 쉬워졌다. 이것도 운빨이긴 하지만. , 괜찮아 선택시 말을 거는데,",
+      "body": "길을 가다가 이상한 소리가 나는 컨테이너를 발견한다. 확률적으로 다음 3개 중 하나이다. 방탄조끼를 얻는 루트는 피해를 입거나 운빨 또는 희귀 아이템이 필요한 경우가 많아서 이걸로 방탄조끼 수급이 훨씬 쉬워졌다. 이것도 운빨이긴 하지만. , 괜찮아 선택시 말을 거는데, 여담으로 위 3가지의 인카운터가 의도한건진 모르겠지만 시간상으로 연결된다. 미싱 돌리는 지윤이 → 거대 모기(설명에 방금 죽은 것 같은 시체라는 언급이 있다. 모기가 지윤이를 죽이고 얼마 안있어 주인공이 문을 연 듯.)→휴대용 발전기(모기는 떠나고 발전기가 하나 남아있는 상태) 순으로 생각하면...",
       "choices": [
         {
           "text": "윙윙 돌아가는 휴대용 발전기",
@@ -6526,10 +6623,6 @@
               "type": "resource",
               "name": "체력",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "체력 1칸 까이고 감염"
             }
           ],
           "nextId": null,
@@ -6549,7 +6642,7 @@
               "success": [
                 {
                   "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "name": "잘 만든 식탁보 같네 선택시  손재주를 얻을 수 있고 그렇지 않으면 감염을 얻는다"
                 }
               ],
               "failure": [
@@ -6564,11 +6657,12 @@
           "recommend": false
         },
         {
-          "text": "예쁘네 선택시 그냥 끝난다.",
+          "text": "예쁘네 선택시 그냥 끝난다",
           "effects": [
             {
-              "type": "text",
-              "name": "미적 감각 보유시 멘탈이 1칸 회복된다"
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -6591,6 +6685,11 @@
               "type": "resource",
               "name": "멘탈",
               "delta": -1
+            },
+            {
+              "type": "resource",
+              "name": "체력",
+              "delta": -3
             }
           ],
           "nextId": null,
@@ -6598,12 +6697,7 @@
         },
         {
           "text": "도망친다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -6625,8 +6719,13 @@
               "name": "근력"
             },
             {
-              "type": "text",
-              "name": "선택시 휴대용 발전기/책 2권 [34]/초콜릿/감염을 얻는다. 잘린 귀가 나와서 멘탈이 1칸 까일 수도 있다."
+              "type": "resource",
+              "name": "멘탈",
+              "delta": 1
+            },
+            {
+              "type": "item",
+              "name": "감염"
             }
           ],
           "nextId": null,
@@ -6638,7 +6737,7 @@
             {
               "type": "resource",
               "name": "멘탈",
-              "delta": 1
+              "delta": -1
             }
           ],
           "nextId": null,
@@ -6649,7 +6748,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "랜덤 인카운터 종료"
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -6706,7 +6805,7 @@
             },
             {
               "type": "text",
-              "name": "다음에 청년을 만나게 된다."
+              "name": "다음에 청년을 만나게 된다"
             }
           ],
           "nextId": null,
@@ -6717,7 +6816,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료, 후술할 이벤트도 나오지 않는다."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -6732,7 +6831,11 @@
             },
             {
               "type": "text",
-              "name": "저격수 청년을 사살한다. 단, 사격술 미보유 시 주인공이 즉사한다."
+              "name": "저격수 청년을 사살한다"
+            },
+            {
+              "type": "text",
+              "name": "단, 사격술 미보유 시 주인공이 즉사한다"
             }
           ],
           "nextId": null,
@@ -6753,8 +6856,13 @@
           "text": "건물 안에 들어간다",
           "effects": [
             {
-              "type": "ability",
-              "name": "들을"
+              "type": "resource",
+              "name": "체력",
+              "delta": 1
+            },
+            {
+              "type": "item",
+              "name": "들"
             }
           ],
           "nextId": null,
@@ -6764,8 +6872,9 @@
           "text": "컴퓨터 기술 보유 시",
           "effects": [
             {
-              "type": "text",
-              "name": "두 가지 선택지가 나오며 기계공학을 얻거나 일상생활 불가능 업적을 수행할 수 있다. 후자는 순수한 얼굴을 잃고 멘탈을 2칸 얻는다."
+              "type": "resource",
+              "name": "멘탈",
+              "delta": -2
             }
           ],
           "nextId": null,
@@ -6811,7 +6920,7 @@
       "id": "안마기",
       "title": "안마기",
       "story": "기본",
-      "body": "안마기",
+      "body": null,
       "choices": [
         {
           "text": "살펴본다",
@@ -6843,7 +6952,7 @@
       "id": "희미한-연기",
       "title": "희미한 연기",
       "story": "기본",
-      "body": "#### 2.90.1. 북한산 국립공원 북한산 국립공원에 도착한다. 북슬이와 합류전에 수색을 한다. 지옥 불모기에게 쫒기던 사람을 발견한다. 그때 썬더다람쥐가 나타나 전기를 발사해서 해치우고 그는 자신이 이태승이라 말한다. 이태승은 모기를 피해 도망치던 사람과 합류했는데 북슬이가족이 모기가 잘 안몰리는 연못주위에 모기장을 설치해 버티자는 의견을 낸다. 근데 연못에 있던 모기알이 부화하고 겁먹은 사람들은 북슬이가족을 버리고 튀었으나 이태승빼고 다 죽었고 이태승은 모기를 피해 북슬이가족에게 음식을 전달하고있지만 최근 며칠간 못전달하고있다.",
+      "body": null,
       "choices": [
         {
           "text": "조심히 다가가본다",
@@ -6851,10 +6960,6 @@
             {
               "type": "condition",
               "name": "은신술"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -6876,7 +6981,7 @@
           "text": "불이 꺼진 모닥불",
           "effects": [
             {
-              "type": "text",
+              "type": "item",
               "name": "책 2권"
             }
           ],
@@ -6908,23 +7013,13 @@
         },
         {
           "text": "흰 고라니 고기를 먹고있는 약탈자",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "아무것도 없거나 관찰력이 있어도 기다리면 약탈자들이 알아서 쓰러진다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "아무것도 없거나 관찰력이 있어도 기다리면 약탈자들이 알아서 쓰러진다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -6943,7 +7038,7 @@
           "text": "두꺼운 책",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "책 1권"
             }
           ],
@@ -6956,11 +7051,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -1
-            },
-            {
-              "type": "ability",
-              "name": "돈 1칸"
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -6968,47 +7059,28 @@
         },
         {
           "text": "권총",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "삽",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "비둘기 고기를 먹고 있는 약탈자",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "술 취한 약탈자의 주머니를 뒤진다.",
+          "text": "술 취한 약탈자의 주머니를 뒤진다",
           "effects": [
             {
               "type": "condition",
               "name": "소매치기"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -7018,7 +7090,7 @@
           "text": "두꺼운 책",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "책 1권"
             }
           ],
@@ -7029,7 +7101,7 @@
           "text": "맥주",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "맥주"
             }
           ],
@@ -7040,7 +7112,7 @@
           "text": "삽",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "삽"
             }
           ],
@@ -7052,7 +7124,15 @@
           "effects": [
             {
               "type": "text",
-              "name": "숲속 깊은곳에 있는 작은 오두막에서 연기가 나오고 있다. 다가가면 북슬이라는 청년과 단백이라는 개와 썬더 다람쥐가 있다. 북슬이가 주인공에게 음식을 나눠주면서 자기 이야기를 꺼내는데 지옥불모기라는 아주 위험한 모기가"
+              "name": "숲속 깊은곳에 있는 작은 오두막에서 연기가 나오고 있다"
+            },
+            {
+              "type": "text",
+              "name": "다가가면 북슬이라는 청년과 단백이라는 개와 썬더 다람쥐가 있다"
+            },
+            {
+              "type": "text",
+              "name": "북슬이가 주인공에게 음식을 나눠주면서 자기 이야기를 꺼내는데 지옥불모기라는 아주 위험한 모기가 있다며 도와달라고 말한다"
             }
           ],
           "nextId": null,
@@ -7063,7 +7143,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "북한산 국립공원에서 수색한후 일주일뒤 만나기로 한다. 서울생태지식을 배워오면 좋다고 한다."
+              "name": "북한산 국립공원에서 수색한후 일주일뒤 만나기로 한다"
+            },
+            {
+              "type": "text",
+              "name": "서울생태지식을 배워오면 좋다고 한다"
             }
           ],
           "nextId": null,
@@ -7071,12 +7155,7 @@
         },
         {
           "text": "거절한다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -7102,7 +7181,17 @@
           ],
           "nextId": null,
           "recommend": false
-        },
+        }
+      ],
+      "source": "namu:기본 인카운터",
+      "updatedAt": "2026-11-03"
+    },
+    {
+      "id": "북한산-국립공원",
+      "title": "북한산 국립공원",
+      "story": "기본",
+      "body": "북한산 국립공원에 도착한다. 북슬이와 합류전에 수색을 한다. 지옥 불모기에게 쫒기던 사람을 발견한다. 그때 썬더다람쥐가 나타나 전기를 발사해서 해치우고 그는 자신이 이태승이라 말한다. 이태승은 모기를 피해 도망치던 사람과 합류했는데 북슬이가족이 모기가 잘 안몰리는 연못주위에 모기장을 설치해 버티자는 의견을 낸다. 근데 연못에 있던 모기알이 부화하고 겁먹은 사람들은 북슬이가족을 버리고 튀었으나 이태승빼고 다 죽었고 이태승은 모기를 피해 북슬이가족에게 음식을 전달하고있지만 최근 며칠간 못전달하고있다. 모기장의 상태는 심각했고 북슬이는 드디어 만난 가족과 다시 헤어져 도망가야했다.",
+      "choices": [
         {
           "text": "나무위로 올라간다",
           "effects": [
@@ -7112,7 +7201,7 @@
             },
             {
               "type": "text",
-              "name": "비둘기 가족이 탐탁치 않는 시선으로 바라본다."
+              "name": "비둘기 가족이 탐탁치 않는 시선으로 바라본다"
             }
           ],
           "nextId": null,
@@ -7127,7 +7216,7 @@
             },
             {
               "type": "text",
-              "name": "새들이 일제히 날아오르는것이 보인다."
+              "name": "새들이 일제히 날아오르는것이 보인다"
             }
           ],
           "nextId": null,
@@ -7139,10 +7228,6 @@
             {
               "type": "condition",
               "name": "날렵함 Lv.2"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -7169,7 +7254,7 @@
             },
             {
               "type": "text",
-              "name": "사람의 발자국을 발견한다."
+              "name": "사람의 발자국을 발견한다"
             }
           ],
           "nextId": null,
@@ -7177,25 +7262,16 @@
         },
         {
           "text": "풀숲으로 들어간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "이 풀들이 뭐였더라..",
+          "text": "이 풀들이 뭐였더라",
           "effects": [
             {
               "type": "condition",
               "name": "서울생태지식"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -7206,7 +7282,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "체력이 1깍인다."
+              "name": "체력이 1깍인다"
             }
           ],
           "nextId": null,
@@ -7216,7 +7292,7 @@
           "text": "흰눈송이풀 군락으로 가기",
           "effects": [
             {
-              "type": "text",
+              "type": "item",
               "name": "멘탈이 1깍인다"
             }
           ],
@@ -7229,7 +7305,7 @@
             {
               "type": "resource",
               "name": "체력",
-              "delta": -1
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -7240,7 +7316,19 @@
           "effects": [
             {
               "type": "text",
-              "name": "버섯군락에서 버섯을 뽑는다. 서울생태지식(확실하지는 않음)이 없으면 체력이 1깍인다. 미적감각 보유시 버섯을 먹고 근력 10레벨이 올라간다. 그리고 리트리버를 데리고있을경우 리트리버한테 버섯뽑기를 시키고 서울생태지식"
+              "name": "버섯군락에서 버섯을 뽑는다"
+            },
+            {
+              "type": "text",
+              "name": "서울생태지식(확실하지는 않음)이 없으면 체력이 1깍인다"
+            },
+            {
+              "type": "text",
+              "name": "미적감각 보유시 버섯을 먹고 근력 10레벨이 올라간다"
+            },
+            {
+              "type": "text",
+              "name": "그리고 리트리버를 데리고있을경우 리트리버한테 버섯뽑기를 시키고 서울생태지식을 얻는다"
             }
           ],
           "nextId": null,
@@ -7256,7 +7344,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -3
+              "delta": 3
             }
           ],
           "nextId": null,
@@ -7268,7 +7356,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -3
+              "delta": 3
             }
           ],
           "nextId": null,
@@ -7279,7 +7367,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "아무것도 못얻고 끝난다."
+              "name": "아무것도 못얻고 끝난다"
             }
           ],
           "nextId": null,
@@ -7332,7 +7420,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "닌텐도를 한다."
+              "name": "닌텐도를 한다"
             }
           ],
           "nextId": null,
@@ -7343,7 +7431,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "농담을 떠올려 본다."
+              "name": "농담을 떠올려 본다"
             }
           ],
           "nextId": null,
@@ -7354,7 +7442,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "체스를 플레이하며 멘탈을 한 칸 회복한다."
+              "name": "체스를 플레이하며 멘탈을 한 칸 회복한다"
             }
           ],
           "nextId": null,
@@ -7368,10 +7456,10 @@
       "id": "약수터",
       "title": "약수터",
       "story": "기본",
-      "body": "약수터",
+      "body": null,
       "choices": [
         {
-          "text": "수다를 떤다.",
+          "text": "수다를 떤다",
           "effects": [
             {
               "type": "resource",
@@ -7382,32 +7470,28 @@
               "type": "resource",
               "name": "멘탈",
               "delta": 1
-            },
-            {
-              "type": "item",
-              "name": "멘탈과 돈 1칸"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "물을 마신다.",
+          "text": "물을 마신다",
+          "effects": [
+            {
+              "type": "item",
+              "name": "진통제"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "운동을 한다",
           "effects": [
             {
               "type": "ability",
-              "name": "진통제를"
-            }
-          ],
-          "nextId": null,
-          "recommend": false
-        },
-        {
-          "text": "운동을 한다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "날렵함 또는 근력을 얻는다. 확률적으로 수배 중일 때 나오는 악당 칭호를 미리 알 수도 있다."
+              "name": "날렵함 또는 근력"
             }
           ],
           "nextId": null,
@@ -7428,7 +7512,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "여자가 방독면을 구해달라고 한다. 지하에 내려가기 위해서 필요하다고 말한다."
+              "name": "여자가 방독면을 구해달라고 한다"
+            },
+            {
+              "type": "text",
+              "name": "지하에 내려가기 위해서 필요하다고 말한다"
             }
           ],
           "nextId": null,
@@ -7438,7 +7526,7 @@
           "text": "무시한다",
           "effects": [
             {
-              "type": "text",
+              "type": "item",
               "name": "인카운터 끝"
             }
           ],
@@ -7470,7 +7558,19 @@
             },
             {
               "type": "text",
-              "name": "서울의 지하는 괴물이나 강도때문에 위험하지만 값진 물건이 있고 서울외부와 연결된다고 한다. 그러나 방독면과 아이오딘 정제없이는 살기 힘들다고 한다. 아직 관련 인카운터는 없는듯. 언더월드에서 추가될 것 같다."
+              "name": "서울의 지하는 괴물이나 강도때문에 위험하지만 값진 물건이 있고 서울외부와 연결된다고 한다"
+            },
+            {
+              "type": "text",
+              "name": "그러나 방독면과 아이오딘 정제없이는 살기 힘들다고 한다"
+            },
+            {
+              "type": "text",
+              "name": "아직 관련 인카운터는 없는듯"
+            },
+            {
+              "type": "text",
+              "name": "언더월드에서 추가될 것 같다"
             }
           ],
           "nextId": null,
@@ -7496,7 +7596,7 @@
           "text": "없다",
           "effects": [
             {
-              "type": "text",
+              "type": "item",
               "name": "인카운터 끝"
             }
           ],
@@ -7521,7 +7621,7 @@
               "name": "롱패딩"
             },
             {
-              "type": "ability",
+              "type": "item",
               "name": "보상"
             }
           ],
@@ -7530,23 +7630,13 @@
         },
         {
           "text": "붕대 3개",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "생고기 3개",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -7554,8 +7644,9 @@
           "text": "됐어, 그냥 가져",
           "effects": [
             {
-              "type": "ability",
-              "name": "좋은평판"
+              "type": "status",
+              "name": "좋은평판",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -7569,8 +7660,9 @@
               "name": "험악한 얼굴"
             },
             {
-              "type": "ability",
-              "name": "수배 중"
+              "type": "status",
+              "name": "수배 중",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -7581,7 +7673,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "이 후에 다시 찾아간다."
+              "name": "이 후에 다시 찾아간다"
             }
           ],
           "nextId": null,
@@ -7596,7 +7688,11 @@
             },
             {
               "type": "item",
-              "name": "위와 같이 보상"
+              "name": "위"
+            },
+            {
+              "type": "item",
+              "name": "같이 보상"
             }
           ],
           "nextId": null,
@@ -7606,8 +7702,9 @@
           "text": "\"됐어, 그냥 가져가\"",
           "effects": [
             {
-              "type": "ability",
-              "name": "좋은 평판"
+              "type": "status",
+              "name": "좋은 평판",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -7642,8 +7739,8 @@
               "name": "손재주 / 응급처치"
             },
             {
-              "type": "text",
-              "name": "황소너구리의 친구상태를 얻는다. 나중에 황소너구리가 손인사를 하며 나타날 때 가만히 있으면 선물을 주고 수줍게 사라진다. 그런데 어째선지 도망친다는 말도 나온다."
+              "type": "item",
+              "name": "황소너구리의 친구상태"
             }
           ],
           "nextId": null,
@@ -7654,7 +7751,19 @@
           "effects": [
             {
               "type": "text",
-              "name": "날렵함을 얻으나, '황소너구리의 표적' 이 된다. 야생의 친구를 잃는다. 나중에 손인사를 하며 나타나는데 이때는 무려 권총을 쏜다! 날렵합 Lv.3이 아니라면 피할 수 없다, 그리고 권총을 쏴서 퇴치하는 이벤트도 나"
+              "name": "날렵함을 얻으나, '황소너구리의 표적' 이 된다"
+            },
+            {
+              "type": "text",
+              "name": "야생의 친구를 잃는다"
+            },
+            {
+              "type": "text",
+              "name": "나중에 손인사를 하며 나타나는데 이때는 무려 권총을 쏜다!"
+            },
+            {
+              "type": "text",
+              "name": "날렵합 Lv.3이 아니라면 피할 수 없다, 그리고 권총을 쏴서 퇴치하는 이벤트도 나오는데 이땐 총은 안쏘지만 권총으로 황소너구리를 쏘면 다른 한마리가 권총을 가져가서 권총을잃는다 "
             }
           ],
           "nextId": null,
@@ -7662,12 +7771,7 @@
         },
         {
           "text": "그냥 간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -7682,30 +7786,22 @@
       "body": "길을 가다 약을 파는 상인을 만난다. 약을 구매할 경우, 다음 선택지가 뜬다.",
       "choices": [
         {
-          "text": "붕대 2개를 산다.",
+          "text": "붕대 2개를 산다",
           "effects": [
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "아스피린 2개를 산다.",
+          "text": "아스피린 2개를 산다",
           "effects": [
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -7720,37 +7816,29 @@
             },
             {
               "type": "text",
-              "name": "다음 선택지로 이어진다."
+              "name": "다음 선택지로 이어진다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "붕대를 4개 산다.",
+          "text": "붕대를 4개 산다",
           "effects": [
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "아스피린을 4개 산다.",
+          "text": "아스피린을 4개 산다",
           "effects": [
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -7765,55 +7853,42 @@
             },
             {
               "type": "text",
-              "name": "다음 선택지로 이어진다."
+              "name": "다음 선택지로 이어진다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "의약품, 부목, 진통제, 항생제를 산다.",
+          "text": "의약품, 부목, 진통제, 항생제를 산다",
           "effects": [
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "의약품을 2개 산다.",
+          "text": "의약품을 2개 산다",
           "effects": [
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "지나간다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "지나간다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "다음에 또 찾아와줘.",
+          "text": "다음에 또 찾아와줘",
           "effects": [
             {
               "type": "condition",
@@ -7821,20 +7896,15 @@
             },
             {
               "type": "text",
-              "name": "10턴 후 또 상인이 등장한다."
+              "name": "10턴 후 또 상인이 등장한다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "떠난다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "떠난다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -7846,14 +7916,26 @@
       "id": "나뭇가지-사이에-빠진-고슴도치",
       "title": "나뭇가지 사이에 빠진 고슴도치",
       "story": "기본",
-      "body": "나뭇가지 사이에 빠진 고슴도치",
+      "body": null,
       "choices": [
         {
           "text": "구출시킨다",
           "effects": [
             {
               "type": "text",
-              "name": "일정확률로 고슴도치를 구하다가 나뭇가지에 얼굴이 찔려 험악한 얼굴을 얻을수있다. 근력을 가지고 있으면 나뭇가지를 손쉽게 부러트리고 부목을 얻을수있다. 가끔 나뭇가지를 부러트리지만, 아무런 이득과 손해 없이 넘어가는 "
+              "name": "일정확률로 고슴도치를 구하다가 나뭇가지에 얼굴이 찔려 험악한 얼굴을 얻을수있다"
+            },
+            {
+              "type": "text",
+              "name": "근력을 가지고 있으면 나뭇가지를 손쉽게 부러트리고 부목을 얻을수있다"
+            },
+            {
+              "type": "text",
+              "name": "가끔 나뭇가지를 부러트리지만, 아무런 이득과 손해 없이 넘어가는 일도 있다"
+            },
+            {
+              "type": "text",
+              "name": "고슴도치 구출에 성공하면 구출된 고슴도치가 찾아온 동료 고슴도치와 만나는 모습을 보고 멘탈 1을 회복하고 우울함을 없앤다"
             }
           ],
           "nextId": null,
@@ -7881,11 +7963,11 @@
       "body": "도로 한복판에서 총격전이 벌어지는 것을 모르고 가다가 휘말려들고 만다. 민병대를 도와 승리하게 될 경우 돈 1칸을 받게 되고, 후에 정신나간 엽우회 여자들 인카운터를 무사히 넘어갈 수 있게 해준다.",
       "choices": [
         {
-          "text": "민병대에게 다가간다.",
+          "text": "민병대에게 다가간다",
           "effects": [
             {
               "type": "text",
-              "name": "아래의 선택지가 나타난다."
+              "name": "아래의 선택지가 나타난다"
             }
           ],
           "nextId": null,
@@ -7897,10 +7979,6 @@
             {
               "type": "condition",
               "name": "통솔력"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -7912,10 +7990,6 @@
             {
               "type": "condition",
               "name": "조립식 저격소총"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -7926,7 +8000,8 @@
           "effects": [
             {
               "type": "status",
-              "name": "출혈"
+              "name": "출혈",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -7938,23 +8013,14 @@
             {
               "type": "condition",
               "name": "조립식 저격소총"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "도망친다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "도망친다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         }
@@ -7969,40 +8035,40 @@
       "body": "연결된 서울 인카운터. 전쟁 전부터 존재했던 것 같은 거대하고 독특하게 생긴 탑에 가보려고 한다. 탑 정복자와 인원수는 실시간으로 바뀌며 돈을 후원 할 시 현제 탑 점령 세력의 인원 수가 증가하며, 공격에 성공 할 경우 인원수가 줄어든다. 인원수가 0명이 될 경우 협공한 세력이 탑을 점령하며 정복자 업적 달성. 자신이 탑을 점령하고 있는 세력 소속일 경우 공격을 할 수 없으니 주의. 교황군이 탑을 정복하고 있다면 탑을 둘러보던 중 언덕 위에서 교황군 병사들이 고함을 치며 내려온다. 명동성당의 마르코 교황의 명을 받들어 이곳을 남산 대성당으로 점령하고 있다며 신자인지 이교도인지 정체를 밝히라고 한다. 이 때 교황군 소속이면 반강제로 \"신자다.\"밖에 못 고른다. 7경비단이 탑을 정복하고 있다면 7경비단이 수호하",
       "choices": [
         {
-          "text": "올라간다.",
+          "text": "올라간다",
           "effects": [
             {
               "type": "text",
-              "name": "현재 탑을 점령하고 있는 세력에 따라 결과가 바뀐다."
+              "name": "현재 탑을 점령하고 있는 세력에 따라 결과가 바뀐다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시한다.",
+          "text": "무시한다",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "신자다.",
+          "text": "신자다",
           "effects": [
             {
               "type": "text",
-              "name": "교황군들이 안심하며 커다란 탑을 개조하는데에 비용이 많이 들어 지쳐있던 터라고 도와달라 한다."
+              "name": "교황군들이 안심하며 커다란 탑을 개조하는데에 비용이 많이 들어 지쳐있던 터라고 도와달라 한다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "돈을 준다.",
+          "text": "돈을 준다",
           "effects": [
             {
               "type": "condition",
@@ -8019,54 +8085,38 @@
         },
         {
           "text": "성경",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "철학 책",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "역사 책",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시하고 떠난다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "무시하고 떠난다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "이교도다.",
+          "text": "이교도다",
           "effects": [
             {
               "type": "text",
-              "name": "7경비단과 기술자들중 한 진영을 골라 같이 공략한다. 수비대를 모두 사살했을경우 협공자들이 탑을 점령한다."
+              "name": "7경비단과 기술자들중 한 진영을 골라 같이 공략한다"
+            },
+            {
+              "type": "text",
+              "name": "수비대를 모두 사살했을경우 협공자들이 탑을 점령한다"
             }
           ],
           "nextId": null,
@@ -8077,14 +8127,14 @@
           "effects": [
             {
               "type": "text",
-              "name": "보통 때면 안되지만 절박한상황 이라며 돈을 기부받는다 한다."
+              "name": "보통 때면 안되지만 절박한상황 이라며 돈을 기부받는다 한다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "돈을준다.",
+          "text": "돈을준다",
           "effects": [
             {
               "type": "condition",
@@ -8101,54 +8151,38 @@
         },
         {
           "text": "권총",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "대전차포",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "군복",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시하고 떠난다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "무시하고 떠난다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "탑을 내놔.",
+          "text": "탑을 내놔",
           "effects": [
             {
               "type": "text",
-              "name": "교황군과 기술자들중 한 진영을 골라 같이 공략한다. 수비대를 모두 사살했을경우 협공자들이 탑을 점령한다."
+              "name": "교황군과 기술자들중 한 진영을 골라 같이 공략한다"
+            },
+            {
+              "type": "text",
+              "name": "수비대를 모두 사살했을경우 협공자들이 탑을 점령한다"
             }
           ],
           "nextId": null,
@@ -8159,14 +8193,14 @@
           "effects": [
             {
               "type": "text",
-              "name": "협찬은 언제든 환영이라 하며 고마워한다."
+              "name": "협찬은 언제든 환영이라 하며 고마워한다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "돈을준다.",
+          "text": "돈을준다",
           "effects": [
             {
               "type": "condition",
@@ -8183,54 +8217,38 @@
         },
         {
           "text": "휴대용 발전기",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "전자기 펄스 수류탄",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
           "text": "기계공학 책",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시하고 떠난다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "무시하고 떠난다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "방송국을 내놔.",
+          "text": "방송국을 내놔",
           "effects": [
             {
               "type": "text",
-              "name": "7경비단과 교황군들중 한 진영을 골라 같이 공략한다. 수비대를 모두 사살했을경우 협공자들이 탑을 점령한다."
+              "name": "7경비단과 교황군들중 한 진영을 골라 같이 공략한다"
+            },
+            {
+              "type": "text",
+              "name": "수비대를 모두 사살했을경우 협공자들이 탑을 점령한다"
             }
           ],
           "nextId": null,
@@ -8247,32 +8265,36 @@
       "body": "나무가 울창한 숲길을 걷던 도중 조그만 강아지를 품에 안은 갈색 머리 여자가 자신이 쫓기고 있어서 수풀에 숨어있을건데, 누군가 묻거든 못봤다고 말해달라 한다. 그리고 그녀의 말대로 누더기를 걸친 남자들이 쫓아와서 여자의 행방을 묻는다. 이야기를 나누는 사이 저녁이 되어 사냥꾼 무리가 나타난다. 화살을 겨눈 채 동물들을 뒤쫓으며 설화를 밀치기까지 한다. 이것만 보면 별로인 인카운터 같지만 후에 경찰서 이벤트 때 마을 사람들과도 만나서 좋은 평판을 얻고 음식도 챙겨간다.",
       "choices": [
         {
-          "text": "제 뒤에 있어요.",
+          "text": "제 뒤에 있어요",
           "effects": [
             {
               "type": "text",
-              "name": "사냥꾼들이 강아지를 빼앗아간다. 인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "저~기로 갔어요.",
+          "text": "저~기로 갔어요",
           "effects": [
+            {
+              "type": "text",
+              "name": "능숙한 거짓말 보유시 바로 통과"
+            },
             {
               "type": "chance",
               "successRate": 0.5,
               "success": [
                 {
                   "type": "text",
-                  "name": "성공 (위키 서술 참고)"
+                  "name": "없더라도  능숙한 거짓말을 얻으며 성공할 수 있다"
                 }
               ],
               "failure": [
                 {
                   "type": "text",
-                  "name": "실패 (위키 서술 참고)"
+                  "name": "만약 없다면 험악한 얼굴이나 근력+웅변으로 대처할 수 있다 실패할 경우에는 강아지가 죽게 되면서 인카운터가 종료되나 대처 성공시 여자가 감사를 표하며 자신의 이름이 '이설화' 라는"
                 }
               ]
             }
@@ -8281,22 +8303,26 @@
           "recommend": false
         },
         {
-          "text": "그 정도는 아니라서.",
+          "text": "그 정도는 아니라서",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "알겠어요.",
+          "text": "알겠어요",
           "effects": [
             {
               "type": "text",
-              "name": "숲속 깊은 오두막으로 따라가자 탁 트인 공터가 나타난다. 동물들을 위한 시설들이 가득하고 없는 동물이 없다며 눈을 떼지 못한다."
+              "name": "숲속 깊은 오두막으로 따라가자 탁 트인 공터가 나타난다"
+            },
+            {
+              "type": "text",
+              "name": "동물들을 위한 시설들이 가득하고 없는 동물이 없다며 눈을 떼지 못한다"
             }
           ],
           "nextId": null,
@@ -8314,10 +8340,10 @@
           "recommend": false
         },
         {
-          "text": "아이들이 너무 귀엽네요.",
+          "text": "아이들이 너무 귀엽네요",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "야생의 친구"
             }
           ],
@@ -8328,7 +8354,7 @@
           "text": "사냥꾼들이 언제 나타날까요?",
           "effects": [
             {
-              "type": "ability",
+              "type": "item",
               "name": "능력"
             }
           ],
@@ -8343,7 +8369,7 @@
               "name": "돈,교섭"
             },
             {
-              "type": "ability",
+              "type": "item",
               "name": "비건 요리법"
             }
           ],
@@ -8358,15 +8384,15 @@
               "name": "권총"
             },
             {
-              "type": "text",
-              "name": "하늘에 총을 쏘며 사냥꾼들을 몰아낸다. 보답으로 의약품 하나를 얻는다."
+              "type": "item",
+              "name": "보답으로 의약품 하나"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "사냥을 하지 않고 사는 법을 알려드리죠.",
+          "text": "사냥을 하지 않고 사는 법을 알려드리죠",
           "effects": [
             {
               "type": "condition",
@@ -8374,7 +8400,7 @@
             },
             {
               "type": "text",
-              "name": "사냥을 하지 않고 먹을 것을 구하는 법을 알려준다."
+              "name": "사냥을 하지 않고 먹을 것을 구하는 법을 알려준다"
             }
           ],
           "nextId": null,
@@ -8392,17 +8418,12 @@
       "choices": [
         {
           "text": "습격한다. : 수배 중과 랜덤으로 돈1칸~3칸획득",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시한다.",
+          "text": "무시한다",
           "effects": [
             {
               "type": "text",
@@ -8423,78 +8444,61 @@
       "body": "연결된 서울 인카운터. 길을 가다 어리버리해보이는 초보 여행자를 만난다. 아이템을 주면 플레이어의 몇 퍼센트가 그 선택지를 선택했는지 알 수 있다. 아이템을 주면 고인물을 만났을 때 해당 아이템을 받을 확률이 올라간다. 참고로 용기를 주면 여행자는 멘탈이 회복된다.",
       "choices": [
         {
-          "text": "도와준다.",
+          "text": "도와준다",
           "effects": [
             {
               "type": "text",
-              "name": "아래 물건들 중 하나를 챙겨줄 수 있다."
+              "name": "아래 물건들 중 하나를 챙겨줄 수 있다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "돈을 준다.",
+          "text": "돈을 준다",
           "effects": [
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "의약품을 준다.",
+          "text": "의약품을 준다",
           "effects": [
             {
               "type": "condition",
               "name": "의약품"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "통기타를 준다.",
+          "text": "통기타를 준다",
           "effects": [
             {
               "type": "condition",
               "name": "통기타"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "용기를 준다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "용기를 준다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시한다.",
+          "text": "무시한다",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -8519,14 +8523,18 @@
             },
             {
               "type": "text",
-              "name": "아이가 경계심을 푼다. 다음 선택지로 넘어간다."
+              "name": "아이가 경계심을 푼다"
+            },
+            {
+              "type": "text",
+              "name": "다음 선택지로 넘어간다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "그거보다 이게 더 좋은거야. 바꾸자.",
+          "text": "그거보다 이게 더 좋은거야. 바꾸자",
           "effects": [
             {
               "type": "condition",
@@ -8545,33 +8553,39 @@
           "recommend": false
         },
         {
-          "text": "그거 정말 귀한거야. 절대 누구 주면 안 돼.",
+          "text": "그거 정말 귀한거야. 절대 누구 주면 안 돼",
           "effects": [
             {
-              "type": "ability",
-              "name": "좋은 평판"
+              "type": "status",
+              "name": "좋은 평판",
+              "delta": 1
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "빼앗는다.",
+          "text": "빼앗는다",
           "effects": [
+            {
+              "type": "status",
+              "name": "수배중",
+              "delta": 1
+            },
             {
               "type": "item",
-              "name": "수배중과 의료용 나노머신"
+              "name": "의료용 나노머신"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "그냥 지나간다.",
+          "text": "그냥 지나간다",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -8585,7 +8599,7 @@
       "id": "빈-고급-주택",
       "title": "빈 고급 주택",
       "story": "기본",
-      "body": "빈 고급 주택",
+      "body": null,
       "choices": [
         {
           "text": "물건을 훔치러 들어간다",
@@ -8596,7 +8610,11 @@
             },
             {
               "type": "text",
-              "name": "돈 획득. 더 뒤져볼지 말지 선택한다."
+              "name": "돈 획득"
+            },
+            {
+              "type": "text",
+              "name": "더 뒤져볼지 말지 선택한다"
             }
           ],
           "nextId": null,
@@ -8622,29 +8640,29 @@
             },
             {
               "type": "text",
-              "name": "너구리로 거짓말. 능숙한 거짓말 1레벨을 얻고 떠난다."
+              "name": "너구리로 거짓말"
+            },
+            {
+              "type": "text",
+              "name": "능숙한 거짓말 1레벨을 얻고 떠난다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "싹싹 빈다.",
+          "text": "싹싹 빈다",
           "effects": [
             {
               "type": "condition",
               "name": "순수한 얼굴"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "도망친다.",
+          "text": "도망친다",
           "effects": [
             {
               "type": "text",
@@ -8656,21 +8674,16 @@
         },
         {
           "text": "아니",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "그냥 지나간다.",
+          "text": "그냥 지나간다",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -8684,14 +8697,14 @@
       "id": "황량한-쓰레기-산",
       "title": "황량한 쓰레기 산",
       "story": "기본",
-      "body": "주인공이 황량한 쓰레기 산을 지나가는데 희미한 음악이 들려오는 이벤트. 대놓고 관짝춤밈을 을 패러디한 이벤트이다. 로봇들이 지켜보고 있던건 젊은 폐품업자인데 쓰레기산이 무너지려는걸 모르고 있는듯 하다. 돈 1칸 획득. 일정확률로 관찰력 획득.나름 확률이 높다.",
+      "body": "주인공이 황량한 쓰레기 산을 지나가는데 희미한 음악이 들려오는 이벤트. 대놓고 관짝춤밈을 을 패러디한 이벤트이다. 로봇들이 지켜보고 있던건 젊은 폐품업자인데 쓰레기산이 무너지려는걸 모르고 있는듯 하다. 돈 1칸 획득. 일정확률로 관찰력 획득.나름 확률이 높다. 돈 1칸 회복. 일정 확률로 관찰력 획득. 체력 1칸 손실 일정확률로 쓰레기더미가 덮쳐오는순간 이상한 로봇이 주인공을 구해준다. 이후 예수를 연상시키는 옷차림을 한 그 로봇은 EDM 찬송가를 틀면서 떠나는데 관짝 댄스의 기출변형인 예수 댄스를 패러디한듯.",
       "choices": [
         {
           "text": "무시한다",
           "effects": [
             {
               "type": "text",
-              "name": "인카운터 종료."
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -8702,7 +8715,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "주인공이 음악의 근원지로 다가가자 커다란 관 옆에 여기저기 장식이 달린 정장을 입은 인간형 로봇들이 있는것을 발견한다. 로봇은 자신들이 \"뭐람상조\"에서 파견된 상견례 로봇이라고 소개하며 누군가를 응시한다."
+              "name": "주인공이 음악의 근원지로 다가가자 커다란 관 옆에 여기저기 장식이 달린 정장을 입은 인간형 로봇들이 있는것을 발견한다"
+            },
+            {
+              "type": "text",
+              "name": "로봇은 자신들이 \"뭐람상조\"에서 파견된 상견례 로봇이라고 소개하며 누군가를 응시한다"
             }
           ],
           "nextId": null,
@@ -8724,7 +8741,11 @@
           "effects": [
             {
               "type": "text",
-              "name": "로봇은 무뚝뚝하게 대답하며 뭐람상조의 광고를 튼다. 어딘가 단단히 고장난 모양이다."
+              "name": "로봇은 무뚝뚝하게 대답하며 뭐람상조의 광고를 튼다"
+            },
+            {
+              "type": "text",
+              "name": "어딘가 단단히 고장난 모양이다"
             }
           ],
           "nextId": null,
@@ -8735,14 +8756,14 @@
           "effects": [
             {
               "type": "text",
-              "name": "폐품업자에게 소리쳐 경고했지만 큰 소리가 오히려 독이 되 쓰레기산이 무너진다. 폐품업자는 쓰레기 더미에 밀려 사망한다. 로봇들은 폐품업자의 시신"
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "로봇을 수리한다.",
+          "text": "로봇을 수리한다",
           "effects": [
             {
               "type": "condition",
@@ -8750,20 +8771,23 @@
             },
             {
               "type": "text",
-              "name": "주인공이 로봇 하나의 모자를 벗기고 회로를 수리하자 로봇들이 폐품업자가 있는곳으로 뛰어들고 폐품업자를 구조한다. 이후 폐품업자는 주인공에게 감사를 표하며, 쓰레기 더미에서 쓸만한 것들을 같이 찾아 나누어준다. 로봇들"
+              "name": "주인공이 로봇 하나의 모자를 벗기고 회로를 수리하자 로봇들이 폐품업자가 있는곳으로 뛰어들고 폐품업자를 구조한다"
+            },
+            {
+              "type": "text",
+              "name": "이후 폐품업자는 주인공에게 감사를 표하며, 쓰레기 더미에서 쓸만한 것들을 같이 찾아 나누어준다"
+            },
+            {
+              "type": "text",
+              "name": "로봇들은 관을 들고 흥겨운 노래와 함께 어디론가 사라진다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "뛰어든다.",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "text": "뛰어든다",
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -8776,7 +8800,11 @@
             },
             {
               "type": "text",
-              "name": "주인공과 폐품업자는 근처의 장애물에 신속히 몸을 숨기고 쓰레기산이 무너진다. 폐품업자는 주인공에게 감사를 표하며, 쓰레기 더미에서 쓸만한 것들을 찾아 나누어준다."
+              "name": "주인공과 폐품업자는 근처의 장애물에 신속히 몸을 숨기고 쓰레기산이 무너진다"
+            },
+            {
+              "type": "text",
+              "name": "폐품업자는 주인공에게 감사를 표하며, 쓰레기 더미에서 쓸만한 것들을 찾아 나누어준다"
             }
           ],
           "nextId": null,
@@ -8787,7 +8815,15 @@
           "effects": [
             {
               "type": "text",
-              "name": "주인공은 온 힘을 다해 달리지만 이내 날라오는 벽돌에 뒤통수를 맞고 쓰러진다. 이후 주인공은 쓰레기더미 속에서 눈을 뜨고 로봇들이 쓰레기 더미를 파헤치며 폐품업자의 시신을 수습하고 춤을 추며 떠나는것을 목격한다. 주"
+              "name": "주인공은 온 힘을 다해 달리지만 이내 날라오는 벽돌에 뒤통수를 맞고 쓰러진다"
+            },
+            {
+              "type": "text",
+              "name": "이후 주인공은 쓰레기더미 속에서 눈을 뜨고 로봇들이 쓰레기 더미를 파헤치며 폐품업자의 시신을 수습하고 춤을 추며 떠나는것을 목격한다"
+            },
+            {
+              "type": "text",
+              "name": "주인공은 혼자서 안간힘을 짜내 쓰레기 더미에서 빠져나온다"
             }
           ],
           "nextId": null,
@@ -8839,7 +8875,7 @@
           "effects": [
             {
               "type": "text",
-              "name": "자신을 투견왕이라고 소개하는 사람이 투견장에 대해 설명한다."
+              "name": "자신을 투견왕이라고 소개하는 사람이 투견장에 대해 설명한다"
             }
           ],
           "nextId": null,
@@ -8851,17 +8887,13 @@
             {
               "type": "condition",
               "name": "돈"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "강아지를 산다.",
+          "text": "강아지를 산다",
           "effects": [
             {
               "type": "condition",
@@ -8871,17 +8903,13 @@
               "type": "resource",
               "name": "돈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "돈 1칸을 소모하여 리트리버를"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "내 개를 싸움에 내보낸다.",
+          "text": "내 개를 싸움에 내보낸다",
           "effects": [
             {
               "type": "condition",
@@ -8889,14 +8917,14 @@
             },
             {
               "type": "text",
-              "name": "리트리버가 늠름하게 투기장에 입장하고 어떻게 싸울것인지를 선택한다."
+              "name": "리트리버가 늠름하게 투기장에 입장하고 어떻게 싸울것인지를 선택한다"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "리트리버와 작전 회의를 한다.",
+          "text": "리트리버와 작전 회의를 한다",
           "effects": [
             {
               "type": "condition",
@@ -8905,11 +8933,7 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -3
-            },
-            {
-              "type": "item",
-              "name": "로 승리하며 돈 3칸"
+              "delta": 3
             }
           ],
           "nextId": null,
@@ -8927,10 +8951,6 @@
               "type": "resource",
               "name": "멘탈",
               "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "확률적으로 우승해서 돈 3칸과 멘탈 1칸"
             }
           ],
           "nextId": null,
@@ -8942,16 +8962,12 @@
             {
               "type": "resource",
               "name": "돈",
-              "delta": -3
+              "delta": 3
             },
             {
               "type": "resource",
               "name": "멘탈",
-              "delta": -1
-            },
-            {
-              "type": "item",
-              "name": "확률적으로 우승해서 돈 3칸과 멘탈 1칸"
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -8979,11 +8995,11 @@
       "body": "옛 아파트 단지를 걷던중, 횡설수설하는 중년 남자를 만나는 인카운터.",
       "choices": [
         {
-          "text": "관찰력 주변을 살핀다.",
+          "text": "관찰력 주변을 살핀다",
           "effects": [
             {
               "type": "text",
-              "name": "보도블럭 금 사이 지뢰를 발견하고 인카운터 종료"
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -8997,15 +9013,15 @@
               "name": "미쳐버림"
             },
             {
-              "type": "text",
-              "name": "아저씨가 반가워하며, 보도블럭 금사이에 보물상자가 있는데, 지뢰도 있다고 알려줌. / 관찰력/강력한 직감이 있다면 보물을 찾고 인카운터 종료. "
+              "type": "item",
+              "name": "여기서 보물"
             }
           ],
           "nextId": null,
           "recommend": false
         },
         {
-          "text": "무시하자.",
+          "text": "무시하자",
           "effects": [
             {
               "type": "text",
@@ -9059,12 +9075,7 @@
       "choices": [
         {
           "text": "들어간다",
-          "effects": [
-            {
-              "type": "text",
-              "name": "결과 미상"
-            }
-          ],
+          "effects": [],
           "nextId": null,
           "recommend": false
         },
@@ -9074,10 +9085,6 @@
             {
               "type": "condition",
               "name": "자물쇠 따기"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -9089,10 +9096,6 @@
             {
               "type": "condition",
               "name": "강력한 직감 Lv.2"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -9104,10 +9107,6 @@
             {
               "type": "condition",
               "name": "근력 LV.5"
-            },
-            {
-              "type": "text",
-              "name": "결과 미상"
             }
           ],
           "nextId": null,
@@ -9143,7 +9142,7 @@
       "id": "창-렬-24",
       "title": "창.렬.24",
       "story": "기본",
-      "body": "창.렬.24",
+      "body": null,
       "choices": [
         {
           "text": "화면을 본다",
@@ -9153,8 +9152,9 @@
               "name": "인터넷 연결"
             },
             {
-              "type": "text",
-              "name": "광고를 본다. 체력이 3칸이 아니라면 생수가 나와서 체력을 한칸 채워준다. 체력이 3칸이라면 나노머신이 나온다."
+              "type": "resource",
+              "name": "체력",
+              "delta": 3
             }
           ],
           "nextId": null,
@@ -9179,25 +9179,146 @@
       "id": "미군-커플",
       "title": "미군 커플",
       "story": "기본",
-      "body": "길을 가다 연인 관계인 한국인과 미국인을 만난다. ○ 무시한다. ○ 공격한다. [험악한 얼굴] ○ 먼저 쏜다. [권총, 사격술 Lv.2] - (+ 미군과 적대적, 수배중, 돈 1) ○ 물러난다. - (+ 출혈) ● 무슨 일인데?",
+      "body": "길을 가다 연인 관계인 한국인과 미국인을 만난다.",
       "choices": [
         {
-          "text": "살펴본다",
+          "text": "무시한다",
+          "effects": [],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "공격한다",
           "effects": [
             {
-              "type": "text",
-              "name": "길을 가다 연인 관계인 한국인과 미국인을 만난다. ○ 무시한다. ○ 공격한다. [험악한 얼굴] ○ 먼저 쏜다. [권총, 사격술 Lv.2] - (+ 미군과 적대적, 수배중, 돈 1)"
+              "type": "condition",
+              "name": "험악한 얼굴"
             }
           ],
           "nextId": null,
-          "recommend": true
+          "recommend": false
         },
         {
-          "text": "지나친다",
+          "text": "먼저 쏜다",
+          "effects": [
+            {
+              "type": "condition",
+              "name": "권총"
+            },
+            {
+              "type": "condition",
+              "name": "사격술 Lv.2"
+            },
+            {
+              "type": "status",
+              "name": "미군과 적대적",
+              "delta": 1
+            },
+            {
+              "type": "status",
+              "name": "수배 중",
+              "delta": 1
+            },
+            {
+              "type": "resource",
+              "name": "돈",
+              "delta": 1
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "물러난다",
+          "effects": [
+            {
+              "type": "status",
+              "name": "출혈",
+              "delta": 1
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "무슨 일인데?",
+          "effects": [],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "내가 통역 해줄게",
+          "effects": [
+            {
+              "type": "condition",
+              "name": "영어"
+            },
+            {
+              "type": "resource",
+              "name": "돈",
+              "delta": 1
+            },
+            {
+              "type": "status",
+              "name": "미군과 우호적",
+              "delta": 1
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "사전을 선물한다",
+          "effects": [
+            {
+              "type": "condition",
+              "name": "책"
+            },
+            {
+              "type": "status",
+              "name": "책",
+              "delta": -1
+            },
+            {
+              "type": "ability",
+              "name": "영어"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "나도 영어 공부나 좀 해 둘까",
+          "effects": [
+            {
+              "type": "condition",
+              "name": "책"
+            },
+            {
+              "type": "ability",
+              "name": "영어"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "가자",
           "effects": [
             {
               "type": "text",
-              "name": "지나감"
+              "name": "인카운터 종료"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "나도 영어를 못 하는걸",
+          "effects": [
+            {
+              "type": "text",
+              "name": "인카운터 종료"
             }
           ],
           "nextId": null,
@@ -9211,25 +9332,80 @@
       "id": "크리스마스-트리-아이",
       "title": "크리스마스 트리 아이",
       "story": "기본",
-      "body": "길을 가다 나무를 장식하고 있는 아이를 발견한다. ○ 아직 크리스마스는 멀었는데? [36] [37] [역사학] - 별로 달라지는건 없다. ○ 뭐하고 있는 거니? - 아이가 자신이 컸다는 것을 보여주기 위해 부모에게 보여줄 나무를 장식한다고 한다. 잠시 후, 아이는 장식을 마치고 전구의 스위치를 누른다. 하지만 어째서인지 불은 들어오지 않고, 아이는 금방이라도 눈물을 터뜨릴것만 같다. ● 내가 도와줄께 - 전기기술이 없다면 일정확률로 (- 체력 1), 확정적으로 (+ 전기기술). 전기기술이 있다면 (+ 전기기술) ○ 위로하고 떠난다. - 인카운터 종료. ○ 전선을 훔쳐 도망친다. -  [수배중] 가젯이 있어야 생기는 선택지. 전선을 팔아 돈을 번다. (+ 돈 1)",
+      "body": "길을 가다 나무를 장식하고 있는 아이를 발견한다.",
       "choices": [
         {
-          "text": "살펴본다",
+          "text": "아직 크리스마스는 멀었는데?",
           "effects": [
             {
+              "type": "condition",
+              "name": "역사학"
+            },
+            {
               "type": "text",
-              "name": "길을 가다 나무를 장식하고 있는 아이를 발견한다. ○ 아직 크리스마스는 멀었는데? [36] [37] [역사학] - 별로 달라지는건 없다. ○ 뭐하고 있는 거니? - 아이가 자신이 "
+              "name": "별로 달라지는건 없다"
             }
           ],
           "nextId": null,
-          "recommend": true
+          "recommend": false
         },
         {
-          "text": "지나친다",
+          "text": "뭐하고 있는 거니?",
           "effects": [
             {
               "type": "text",
-              "name": "지나감"
+              "name": "아이가 자신이 컸다는 것을 보여주기 위해 부모에게 보여줄 나무를 장식한다고 한다"
+            },
+            {
+              "type": "text",
+              "name": "잠시 후, 아이는 장식을 마치고 전구의 스위치를 누른다"
+            },
+            {
+              "type": "text",
+              "name": "하지만 어째서인지 불은 들어오지 않고, 아이는 금방이라도 눈물을 터뜨릴것만 같다"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "내가 도와줄께",
+          "effects": [
+            {
+              "type": "resource",
+              "name": "체력",
+              "delta": -1
+            },
+            {
+              "type": "ability",
+              "name": "전기기술"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "위로하고 떠난다",
+          "effects": [
+            {
+              "type": "text",
+              "name": "인카운터 종료"
+            }
+          ],
+          "nextId": null,
+          "recommend": false
+        },
+        {
+          "text": "전선을 훔쳐 도망친다",
+          "effects": [
+            {
+              "type": "condition",
+              "name": "수배 중"
+            },
+            {
+              "type": "resource",
+              "name": "돈",
+              "delta": 1
             }
           ],
           "nextId": null,
@@ -9243,25 +9419,55 @@
       "id": "박살난-도로-사이",
       "title": "박살난 도로 사이",
       "story": "기본",
-      "body": "도로를 따라 걷다가 박살이 나 있는 지점을 발견한다. 지진이 났거나 미사일이 떨어진 것처럼, 아스팔트와 콘크리트 조각이 바닥에서 불규칙하게 솟아올라 조금 위험해 보인다. ○ 수색한다. - [관찰력]이 있으면 (+ 돈 1), 없으면 (- 체력 1). ○ 그냥 간다. - 인카운터 종료. [1] 정황상 반지하게임즈의 개발자로 보인다... [대신] 대신 근력을 획득한다. [이유] 이유는 팔, 다리에도 총알이 꽃이기 때문 [2] 참고로 거짓말탐지로 심문해보면 킹짱돈이 아니라 종로사는 김정일이라는것을 알 수 있다. [3] 셋 다 반지하게임즈에서 제작한 게임이다. [4] 초기에는 양심의 가책으로 인해 멘탈을 1칸 잃었지만, 패치로 멘탈 소모가 없어졌다. [5] 길고양이 인카운터에서 보듯이 사실 호랑이다. [6] 2019",
+      "body": "도로를 따라 걷다가 박살이 나 있는 지점을 발견한다. 지진이 났거나 미사일이 떨어진 것처럼, 아스팔트와 콘크리트 조각이 바닥에서 불규칙하게 솟아올라 조금 위험해 보인다.",
       "choices": [
         {
-          "text": "살펴본다",
+          "text": "수색한다",
           "effects": [
             {
-              "type": "text",
-              "name": "도로를 따라 걷다가 박살이 나 있는 지점을 발견한다. 지진이 났거나 미사일이 떨어진 것처럼, 아스팔트와 콘크리트 조각이 바닥에서 불규칙하게 솟아올라 조금 위험해 보인다. ○ 수색한"
+              "type": "condition",
+              "name": "관찰력"
+            },
+            {
+              "type": "resource",
+              "name": "돈",
+              "delta": 1
+            },
+            {
+              "type": "resource",
+              "name": "체력",
+              "delta": -1
             }
           ],
           "nextId": null,
-          "recommend": true
+          "recommend": false
         },
         {
-          "text": "지나친다",
+          "text": "그냥 간다",
           "effects": [
             {
-              "type": "text",
-              "name": "지나감"
+              "type": "resource",
+              "name": "멘탈",
+              "delta": -1
+            },
+            {
+              "type": "resource",
+              "name": "돈",
+              "delta": -2
+            },
+            {
+              "type": "resource",
+              "name": "체력",
+              "delta": -1
+            },
+            {
+              "type": "status",
+              "name": "왜 담벼락 인카운터를",
+              "delta": -1
+            },
+            {
+              "type": "item",
+              "name": "대신 근력"
             }
           ],
           "nextId": null,
