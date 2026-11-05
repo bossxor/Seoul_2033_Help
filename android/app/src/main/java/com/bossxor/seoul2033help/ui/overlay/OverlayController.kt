@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import com.bossxor.seoul2033help.data.UserSettings
@@ -63,8 +64,8 @@ fun OverlayPanel(state: OverlayState, s: UserSettings, a: OverlayActions) {
     Column(
         Modifier.fillMaxWidth()
             .background(Seoul2033Colors.Surface.copy(alpha = s.overlayAlpha), RoundedCornerShape(14.dp))
-            .border(2.dp, Seoul2033Colors.Recommend, RoundedCornerShape(14.dp))
-            .padding(horizontal = 8.dp, vertical = 4.dp),
+            .border(1.5.dp, Seoul2033Colors.Recommend, RoundedCornerShape(14.dp))
+            .padding(horizontal = 8.dp, vertical = 2.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         CompactBar(state, expanded, a) { expanded = !expanded }
@@ -87,17 +88,17 @@ fun OverlayPanel(state: OverlayState, s: UserSettings, a: OverlayActions) {
     }
 }
 
-/** 접힌 상태의 한 줄: [손잡이] 제목 [인식] [펼침/접기] [✕] */
+/** 접힌 상태의 한 줄(높이 30dp): [손잡이] 제목 [인식] [펼침/접기] [✕] */
 @Composable
 private fun CompactBar(state: OverlayState, expanded: Boolean, a: OverlayActions, onToggle: () -> Unit) {
-    Row(Modifier.fillMaxWidth().heightIn(min = 48.dp), verticalAlignment = Alignment.CenterVertically) {
+    Row(Modifier.fillMaxWidth().height(30.dp), verticalAlignment = Alignment.CenterVertically) {
         Box(
-            Modifier.width(26.dp).height(48.dp).pointerInput(Unit) {
+            Modifier.width(22.dp).fillMaxHeight().pointerInput(Unit) {
                 detectDragGestures { change, drag -> change.consume(); a.onDrag(drag.x, drag.y) }
             },
             contentAlignment = Alignment.Center
         ) {
-            Box(Modifier.width(5.dp).height(26.dp).background(Seoul2033Colors.BorderNormal, RoundedCornerShape(50)))
+            Box(Modifier.width(4.dp).height(18.dp).background(Seoul2033Colors.BorderNormal, RoundedCornerShape(50)))
         }
         Text(
             summary(state),
@@ -107,12 +108,15 @@ private fun CompactBar(state: OverlayState, expanded: Boolean, a: OverlayActions
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f).clickable(onClick = onToggle).padding(horizontal = 4.dp)
         )
-        Btn("인식", Modifier.width(56.dp), onClick = a.onRecognize)
+        MiniBtn("인식", onClick = a.onRecognize)
         Spacer(Modifier.width(4.dp))
-        Btn(if (expanded) "접기" else "펼침", Modifier.width(56.dp), onClick = onToggle)
+        MiniBtn(if (expanded) "접기" else "펼침", onClick = onToggle)
         // 접힌 채로도 끌 수 있게 항상 둔다
-        IconButton(onClick = a.onQuit, modifier = Modifier.size(48.dp)) {
-            Icon(Icons.Default.Close, contentDescription = "종료", tint = Seoul2033Colors.Danger)
+        Box(
+            Modifier.width(34.dp).fillMaxHeight().clickable(onClick = a.onQuit),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(Icons.Default.Close, contentDescription = "종료", tint = Seoul2033Colors.Danger, modifier = Modifier.size(18.dp))
         }
     }
 }
@@ -149,17 +153,40 @@ private fun Body(state: OverlayState, s: UserSettings, a: OverlayActions) {
             }
         }
         is OverlayState.Ambiguous -> state.candidates.forEach { c ->
-            Text(
-                c.node.title, style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
-                    .clickable { a.onPick(c.node) }.wrapContentHeight(Alignment.CenterVertically)
-            )
+            Column(
+                Modifier.fillMaxWidth().heightIn(min = 48.dp)
+                    .clickable { a.onPick(c.node) }.padding(vertical = 4.dp),
+                verticalArrangement = Arrangement.spacedBy(2.dp)
+            ) {
+                Text(c.node.title, style = MaterialTheme.typography.titleMedium)
+                // 제목만으로 구분이 안 돼서 선택지 몇 개를 작게 보여 준다
+                val sample = c.node.choices.take(3).joinToString(" · ") { it.text }
+                if (sample.isNotEmpty()) {
+                    Text(
+                        sample, style = MaterialTheme.typography.bodySmall,
+                        color = Seoul2033Colors.TextMuted, maxLines = 2, overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
         }
     }
 }
 
 @Composable
 private fun Muted(t: String) = Text(t, color = Seoul2033Colors.TextMuted, style = MaterialTheme.typography.bodyMedium)
+
+/** 접힌 바용 작은 버튼. 48dp 터치 영역 대신 얇은 높이를 택했다. */
+@Composable
+private fun MiniBtn(t: String, onClick: () -> Unit) {
+    Box(
+        Modifier.height(24.dp)
+            .border(1.dp, Seoul2033Colors.BorderNormal, RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(8.dp))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 9.dp),
+        contentAlignment = Alignment.Center
+    ) { Text(t, maxLines = 1, style = MaterialTheme.typography.labelLarge, color = Seoul2033Colors.Text) }
+}
 
 @Composable
 private fun Btn(t: String, m: Modifier, danger: Boolean = false, onClick: () -> Unit) {

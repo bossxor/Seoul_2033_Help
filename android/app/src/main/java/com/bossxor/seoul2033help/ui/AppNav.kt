@@ -28,9 +28,28 @@ import com.bossxor.seoul2033help.ui.settings.SettingsScreen
 @Composable
 fun AppNav(store: EncounterStore) {
     val nav = rememberNavController()
+    val ctx = LocalContext.current
+    val settingsRepo = remember { SettingsRepository(ctx.applicationContext) }
+    val projLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { r ->
+        val d = r.data
+        if (r.resultCode == Activity.RESULT_OK && d != null) OverlayService.start(ctx, r.resultCode, d)
+        else Toast.makeText(ctx, "권한 필요: 화면 캡처를 허용해 주세요", Toast.LENGTH_SHORT).show()
+    }
+    val startOverlay = {
+        if (Settings.canDrawOverlays(ctx)) projLauncher.launch(
+            ctx.getSystemService(MediaProjectionManager::class.java).createScreenCaptureIntent()
+        )
+        else ctx.startActivity(
+            Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${ctx.packageName}"))
+        )
+    }
     NavHost(nav, startDestination = "search") {
         composable("search") {
-            SearchScreen(store, onSettings = { nav.navigate("settings") }) {
+            SearchScreen(
+                store, settingsRepo,
+                onSettings = { nav.navigate("settings") },
+                onStartOverlay = startOverlay
+            ) {
                 nav.navigate("detail/${Uri.encode(it)}")
             }
         }
@@ -46,25 +65,10 @@ fun AppNav(store: EncounterStore) {
             else Text("not found")
         }
         composable("settings") {
-            val ctx = LocalContext.current
             val app = ctx.applicationContext as Seoul2033HelpApp
-            val settingsRepo = remember { SettingsRepository(ctx.applicationContext) }
-            val projLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { r ->
-                val d = r.data
-                if (r.resultCode == Activity.RESULT_OK && d != null) OverlayService.start(ctx, r.resultCode, d)
-                else Toast.makeText(ctx, "권한 필요: 화면 캡처를 허용해 주세요", Toast.LENGTH_SHORT).show()
-            }
             SettingsScreen(
                 repo = settingsRepo,
                 onBack = { nav.popBackStack() },
-                onStartOverlay = {
-                    if (Settings.canDrawOverlays(ctx)) projLauncher.launch(
-                        ctx.getSystemService(MediaProjectionManager::class.java).createScreenCaptureIntent()
-                    )
-                    else ctx.startActivity(
-                        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${ctx.packageName}"))
-                    )
-                },
                 onExportCache = {
                     val json = app.store.exportCacheJson()
                     val send = Intent(Intent.ACTION_SEND).apply {

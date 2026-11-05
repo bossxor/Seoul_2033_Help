@@ -18,7 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import com.bossxor.seoul2033help.data.EncounterStore
+import com.bossxor.seoul2033help.data.SettingsRepository
+import com.bossxor.seoul2033help.data.UserSettings
 import com.bossxor.seoul2033help.ui.theme.Seoul2033Colors
 
 // 목록 항목마다 새로 만들지 않도록 한 번만 만든다
@@ -27,7 +30,13 @@ private val PillShape = RoundedCornerShape(50)
 private val CardBorder = BorderStroke(1.dp, Seoul2033Colors.BorderNormal)
 
 @Composable
-fun SearchScreen(store: EncounterStore, onSettings: () -> Unit = {}, onOpen: (String) -> Unit) {
+fun SearchScreen(
+    store: EncounterStore,
+    settingsRepo: SettingsRepository,
+    onSettings: () -> Unit = {},
+    onStartOverlay: () -> Unit = {},
+    onOpen: (String) -> Unit
+) {
     var query by remember { mutableStateOf("") }
     var story by remember { mutableStateOf<String?>(null) }
     val stories = remember { store.all().groupingBy { it.story }.eachCount().entries.sortedByDescending { it.value } }
@@ -118,6 +127,35 @@ fun SearchScreen(store: EncounterStore, onSettings: () -> Unit = {}, onOpen: (St
                     }
                 }
             }
+        }
+        OverlayBar(settingsRepo, onStartOverlay)
+    }
+}
+
+/** 오버레이를 켜기 전에 투명도를 맞추고 바로 시작하는 하단 바. */
+@Composable
+private fun OverlayBar(repo: SettingsRepository, onStart: () -> Unit) {
+    val s by repo.settings.collectAsState(initial = UserSettings())
+    val scope = rememberCoroutineScope()
+    Surface(color = Seoul2033Colors.Surface, tonalElevation = 0.dp, modifier = Modifier.fillMaxWidth()) {
+        Row(
+            Modifier.navigationBarsPadding().padding(horizontal = 16.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(Modifier.weight(1f)) {
+                Text(
+                    "오버레이 투명도 ${(s.overlayAlpha * 100).toInt()}%",
+                    style = MaterialTheme.typography.bodySmall, color = Seoul2033Colors.TextMuted
+                )
+                Slider(
+                    value = s.overlayAlpha.coerceIn(UserSettings.ALPHA_RANGE),
+                    onValueChange = { v -> scope.launch { repo.update { it.copy(overlayAlpha = v) } } },
+                    valueRange = UserSettings.ALPHA_RANGE,
+                    modifier = Modifier.heightIn(min = 32.dp)
+                )
+            }
+            Spacer(Modifier.width(12.dp))
+            Button(onClick = onStart, modifier = Modifier.heightIn(min = 48.dp)) { Text("오버레이 시작") }
         }
     }
 }

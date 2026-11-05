@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 fun SettingsScreen(
     repo: SettingsRepository,
     onBack: () -> Unit,
-    onStartOverlay: () -> Unit = {},
     onExportCache: () -> Unit = {}
 ) {
     val s by repo.settings.collectAsState(initial = UserSettings())
@@ -82,11 +81,6 @@ fun SettingsScreen(
             onClick = onExportCache,
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
         ) { Text("AI 캐시 export") }
-
-        Button(
-            onClick = onStartOverlay,
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).padding(top = 8.dp)
-        ) { Text("오버레이 시작") }
     }
 }
 
